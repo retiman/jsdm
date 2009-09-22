@@ -1,4 +1,4 @@
-module DepthFirstSearch
+module JSDM
   class DepthFirstSearch
     def initialize(graph)
       @graph            = graph

@@ -1,4 +1,4 @@
-module NaturalLoops
+module JSDM
   def loops?(graph, back_edges)
     loops = []
     back_edges.each do |arc|
