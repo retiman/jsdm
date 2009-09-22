@@ -1,1 +1,1 @@
-Why don't other javascript dependency management solutions do topological sort, or allow you to specify globs as dependencies (eg, #include <lib/*.js>)?  Who knows.  Let's write one that does.
+Why don't other javascript dependency management solutions do topological sort, detect circular dependencies, or allow you to specify globs as dependencies (eg, #include <lib/*.js>)?  Who knows.  Let's write one that does.
