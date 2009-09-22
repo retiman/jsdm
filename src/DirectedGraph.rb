@@ -1,12 +1,14 @@
 class DirectedGraph
-  attr_reader :nodes, :arcs
-
   def initialize(nodes, arcs)
-    @nodes = nodes
-    @arcs  = arcs
+    self.nodes = nodes
+    self.arcs  = arcs
   end
   
   def successors(node)
     arcs.select { |a| a.first == node }.map { |a| a.last }
   end
+
+  private
+  attr_reader :nodes
+  attr_reader :arcs
 end
