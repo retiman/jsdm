@@ -2,25 +2,23 @@ module JSDM
   class DepthFirstSearch
     def initialize(graph)
       @graph            = graph
-      @discovered_times = Hash[graph.nodes.map { |n| [n, 0] }]
-      @finished_times   = Hash[graph.nodes.map { |n| [n, 0] }]
-      @node_colors      = Hash[graph.nodes.map { |n| [n, :white] }]
-      @edge_colors      = { :white => [], :black => [], :gray => [] }
-      @predecessors     = Hash[graph.nodes.map { |n| [n, nil] }]
+      @discovered_times = Hash.new { |h, k| h[k] = 0 }
+      @finished_times   = Hash.new { |h, k| h[k] = 0 }
+      @node_colors      = Hash.new { |h, k| h[k] = :white }
+      @edge_colors      = Hash.new { |h, k| h[k] = [] }
+      @predecessors     = Hash.new
       @sorted           = []
       @time             = 0
+      graph.each do |k|
+        [@discovered_times, @finished_times, @node_colors].each { |h| h[k] }
+      end
+      [:white, :black, :gray].each { |color| @edge_colors[color] }
     end
     
     def result
       compute()
-      return Hash.new({
-        :graph            => @graph,
-        :discovered_times => @discovered_times,
-        :finished_times   => @finished_times,
-        :node_colors      => @node_colors,
-        :edge_colors      => @edge_colors,
-        :predecessors     => @predecessors,
-        :sorted           => @sorted,
+      result = Hash.new { |h, k| h[k] = instance_variable_get("@#{k.to_s}") }
+      result.merge! {
         :tree_edges       => @edge_colors[:white],
         :forward_edges    => @edge_colors[:black].select { |e|
                                t = discovered_times[e.first]
@@ -33,7 +31,7 @@ module JSDM
                                t > u
                              },
         :back_edges       => @edge_colors[:gray]
-      })
+      }
     end
 
     def compute
