@@ -1,6 +1,7 @@
 require 'rake'
 require 'rake/gempackagetask'
 require 'rake/rdoctask'
+require 'spec/rake/spectask'
 
 spec = Gem::Specification.new do |s|
   s.platform     = Gem::Platform::RUBY
@@ -16,6 +17,11 @@ end
 
 Rake::GemPackageTask.new(spec) do |pkg|
   pkg.need_tar_bz2 = true
+end
+
+desc "Run all specs"
+Spec::Rake::SpecTask.new("spec") do |t|
+  t.spec_files = Dir["src/**/*.js"]
 end
 
 task :default => :package
