@@ -18,7 +18,7 @@ module JSDM
     def result
       compute()
       result = Hash.new { |h, k| h[k] = instance_variable_get("@#{k.to_s}") }
-      result.merge! {
+      result.merge!({
         :tree_edges       => @edge_colors[:white],
         :forward_edges    => @edge_colors[:black].select { |e|
                                t = discovered_times[e.first]
@@ -31,7 +31,7 @@ module JSDM
                                t > u
                              },
         :back_edges       => @edge_colors[:gray]
-      }
+      })
     end
 
     def compute
