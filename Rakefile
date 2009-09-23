@@ -9,9 +9,9 @@ spec = Gem::Specification.new do |s|
   s.name         = "jsdm"
   s.author       = "Min Huang"
   s.email        = "min.huang@alumni.usc.edu"
-  s.files        = Dir["src/**/*"] + %w(Rakefile)
-  s.require_path = "src"
-  s.has_rdoc     = false
+  s.files        = Dir["lib/**/*"] + %w(Rakefile)
+  s.require_path = "lib"
+  s.has_rdoc     = true
   s.summary      = "Dependency management done right"
   s.version      = "0.0.1"
 end
@@ -22,6 +22,7 @@ end
 
 desc "Run all specs"
 Spec::Rake::SpecTask.new("spec") do |t|
+  t.ruby_opts     = ['-Ilib']
   t.spec_files    = FileList["test/**/*_spec.rb"]
 end
   

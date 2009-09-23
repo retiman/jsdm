@@ -1,4 +1,5 @@
-require 'src/depth_first_search'
+require 'depth_first_search'
+include JSDM
 
 describe DepthFirstSearch do
   it "should not pass" do 
