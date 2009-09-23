@@ -1,21 +1,16 @@
 module JSDM
   class Preprocessor
-    attr_reader :source_root
-
     def initialize(source_root)
       self.source_root = source_root
-      self.sources = Dir["#{source_root}/**/*.js"]
-      self.dependencies = []
+      self.manager = DependencyManagemer.new
     end
 
-    def dependency_graph
-      sources.each do |source|
+    def process
+      Dir["#{source_root}/**/*.js"].each do |source|
         includes = parse_includes(source)
-        resolve_dependencies(includes).each do |dep|
-          dependencies << [source, dep]
-        end
+        manager.add_dependencies(source, includes)
       end
-      DirectedGraph.new(sources, dependecies)
+      manager.process
     end
 
     def parse_includes(file)
@@ -26,20 +21,7 @@ module JSDM
            map { |line| line.sub(pattern, "").strip }
     end
 
-    def resolve_dependencies(includes)
-      deps = []
-      includes.each do |inc|
-        inc.split(",").each do |entry|
-          deps += Dir["#{source_root}/#{entry.strip}"]
-        end
-      end
-      deps 
-    end
-
     private
-    attr_writer :source_root
-    attr_accessor :nodes
-    attr_accessor :arcs
-    attr_reader :sources
+    attr_accessor :source_root
   end
 end
