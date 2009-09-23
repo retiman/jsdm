@@ -21,7 +21,9 @@ end
 
 desc "Run all specs"
 Spec::Rake::SpecTask.new("spec") do |t|
-  t.spec_files = Dir["src/**/*.js"]
+  t.spec_files    = Dir["test/**/*.js"]
+  t.spec_opts     = ["—format", "html:doc/reports/tools/failing_examples.html", "—diff"]
+  t.fail_on_error = false
 end
-
+  
 task :default => :package
