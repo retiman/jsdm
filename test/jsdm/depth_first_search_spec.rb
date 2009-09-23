@@ -1,4 +1,4 @@
-require 'depth_first_search'
+require 'jsdm/depth_first_search'
 include JSDM
 
 describe DepthFirstSearch do
