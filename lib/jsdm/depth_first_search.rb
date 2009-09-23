@@ -3,7 +3,7 @@ require 'set'
 module JSDM
   class DepthFirstSearch
     def initialize(graph)
-      self.graph            = graph
+      self.graph  = graph
       self.discovered_times = Hash.new { |h, k| h[k] = 0 }
       self.finished_times   = Hash.new { |h, k| h[k] = 0 }
       self.node_colors      = Hash.new { |h, k| h[k] = :white }
@@ -15,21 +15,26 @@ module JSDM
     
     def process
       graph.nodes.each { |u| visit(u) if node_colors[u] == :white }
-      result = Hash.new { |h, k| h[k] = instance_variable_get("#{k.to_s}") }
-      result.merge!({
-        :tree_edges    => edge_colors[:white],
-        :forward_edges => edge_colors[:black].select do |e|
-                            t = discovered_times[e.first]
-                            u = discovered_times[e.last]
-                            t < u
-                          end,
-        :cross_edges   => edge_colors[:black].select do |e|
-                            t = discovered_times[e.first]
-                            u = discovered_times[e.last]
-                            t > u
-                          end,
-        :back_edges    => edge_colors[:gray]
-      })
+      return {
+        :discovered_times => discovered_times,
+        :finished_times   => finished_times,
+        :node_colors      => node_colors,
+        :edge_colors      => edge_colors,
+        :predecessors     => predecessors,
+        :sorted           => sorted,
+        :tree_edges       => edge_colors[:white],
+        :forward_edges    => edge_colors[:black].select do |e|
+                               t = discovered_times[e.first]
+                               u = discovered_times[e.last]
+                               t < u
+                             end,
+        :cross_edges      => edge_colors[:black].select do |e|
+                               t = discovered_times[e.first]
+                               u = discovered_times[e.last]
+                               t > u
+                             end,
+        :back_edges       => edge_colors[:gray]
+      }
     end
 
     def visit(u)
