@@ -2,7 +2,6 @@ require 'rubygems'
 require 'rake'
 require 'rake/gempackagetask'
 require 'rake/rdoctask'
-require 'spec/rake/spectask'
 
 spec = Gem::Specification.new do |s|
   s.platform     = Gem::Platform::RUBY
@@ -20,10 +19,9 @@ Rake::GemPackageTask.new(spec) do |pkg|
   pkg.need_tar_bz2 = true
 end
 
-desc "Run all specs"
-Spec::Rake::SpecTask.new("spec") do |t|
-  t.ruby_opts     = ['-Ilib']
-  t.spec_files    = FileList["test/**/*_spec.rb"]
+desc "Run tests"
+task :test do
+  system "ruby test/run.rb"
 end
   
 task :default => :package
