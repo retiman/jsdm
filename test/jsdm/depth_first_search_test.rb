@@ -1,6 +1,8 @@
-require 'test/unit'
 require 'jsdm/directed_graph'
 require 'jsdm/depth_first_search'
+require 'set'
+require 'test/unit'
+
 include JSDM
 
 class DepthFirstSearchTest < Test::Unit::TestCase
@@ -33,6 +35,6 @@ class DepthFirstSearchTest < Test::Unit::TestCase
     forward_edges = [[1, 4], [8, 10]]
     @graph = DirectedGraph.new(@nodes, @arcs + forward_edges)
     result = dfs(@graph)
-    assert_equal forward_edges, result[:forward_edges]
+    assert_equal forward_edges.to_set, result[:forward_edges].to_set
   end
 end
