@@ -1,5 +1,8 @@
 module JSDM
   class DirectedGraph
+    attr_accessor :nodes, :arcs
+    private :nodes=, :arcs=
+
     def initialize(nodes, arcs)
       self.nodes = nodes
       self.arcs  = arcs
@@ -8,9 +11,5 @@ module JSDM
     def successors(node)
       arcs.select { |a| a.first == node }.map { |a| a.last }
     end
-
-    private
-    attr_reader :nodes
-    attr_reader :arcs
   end
 end
