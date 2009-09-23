@@ -15,8 +15,10 @@ module JSDM
       [:white, :black, :gray].each { |color| @edge_colors[color] }
     end
     
-    def result
-      compute()
+    def process
+      @graph.nodes.each do |u|
+        visit(u) if @node_colors[u] == :white
+      end
       result = Hash.new { |h, k| h[k] = instance_variable_get("@#{k.to_s}") }
       result.merge!({
         :tree_edges       => @edge_colors[:white],
@@ -32,12 +34,6 @@ module JSDM
                              },
         :back_edges       => @edge_colors[:gray]
       })
-    end
-
-    def compute
-      @graph.nodes.each do |u|
-        visit(u) if @node_colors[u] == :white
-      end
     end
 
     def visit(u)
