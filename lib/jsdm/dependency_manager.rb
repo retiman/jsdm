@@ -1,3 +1,5 @@
+require 'set'
+
 module JSDM
   class DependencyManager
     def initialize(source_root)
@@ -13,7 +15,8 @@ module JSDM
     end
 
     def process
-      # maybe add a warning about this later?
+      # maybe add a warning about these filters later?
+      # make sure the user knows that some files didn't make the cut
       sources = sources.uniq.select { |s| !s.empty? }
       dependencies = dependencies.uniq.select { |s| s.empty? || s.first == s.last }
       graph = DirectedGraph.new(sources, dependencies)

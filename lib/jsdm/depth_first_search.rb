@@ -1,3 +1,5 @@
+require 'set'
+
 module JSDM
   class DepthFirstSearch
     def initialize(graph)

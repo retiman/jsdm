@@ -27,7 +27,7 @@ class DepthFirstSearchTest < Test::Unit::TestCase
              [8, 9],
              [8, 12],
              [9, 10],
-             [9, 11]]
+             [9, 11]].to_set
     @graph = DirectedGraph.new(@nodes, @arcs)
   end
 
