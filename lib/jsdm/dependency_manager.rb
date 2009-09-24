@@ -5,8 +5,9 @@ module JSDM
   class DependencyManager
     def initialize(source_root)
       self.source_root = source_root
-      self.sources = []
+      self.sources = Dir["#{source_root}/**/*.js"]
       self.dependencies = []
+      self.graph = nil
     end
 
     def add_dependencies(source, includes)
@@ -14,7 +15,7 @@ module JSDM
         # make an arc from dep to source
         # in a dfs, dep will be visited before source
         # todo: warn if a file lists itself as a dependency
-        dependencies << [dep, source] unless same(dep, source)
+        dependencies << [dep, source] unless same_file?(dep, source)
       end
     end
 
@@ -26,8 +27,8 @@ module JSDM
       # todo: warn about listing the same dependency twice
       # todo: warn about including the same source twice
       self.sources = sources.uniq.select { |s| !s.empty? }
-      self.dependencies = dependencies.uniq.select { |s| s.empty? || s.first == s.last }
-      graph = DirectedGraph.new(sources, dependencies)
+      self.dependencies = dependencies.uniq.select { |s| !s.empty? || s.first != s.last }
+      self.graph = DirectedGraph.new(sources, dependencies)
       result = dfs(graph)
       loops = loops(graph, result[:back_edges])
       raise "Circular dependency detected: #{loops}" unless loops.empty?
@@ -39,9 +40,7 @@ module JSDM
       File.expand_path(a) == File.expand_path(b)
     end
 
-    private
-    attr_accessor :source_root
-    attr_accessor :sources
-    attr_accessor :dependencies
+    attr_accessor :source_root, :sources, :dependencies, :graph
+    private :source_root=, :sources=, :dependencies=, :graph=
   end
 end
