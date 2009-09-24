@@ -26,8 +26,11 @@ module JSDM
     def process
       # todo: warn about listing the same dependency twice
       # todo: warn about including the same source twice
-      self.sources = sources.uniq.select { |s| !s.empty? }
-      self.dependencies = dependencies.uniq.select { |s| !s.empty? || s.first != s.last }
+      self.sources      = sources.uniq.
+                              select { |s| !s.empty? }
+      self.dependencies = dependencies.
+                              uniq.
+                              select { |s| !s.empty? || s.first != s.last }
       self.graph = DirectedGraph.new(sources, dependencies)
       result = dfs(graph)
       loops = loops(graph, result[:back_edges])

@@ -11,6 +11,7 @@ class PreprocessorTest < Test::Unit::TestCase
 
   def test_get_includes
     expected = ["a/*", "b", "./c*.js", "d"]
+    expected.map! { |entry| "#{@preprocessor.source_root}/#{entry}" }
     result = @preprocessor.get_includes("res/preprocessor.js")
     assert_equal expected, result
   end

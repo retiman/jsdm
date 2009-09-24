@@ -20,7 +20,7 @@ module JSDM
            take_while { |line| line =~ pattern }.
            map { |line| line.sub!(pattern, "").split(",") }.
            flatten.
-           map { |entry| entry.strip }
+           map { |entry| "#{source_root}/#{entry.strip}" }
     end
 
     attr_accessor :source_root, :pattern
