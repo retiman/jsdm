@@ -10,7 +10,7 @@ module JSDM
     end
 
     def add_dependencies(source, includes)
-      resolve_dependencies(includes).each do |dep|
+      resolve_entries(includes).each do |dep|
         # make an arc from dep to source
         # in a dfs, dep will be visited before source
         # todo: warn if a file lists itself as a dependency
@@ -18,7 +18,7 @@ module JSDM
       end
     end
 
-    def resolve_dependencies(entries)
+    def resolve_entries(entries)
       entries.map { |entry| Dir["#{source_root}/#{entry.strip}"] }.flatten
     end
 
