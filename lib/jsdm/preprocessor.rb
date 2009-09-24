@@ -2,7 +2,7 @@ module JSDM
   class Preprocessor
     def initialize(source_root)
       self.source_root = source_root
-      self.manager = DependencyManagemer.new
+      self.manager = DependencyManager.new(source_root)
     end
 
     def process
@@ -22,6 +22,6 @@ module JSDM
     end
 
     private
-    attr_accessor :source_root
+    attr_accessor :source_root, :manager
   end
 end
