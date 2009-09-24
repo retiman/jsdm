@@ -9,6 +9,9 @@ class PreprocessorTest < Test::Unit::TestCase
     @preprocessor = Preprocessor.new("res")
   end
 
-  def test_foo
+  def test_get_includes
+    expected = ["a/*", "b", "./c*.js", "d"]
+    result = @preprocessor.get_includes("res/preprocessor.js")
+    assert_equal expected, result
   end
 end
