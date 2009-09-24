@@ -1,21 +1,26 @@
+require 'set'
+
 module JSDM
-  def loops?(graph, back_edges)
-    loops = []
+  def loops(graph, back_edges)
+    loops = Set.new
     back_edges.each do |arc|
-      loop  = [arc.first, arc.last]
+      l = [arc.first, arc.last]
       stack = []
       stack.push arc.first if arc.first != arc.last
       while !stack.empty?
         u = stack.pop
-        graph.arcs.select { |a| a.last == u }.map { a.first }.each do |v|
-          if !loop.include?(v)
-            loop <<    q
-            stack.push q
+        neighbors = graph.arcs.
+                          select { |a| a.last == u }.
+                          map { |a| a.first }.each 
+        neighbors.each do |v|
+          if !l.include?(v)
+            l << v
+            stack.push v
           end
         end
       end
-      loops << loop
+      loops << l.to_set
     end
-    loops.empty?
+    loops
   end
 end
