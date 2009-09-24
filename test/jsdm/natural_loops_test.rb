@@ -30,6 +30,11 @@ class NaturalLoopsTest < Test::Unit::TestCase
              [9, 11]]
   end
 
+  def test_find_no_loops
+    graph = DirectedGraph.new(@nodes, @arcs)
+    assert_equal [].to_set, loops(graph, [])
+  end
+
   def test_find_loops
     @arcs += [[4, 1], [12, 1]]
     graph = DirectedGraph.new(@nodes, @arcs)
