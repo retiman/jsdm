@@ -3,7 +3,7 @@ require 'set'
 module JSDM
   class DepthFirstSearch
     def initialize(graph)
-      self.graph  = graph
+      self.graph            = graph
       self.discovered_times = Hash.new { |h, k| h[k] = 0 }
       self.finished_times   = Hash.new { |h, k| h[k] = 0 }
       self.node_colors      = Hash.new { |h, k| h[k] = :white }
