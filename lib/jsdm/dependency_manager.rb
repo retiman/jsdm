@@ -1,3 +1,6 @@
+require 'jsdm/depth_first_search'
+require 'jsdm/natural_loops'
+
 module JSDM
   class DependencyManager
     def initialize(source_root)
@@ -10,7 +13,8 @@ module JSDM
       resolve_dependencies(includes).each do |dep|
         # make an arc from dep to source
         # in a dfs, dep will be visited before source
-        dependencies << [dep, source]
+        # todo: warn if a file lists itself as a dependency
+        dependencies << [dep, source] unless same(dep, source)
       end
     end
 
@@ -19,11 +23,20 @@ module JSDM
     end
 
     def process
-      # maybe add a warning about these filters later?
-      # make sure the user knows that some files didn't make the cut
+      # todo: warn about listing the same dependency twice
+      # todo: warn about including the same source twice
       self.sources = sources.uniq.select { |s| !s.empty? }
       self.dependencies = dependencies.uniq.select { |s| s.empty? || s.first == s.last }
-      DirectedGraph.new(sources, dependencies)
+      graph = DirectedGraph.new(sources, dependencies)
+      result = dfs(graph)
+      loops = loops(graph, result[:back_edges])
+      raise "Circular dependency detected: #{loops}" unless loops.empty?
+      # return a topological sort of the dependency graph
+      result[:sorted] 
+    end
+
+    def same_file?(a, b)
+      File.expand_path(a) == File.expand_path(b)
     end
 
     private
