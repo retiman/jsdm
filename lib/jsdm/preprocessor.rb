@@ -3,9 +3,10 @@ require 'jsdm/file_not_found_error'
 module JSDM
   class Preprocessor
     def initialize(load_path, options = {})
+      comment_pattern = /^\s*\/\/\s*/
       defaults = {
-        :comment_pattern => /^\s*\/\/\s*/,
-        :require_pattern => /^\s*\/\/\s*#require\s*/      
+        :comment_pattern => comment_pattern,
+        :require_pattern => /#{comment_pattern}#require\s*/      
       }
       self.load_path = load_path
       self.manager   = DependencyManager.new(load_path)
