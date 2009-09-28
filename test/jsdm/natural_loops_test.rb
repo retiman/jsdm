@@ -6,6 +6,8 @@ require 'test/unit'
 include JSDM
 
 class NaturalLoopsTest < Test::Unit::TestCase
+  attr_accessor :nodes, :arcs
+
   def setup
     #         Graph G
     #            1

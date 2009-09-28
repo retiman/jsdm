@@ -1,7 +1,0 @@
-DONE
-- Write a DFS algorithm to do topological sort
-- Write a loops? function to test for circular dependencies
-
-NOT DONE
-- Write a simple parser to parse the #include statements on each js file.
-- Build a dependency graph

@@ -5,7 +5,12 @@ require 'test/unit'
 
 include JSDM
 
+# todo: forward/back/cross edges are not unique across searches
+# it depends on node order, so change these tests to only test
+# if forward/back/cross edges exist, not what they are
 class DepthFirstSearchTest < Test::Unit::TestCase
+  attr_accessor :graph, :nodes, :arcs
+
   def setup
     #         Graph G
     #            1
