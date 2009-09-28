@@ -1,4 +1,5 @@
 require 'jsdm/circular_dependency_error'
+require 'jsdm/unsatisfiable_dependency_error'
 require 'jsdm/depth_first_search'
 require 'jsdm/natural_loops'
 
@@ -12,11 +13,15 @@ module JSDM
     end
 
     def add_dependencies(source, includes)
-      resolve_entries(includes).each do |dep|
-        # make an arc from dep to source
-        # in a dfs, dep will be visited before source
-        # files implicitly depend on themselves; this is not an error
-        dependencies << [dep, source] unless same_file?(dep, source)
+      begin
+        resolve_entries(includes).each do |dep|
+          # make an arc from dep to source
+          # in a dfs, dep will be visited before source
+          # files implicitly depend on themselves; this is not an error
+          dependencies << [dep, source] unless same_file?(dep, source)
+        end
+      rescue FileNotFoundError => e
+        raise UnsatisfiableDependencyError.new(source, e.file)
       end
     end
 
