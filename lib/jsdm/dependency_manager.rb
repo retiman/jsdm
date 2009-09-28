@@ -25,9 +25,11 @@ module JSDM
     end
     
     def resolve_entry(entry)
-      load_path.map { |path| Dir["#{path}/#{entry.strip}"] }.
-                take_while { |sources| !sources.empty? }.
-                first
+      resolved = load_path.map { |path| Dir["#{path}/#{entry.strip}"] }.
+                           take_while { |sources| !sources.empty? }.
+                           first
+      raise FileNotFoundError.new(entry)  if resolved.nil? || resolved.empty?
+      resolved
     end    
 
     def process
