@@ -6,7 +6,7 @@ module JSDM
       comment_pattern = /^\s*\/\/\s*/
       defaults = {
         :verbose         => false,
-        :extension       => "js"
+        :extension       => "js",
         :comment_pattern => comment_pattern,
         :require_pattern => /#{comment_pattern}#require\s*/      
       }
