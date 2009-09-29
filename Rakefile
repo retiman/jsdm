@@ -12,7 +12,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = "lib"
   s.has_rdoc     = true
   s.homepage     = "http://www.borderstylo.com/#{s.name}"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "Javascript dependency manager"
   s.description  = "Use #require statements to declare dependencies"
 end
@@ -24,6 +24,7 @@ end
 desc "Clean the build"
 task :clean do
   FileUtils.rm_rf "pkg", :verbose => true
+  FileUtils.rm_rf "tmp", :verbose => true
 end
 
 desc "Run all tests (no arg), or single test (with arg)"
