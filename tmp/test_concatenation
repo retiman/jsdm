@@ -1,0 +1,3 @@
+// test/res/jsdm/test_concatenation/b.js
+:// test/res/jsdm/test_concatenation/a.js
+:// #require b.js

@@ -132,4 +132,15 @@ class JSDMTest < Test::Unit::TestCase
     sorted = jsdm.sort
     assert_equal ["#{@root}/I/b.js", "#{@root}/a.js"].to_set, sorted.to_set
   end
+
+  def test_concatenation
+    @root += "test_concatenation"
+    jsdm = JSDM.new [@root]
+    jsdm.concatenate("tmp/test_concatenation", "// __FILE__:")
+    expected = "// test/res/jsdm/test_concatenation/b.js\n:" +
+               "// test/res/jsdm/test_concatenation/a.js\n:" +
+               "// #require b.js\n"
+    result = File.new("tmp/test_concatenation").read 
+    assert_equal expected, result
+  end
 end

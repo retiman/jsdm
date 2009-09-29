@@ -15,5 +15,16 @@ class JSDM
     preprocessor.process
   end
 
+  def concatenate(output_name, header = "")
+    output_name = File.expand_path output_name
+    output = File.open output_name, "w"
+    sort.each do |source|
+      h = header.sub /__FILE__/, "#{source}\n"
+      data = File.new(source).read
+      output.write(h + data)
+    end
+    output.close
+  end
+
   attr_accessor :load_path, :options
 end
