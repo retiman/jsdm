@@ -18,7 +18,7 @@ module JSDM
     def check_load_path
       puts "Preprocessor started with load path:" if options[:verbose]
       load_path.each do |path|
-        puts "  #{path}"
+        puts "  #{path}" if options[:verbose]
         raise FileNotFoundError.new(path) if !File.directory? path
       end
     end
