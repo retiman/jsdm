@@ -27,7 +27,7 @@ task :clean do
   FileUtils.rm_rf "tmp", :verbose => true
 end
 
-desc "Run all tests (no arg), or single test (with arg)"
+desc "Run unit tests (no arg), or single test (with arg)"
 task :test, :name do |t, args|
   FileUtils.mkdir "tmp", :verbose => true if !File.directory? "tmp"
   opts = args.name.nil? ? "" : "-n test_#{args.name}"
@@ -35,5 +35,14 @@ task :test, :name do |t, args|
   puts cmd
   system cmd
 end
-  
+
+desc "Run integration tests (no arg), or single test (with arg)"
+task :test, :name do |t, args|
+  FileUtils.mkdir "tmp", :verbose => true if !File.directory? "tmp"
+  opts = args.name.nil? ? "" : "-n test_#{args.name}"
+  cmd = "ruby test/run_integration_tests.rb #{opts}"
+  puts cmd
+  system cmd
+end
+ 
 task :default => :package
