@@ -10,27 +10,27 @@ class JsdmTest < Test::Unit::TestCase
   
   def test_no_sources
     @root += "test_no_sources"
-    jsdm = Jsdm.new @root
+    jsdm = Jsdm.new [@root]
     assert_equal [], jsdm.sort
   end
   
   def test_single_source_file
     @root += "test_single_source_file"
-    jsdm = Jsdm.new(@root)
+    jsdm = Jsdm.new [@root]
     assert_equal ["#{@root}/a.js"], jsdm.sort
   end
 
   def test_require_self  
     @root += "test_require_self"
-    jsdm = Jsdm.new(@root)
+    jsdm = Jsdm.new [@root]
     assert_nothing_raised { jsdm.sort }
     assert_equal ["#{@root}/a.js"], jsdm.sort
   end
   
   def test_require_missing
     @root += "test_require_missing"
-    assert_raise FileNotFoundError do
-      jsdm = Jsdm.new("#{@root}/non_require_missing")
+    assert_raise UnsatisfiableDependencyError do
+      jsdm = Jsdm.new(@root)
       jsdm.sort
     end
   end
