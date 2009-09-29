@@ -11,7 +11,7 @@ class JSDM
   end
 
   def sort
-    preprocessor = JSDM::Preprocessor.new(load_path, options)
+    preprocessor = JSDM::Preprocessor.new load_path, options
     preprocessor.process
   end
 
