@@ -143,10 +143,4 @@ class JSDMTest < Test::Unit::TestCase
     result = File.new("tmp/test_concatenation").read 
     assert_equal expected, result
   end
-
-  def test_sequence
-    #jsdm = JSDM.new [@root]
-    #jsdm.sequence "js"
-    puts "GOOD"
-  end
 end
