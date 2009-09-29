@@ -23,7 +23,6 @@ class JsdmTest < Test::Unit::TestCase
   def test_require_self  
     @root += "test_require_self"
     jsdm = Jsdm.new [@root]
-    assert_nothing_raised { jsdm.sort }
     assert_equal ["#{@root}/a.js"], jsdm.sort
   end
   
