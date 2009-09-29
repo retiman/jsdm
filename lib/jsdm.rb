@@ -22,6 +22,7 @@ class JSDM
       h = header.sub /__FILE__/, "#{source}\n"
       data = File.new(source).read
       output.write(h + data)
+      puts "Appended file: #{source}" if options[:verbose]
     end
     output.close
   end
