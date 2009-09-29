@@ -36,22 +36,22 @@ class JsdmTest < Test::Unit::TestCase
 
   def test_two_source_files
     @root += "test_two_source_files"
-    jsdm = Jsdm.new(@root)
+    jsdm = Jsdm.new [@root]
     sorted = jsdm.sort
     assert_equal ["#{@root}/a.js", "#{@root}/b.js"].to_set, sorted.to_set
   end
   
   def test_one_depends_on_other
     @root += "test_one_depends_on_other"
-    jsdm = Jsdm.new(@root)
+    jsdm = Jsdm.new [@root]
     sorted = jsdm.sort
     assert_equal ["#{@root}/a.js", "#{@root}/b.js"].to_set, sorted.to_set
   end
   
   def test_circular_with_2
     @root += "test_circular_with_2"
-  	jsdm = Jsdm.new(root)
     begin
+  	  jsdm = Jsdm.new [@root]
       jsdm.sort
     rescue CircularDependencyError => e
       expected = [["#{@root}/a.js", "#{@root}/b.js"].to_set].to_set
@@ -59,18 +59,17 @@ class JsdmTest < Test::Unit::TestCase
     end
   end
   
-	# this is like a cross edge
   def test_complex_dependency
   	@root += "test_complex_dependency"
-    jsdm = Jsdm.new(root)
+    jsdm = Jsdm.new [@root]
     sorted = jsdm.sort
     assert_equal ["#{@root}/a.js", "#{@root}/b.js", "#{@root}/c.js"], sorted
    end
   
   def test_circular_with_3
     @root += "test_circular_with_3"
-    jsdm = Jsdm.new(@root)
     begin
+      jsdm = Jsdm.new [@root]
       jsdm.sort
     rescue CircularDependencyError => e
       expected = [
@@ -84,7 +83,7 @@ class JsdmTest < Test::Unit::TestCase
   # todo: up one directory, up two directories, down two directories
   def test_down_one_dir
     @root += "test_down_one_dir"
-    jsdm = Jsdm.new(root)
+    jsdm = Jsdm.new [@root]
     sorted = jsdm.sort
     assert_equal ["#{@root}/a.js", "#{@root}/I/b.js"].to_set, sorted.to_set
   end
@@ -98,28 +97,28 @@ class JsdmTest < Test::Unit::TestCase
   
   def test_up_one_dir
     @root += "test_up_one_dir"
-    jsdm = Jsdm.new(root)
+    jsdm = Jsdm.new [@root]
     sorted = jsdm.sort
     assert_equal ["#{@root}/a.js", "#{@root}/I/b.js"].to_set, sorted.to_set
   end
   
   def test_up_two_dir
     @root += "test_up_two_dir"
-    jsdm = Jsdm.new(root)
+    jsdm = Jsdm.new [@root]
     sorted = jsdm.sort
     assert_equal ["#{@root}/a.js", "#{@root}/I/i/b.js"].to_set, sorted.to_set
   end
   
   def test_glob_matches_self
     @root += "test_glob_matches_self"
-    jsdm = Jsdm.new(root)
+    jsdm = Jsdm.new [@root]
     assert_equal ["#{@root}/a.js"], jsdm.sort
   end
   
   def test_circular_with_glob_2
     @root += "test_circular_with_glob_2"
-    jsdm = Jsdm.new(root)
     begin
+      jsdm = Jsdm.new [@root]
       jsdm.sort
     rescue CircularDependencyError => e
       expected = [["#{@root}/a.js", "#{@root}/b.js"].to_set].to_set
@@ -129,7 +128,7 @@ class JsdmTest < Test::Unit::TestCase
   
   def test_double_star_with_2
     @root += "test_double_star_with_2"
-    jsdm = Jsdm.new(root)
+    jsdm = Jsdm.new [@root]
     sorted = jsdm.sort
     assert_equal ["#{@root}/I/b.js", "#{@root}/a.js"].to_set, sorted.to_set
   end
