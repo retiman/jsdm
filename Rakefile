@@ -29,6 +29,7 @@ end
 
 desc "Run all tests (no arg), or single test (with arg)"
 task :test, :name do |t, args|
+  FileUtils.mkdir "tmp", :verbose => true if !File.directory? "tmp"
   opts = args.name.nil? ? "" : "-n test_#{args.name}"
   cmd = "ruby test/run.rb #{opts}"
   puts cmd
