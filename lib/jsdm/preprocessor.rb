@@ -6,6 +6,7 @@ module JSDM
       comment_pattern = /^\s*\/\/\s*/
       defaults = {
         :verbose         => false,
+        :extension       => "js"
         :comment_pattern => comment_pattern,
         :require_pattern => /#{comment_pattern}#require\s*/      
       }
@@ -43,7 +44,8 @@ module JSDM
 
     # todo: refactor out of class
     def get_all_sources
-      load_path.map { |path| Dir["#{path}/**/*.js"] }.flatten
+      ext = options[:extension]
+      load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.flatten
     end    
 
 

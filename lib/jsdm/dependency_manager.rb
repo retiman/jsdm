@@ -59,7 +59,8 @@ module JSDM
 
     # todo: refactor out of class
     def get_all_sources
-      load_path.map { |path| Dir["#{path}/**/*.js"] }.flatten
+      ext = options[:extension]
+      load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.flatten
     end    
 
     # todo: refactor out of class
