@@ -19,7 +19,7 @@ module JSDM
 
     def add_dependencies(source, includes)
       begin
-        puts "Resolved dependencies for #{source}" if options[:verbose]
+        puts "Dependencies for #{source}:" if options[:verbose]
         resolve_entries(includes).each do |dep|
           # make an arc from dep to source
           # in a dfs, dep will be visited before source
@@ -27,6 +27,7 @@ module JSDM
           puts "  #{dep}" if options[:verbose]
           dependencies << [dep, source] unless same_file?(dep, source)
         end
+        puts "  Done" if options[:verbose]
       rescue FileNotFoundError => e
         raise UnsatisfiableDependencyError.new(source, e.file)
       end
