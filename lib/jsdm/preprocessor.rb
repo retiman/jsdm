@@ -5,6 +5,7 @@ module JSDM
     def initialize(load_path, options = {})
       comment_pattern = /^\s*\/\/\s*/
       defaults = {
+        :verbose         => false,
         :comment_pattern => comment_pattern,
         :require_pattern => /#{comment_pattern}#require\s*/      
       }
@@ -15,7 +16,9 @@ module JSDM
     end
 
     def check_load_path
+      puts "Preprocessor started with load path:" if options[:verbose]
       load_path.each do |path|
+        puts "  #{path}"
         raise FileNotFoundError.new(path) if !File.directory? path
       end
     end
