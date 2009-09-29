@@ -1,3 +1,4 @@
+require 'jsdm/dependency_manager'
 require 'jsdm/file_not_found_error'
 
 module JSDM
