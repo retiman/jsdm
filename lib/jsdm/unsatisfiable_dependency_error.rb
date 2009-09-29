@@ -1,4 +1,4 @@
-module JSDM
+class JSDM
   class UnsatisfiableDependencyError < StandardError
     attr_accessor :source, :dep
     private :source=, :dep=

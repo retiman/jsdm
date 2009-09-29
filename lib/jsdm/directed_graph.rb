@@ -1,4 +1,4 @@
-module JSDM
+class JSDM
   class DirectedGraph
     attr_accessor :nodes, :arcs
     private :nodes=, :arcs=

@@ -1,4 +1,4 @@
-module JSDM
+class JSDM
   class CircularDependencyError < StandardError
     attr_accessor :deps
     private :deps=

@@ -1,6 +1,6 @@
 require 'set'
 
-module JSDM
+class JSDM
   class DepthFirstSearch
     def initialize(graph)
       self.graph            = graph
@@ -59,6 +59,11 @@ module JSDM
       self.time += 1
     end
 
+    def self.dfs(graph)
+      search = DepthFirstSearch.new(graph)
+      search.process
+    end
+
     protected
     attr_accessor :graph, 
                   :discovered_times, 
@@ -68,10 +73,5 @@ module JSDM
                   :predecessors, 
                   :sorted, 
                   :time
-  end
-  
-  def dfs(graph)
-    search = DepthFirstSearch.new(graph)
-    search.process
   end
 end

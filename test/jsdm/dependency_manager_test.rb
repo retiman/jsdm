@@ -1,19 +1,17 @@
-require 'jsdm/dependency_manager'
+require 'jsdm'
 require 'set'
 require 'test/unit'
 
-include JSDM
-
 class DependencyManagerTest < Test::Unit::TestCase
-	attr_accessor :root
-	
+  attr_accessor :root
+  
   def setup
-  	@root = "test/res/dependency_manager/"
+    @root = "test/res/dependency_manager/"
   end
 
   def test_resolve_entries
-  	@root += "test_resolve_entries"
-  	manager = DependencyManager.new(root)
+    @root += "test_resolve_entries"
+    manager = JSDM::DependencyManager.new(root)
     expected = ["a/b.js",
                 "c.js",
                 "b/c.js",
@@ -24,8 +22,8 @@ class DependencyManagerTest < Test::Unit::TestCase
   end
 
   def test_add_and_process_dependencies
-  	@root += "test_add_and_process_dependencies"
-  	manager = DependencyManager.new(root)
+    @root += "test_add_and_process_dependencies"
+    manager = JSDM::DependencyManager.new(root)
     deps = [["b/c.js",     "a/b.js"],
             ["c.js",       "a/b.js"],
             ["b/c/d.js",   "b/c.js"],

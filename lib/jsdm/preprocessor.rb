@@ -1,7 +1,7 @@
 require 'jsdm/dependency_manager'
 require 'jsdm/file_not_found_error'
 
-module JSDM
+class JSDM
   class Preprocessor
     def initialize(load_path, options = {})
       comment_pattern = /^\s*\/\/\s*/

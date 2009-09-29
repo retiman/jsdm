@@ -1,9 +1,6 @@
-require 'jsdm/directed_graph'
-require 'jsdm/natural_loops'
+require 'jsdm'
 require 'set'
 require 'test/unit'
-
-include JSDM
 
 class NaturalLoopsTest < Test::Unit::TestCase
   attr_accessor :nodes, :arcs
@@ -33,17 +30,17 @@ class NaturalLoopsTest < Test::Unit::TestCase
   end
 
   def test_find_no_loops
-    graph = DirectedGraph.new(@nodes, @arcs)
-    assert_equal [].to_set, loops(graph, [])
+    graph = JSDM::DirectedGraph.new(@nodes, @arcs)
+    assert_equal [].to_set, JSDM::NaturalLoops.find(graph, [])
   end
 
   def test_find_loops
     @arcs += [[4, 1], [12, 1]]
-    graph = DirectedGraph.new(@nodes, @arcs)
-    back_edges = dfs(graph)[:back_edges]
+    graph = JSDM::DirectedGraph.new(@nodes, @arcs)
+    back_edges = JSDM::DepthFirstSearch.dfs(graph)[:back_edges]
     assert_equal [[1, 2, 3, 4].to_set, 
                   [1, 8, 12].to_set,
                  ].to_set,
-                 loops(graph, back_edges)
+                 JSDM::NaturalLoops.find(graph, back_edges)
   end
 end

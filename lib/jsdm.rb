@@ -1,6 +1,6 @@
 require 'jsdm/preprocessor'
 
-class Jsdm
+class JSDM
   def initialize(load_path = [], options = {})
     defaults = {
       :verbose   => false,

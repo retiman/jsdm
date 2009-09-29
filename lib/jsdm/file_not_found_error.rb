@@ -1,4 +1,4 @@
-module JSDM
+class JSDM
   class FileNotFoundError < StandardError
     attr_accessor :file
     private :file=

@@ -1,10 +1,11 @@
 require 'jsdm/circular_dependency_error'
 require 'jsdm/depth_first_search'
+require 'jsdm/directed_graph'
 require 'jsdm/file_not_found_error'
 require 'jsdm/natural_loops'
 require 'jsdm/unsatisfiable_dependency_error'
 
-module JSDM
+class JSDM
   class DependencyManager
     def initialize(load_path, options = {})
       defaults = {
@@ -53,8 +54,8 @@ module JSDM
       self.sources = sources.uniq.select { |s| !s.empty? }
       self.dependencies = dependencies.uniq.select { |s| !s.empty? }
       self.graph = DirectedGraph.new(sources, dependencies)
-      result = dfs(graph)
-      loops = loops(graph, result[:back_edges])
+      result = DepthFirstSearch.dfs(graph)
+      loops = NaturalLoops.find(graph, result[:back_edges])
       raise CircularDependencyError.new(loops) unless loops.empty?
       result[:sorted] 
     end
