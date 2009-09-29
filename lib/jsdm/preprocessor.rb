@@ -9,7 +9,7 @@ module JSDM
         :require_pattern => /#{comment_pattern}#require\s*/      
       }
       self.load_path = load_path
-      self.manager   = DependencyManager.new(load_path)
+      self.manager   = DependencyManager.new load_path, options
       self.options   = defaults.merge! options
       check_load_path
     end

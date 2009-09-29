@@ -5,8 +5,13 @@ require 'jsdm/natural_loops'
 
 module JSDM
   class DependencyManager
-    def initialize(load_path)
+    def initialize(load_path, options = {})
+      defaults = {
+        :verbose   => false,
+        :extension => "js"
+      }
       self.load_path = load_path
+      self.options = defaults.merge! options
       self.sources = get_all_sources
       self.dependencies = []
       self.graph = nil
@@ -14,10 +19,12 @@ module JSDM
 
     def add_dependencies(source, includes)
       begin
+        puts "Resolved dependencies for #{source}" if options[:verbose]
         resolve_entries(includes).each do |dep|
           # make an arc from dep to source
           # in a dfs, dep will be visited before source
           # files implicitly depend on themselves; this is not an error
+          puts "  #{dep}" if options[:verbose]
           dependencies << [dep, source] unless same_file?(dep, source)
         end
       rescue FileNotFoundError => e
@@ -59,7 +66,7 @@ module JSDM
       File.expand_path(a) == File.expand_path(b)
     end
 
-    attr_accessor :load_path, :sources, :dependencies, :graph
-    private :load_path=, :sources=, :dependencies=, :graph=
+    attr_accessor :load_path, :sources, :dependencies, :graph, :options
+    private :load_path=, :sources=, :dependencies=, :graph=, :options=
   end
 end
