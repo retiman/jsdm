@@ -27,7 +27,6 @@ module JSDM
           puts "  #{dep}" if options[:verbose]
           dependencies << [dep, source] unless same_file?(dep, source)
         end
-        puts "  Done" if options[:verbose]
       rescue FileNotFoundError => e
         raise UnsatisfiableDependencyError.new(source, e.file)
       end
