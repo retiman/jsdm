@@ -1,5 +1,5 @@
 require 'jsdm/preprocessor'
-require 'tempfile'
+require 'jsdm/spidermonkey'
 
 class JSDM
   def initialize(load_path = [], options = {})
@@ -32,24 +32,7 @@ class JSDM
   end
 
   def js_check(options = {})
-    defaults = {
-      :strict => false,
-      :werror => false,
-      :atline => false,
-      :xml    => false,
-      :output => true
-    }
-    options = defaults.merge! options
-    puts "Checking Javascript with Spidermonkey" if options[:verbose]
-    tmp = Tempfile.new "jsdm"
-    options.select { |k, v| v }.
-            each   { |k, v| tmp.puts "options('#{k.to_s}');" }
-    sorted_sources.each do |source| 
-      tmp.puts "print('Processing #{source}...');"
-      tmp.puts "load('#{source}');"
-    end
-    tmp.flush
-    system "js -f #{tmp.path} #{options[:output] ? '' : '&>/dev/null'}"
+    Spidermonkey.new(sorted_sources, options).check
   end
 
   attr_accessor :load_path, :options, :sorted, :sources
