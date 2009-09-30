@@ -48,8 +48,7 @@ class JSDM
     def get_all_sources
       ext = options[:extension]
       sources = load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.flatten
-      sources.sort! { rand } if options[:randomize]
-      sources
+      sources.sort { rand } # add this as an option
     end    
 
 
