@@ -42,9 +42,8 @@ class JSDM
     options = defaults.merge! options
     puts "Checking Javascript with Spidermonkey" if options[:verbose]
     tmp = Tempfile.new "jsdm"
-    options.select { |k, v| v }.each do |k, v|
-      tmp.puts "options('#{k.to_s}');"
-    end
+    options.select { |k, v| v }.
+            each   { |k, v| tmp.puts "options('#{k.to_s}');" }
     sorted_sources.each do |source| 
       tmp.puts "print('Processing #{source}...');"
       tmp.puts "load('#{source}');"
