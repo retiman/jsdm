@@ -9,6 +9,7 @@ class JSDM
     defaults = {
       :verbose   => false,
       :extension => "js",
+      :randomize => false
     }
     self.options      = defaults.merge! options
     self.load_path    = load_path

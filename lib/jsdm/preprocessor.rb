@@ -9,7 +9,8 @@ class JSDM
         :verbose         => false,
         :extension       => "js",
         :comment_pattern => comment_pattern,
-        :require_pattern => /#{comment_pattern}#require\s*/      
+        :require_pattern => /#{comment_pattern}#require\s*/,
+        :randomize       => false
       }
       self.load_path = load_path
       self.manager   = DependencyManager.new load_path, options
@@ -46,7 +47,9 @@ class JSDM
     # todo: refactor out of class
     def get_all_sources
       ext = options[:extension]
-      load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.flatten
+      sources = load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.flatten
+      sources.sort! { rand } if options[:randomize]
+      sources
     end    
 
 
