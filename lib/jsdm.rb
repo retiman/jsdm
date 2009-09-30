@@ -38,12 +38,13 @@ class JSDM
       :strict => false,
       :werror => false,
       :atline => false,
-      :xml    => false
+      :xml    => false,
+      :output => true
     }
     options = defaults.merge! options
     puts "Checking Javascript with Spidermonkey" if options[:verbose]
     tmp = Tempfile.new "jsdm"
-    options.select { |key, value| options[:key] }.each do |key, value|
+    options.select { |key, value| value }.each do |key, value|
       tmp.write("options('#{key.to_s}');\n")
     end
     sort.each do |source| 
@@ -51,7 +52,7 @@ class JSDM
       tmp.write "load('#{source}');\n"
     end
     tmp.flush
-    system("js -f #{tmp.path}")
+    system("js -f #{tmp.path} #{options[:output] ? '' : '&>/dev/null'}")
   end
 
   attr_accessor :load_path, :options, :sorted, :sources
