@@ -51,6 +51,5 @@ class JSDM
 
 
     attr_accessor :manager, :load_path, :options
-    private :manager=, :load_path=, :options=
   end
 end

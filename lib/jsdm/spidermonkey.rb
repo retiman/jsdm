@@ -21,9 +21,10 @@ class JSDM
       options.select { |k, v| v }.
               each   { |k, v| tmp.puts "options('#{k.to_s}');" }
       sources.each do |source|
-        tmp.puts "print('Processing #{source}...');"
+        tmp.puts "print('Processing #{source}');"
         tmp.puts "load('#{source}');"
       end
+      tmp.puts "print('Done');"
       tmp.flush
       system "js -f #{tmp.path} #{options[:output] ? '' : '&>/dev/null'}"
     end
