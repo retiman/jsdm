@@ -36,9 +36,12 @@ class JSDM
 
   def js_check(options = {})
     tmp = Tempfile.new "jsdm"
-    sort.each { |source| tmp.write "load('#{source}');\n" }
+    sort.each do |source| 
+      tmp.write "print('Processing #{source}:');\n"
+      tmp.write "load('#{source}');\n"
+    end
     tmp.flush
-    system("js -f #{tmp.path} &> /dev/null")
+    system("js -f #{tmp.path}")
   end
 
   attr_accessor :load_path, :options, :sorted, :sources
