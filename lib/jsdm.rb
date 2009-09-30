@@ -21,16 +21,14 @@ class JSDM
     sources
   end
 
-  def concatenate(output_name, header = "")
-    output_name = File.expand_path output_name
-    output = File.open output_name, "w"
-    sorted_sources.each do |source|
-      h = header.sub /__FILE__/, "#{source}\n"
-      data = File.new(source).read
-      output.write(h + data)
-      puts "Appended file: #{source}" if options[:verbose]
+  def concatenate(output, header = "")
+    File.open(output, "w") do |file|
+      sorted_sources.each do |source|
+        file.puts header.sub(/__FILE__/, source)
+        file.puts File.new(source).read
+        puts "Appended file: #{source}" if options[:verbose]
+      end
     end
-    output.close
   end
 
   def js_check(options = {})
