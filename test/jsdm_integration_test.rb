@@ -9,14 +9,14 @@ class JSDMIntegrationTest < Test::Unit::TestCase
   def test_js_check_success
     @root += __method__.to_s
     jsdm = JSDM.new [@root]
-    status = jsdm.js_check "tmp/#{__method__.to_s}"
+    status = jsdm.js_check
     assert status
   end
 
   def test_js_check_failure
     @root += __method__.to_s
     jsdm = JSDM.new [@root]
-    status = jsdm.js_check "tmp/#{__method__.to_s}"
+    status = jsdm.js_check
     assert !status
   end
 end
