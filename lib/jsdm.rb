@@ -35,9 +35,10 @@ class JSDM
   end
 
   def js_check(options = {})
+    puts "Checking Javascript with Spidermonkey" if options[:verbose]
     tmp = Tempfile.new "jsdm"
     sort.each do |source| 
-      tmp.write "print('Processing #{source}:');\n"
+      tmp.write "print('Processing #{source}...');\n"
       tmp.write "load('#{source}');\n"
     end
     tmp.flush
