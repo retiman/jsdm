@@ -7,9 +7,10 @@ require 'jsdm/spidermonkey'
 class JSDM
   def initialize(load_path = [], options = {})
     defaults = {
-      :verbose   => false,
-      :extension => "js",
-      :randomize => false
+      :verbose    => false,
+      :extension  => "js",
+      :exclusions => [],
+      :randomize  => false
     }
     self.options      = defaults.merge! options
     self.load_path    = load_path
@@ -22,6 +23,13 @@ class JSDM
     return sources if sorted
     self.sorted  = true
     self.sources = preprocessor.process
+    options[:exclusions].each do |exclusion|
+      if File.file? exclusion
+        self.sources -= [exclusion]
+      else
+        self.sources -= Dir["#{exclusion}/**/*.#{options[:extension]}"]
+      end 
+    end
     sources
   end
 
