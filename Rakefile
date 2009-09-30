@@ -12,7 +12,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = "lib"
   s.has_rdoc     = true
   s.homepage     = "http://www.borderstylo.com/#{s.name}"
-  s.version      = "0.1.2"
+  s.version      = "0.1.3"
   s.summary      = "Javascript dependency manager"
   s.description  = "Use #require statements to declare dependencies"
 end
@@ -37,7 +37,7 @@ task :test, :name do |t, args|
 end
 
 desc "Run integration tests (no arg), or single test (with arg)"
-task :test, :name do |t, args|
+task :integration_test, :name do |t, args|
   FileUtils.mkdir "tmp", :verbose => true if !File.directory? "tmp"
   opts = args.name.nil? ? "" : "-n test_#{args.name}"
   cmd = "ruby test/run_integration_tests.rb #{opts}"

@@ -1,6 +1,5 @@
 require 'jsdm/preprocessor'
-require 'open3'
-require 'pp'
+require 'tempfile'
 
 class JSDM
   def initialize(load_path = [], options = {})
@@ -17,8 +16,8 @@ class JSDM
   def sort
     return sources if sorted
     preprocessor = JSDM::Preprocessor.new load_path, options
-    self.sources = preprocessor.process
     self.sorted  = true
+    self.sources = preprocessor.process
     sources
   end
 
@@ -30,24 +29,16 @@ class JSDM
       data = File.new(source).read
       output.write(h + data)
       puts "Appended file: #{source}" if options[:verbose]
+      yield output_name
     end
     output.close
   end
 
-  def sequence(bin)
-    buffer = { :errors => "", :output => "" }
-    Open3.popen3(bin) do |stdin, stdout, stderr|
-      sort.each do |source|
-        [stdin, stdout, stderr].each { |stream| stream.sync = true }
-        stdin.puts(')print("hello, world!");')
-        stdin.close
-        IO.select([stdout, stderr], [], [], 2)
-        stdout.readpartial(1024, buffer[:output]) rescue nil
-        stderr.readpartial(1024, buffer[:errors]) rescue nil
-        puts "ERROR: #{buffer[:errors]}"
-      end
-    end
-    #pp buffer
+  def js_check(options = {})
+    tmp = Tempfile.new "jsdm"
+    sort.each { |source| tmp.write "load('#{source}');\n" }
+    tmp.flush
+    system("js -f #{tmp.path} &> /dev/null")
   end
 
   attr_accessor :load_path, :options, :sorted, :sources
