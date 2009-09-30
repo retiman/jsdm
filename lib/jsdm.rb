@@ -13,7 +13,7 @@ class JSDM
     self.sources   = []
   end
 
-  def sort
+  def sorted_sources
     return sources if sorted
     preprocessor = JSDM::Preprocessor.new load_path, options
     self.sorted  = true
@@ -24,7 +24,7 @@ class JSDM
   def concatenate(output_name, header = "")
     output_name = File.expand_path output_name
     output = File.open output_name, "w"
-    sort.each do |source|
+    sorted_sources.each do |source|
       h = header.sub /__FILE__/, "#{source}\n"
       data = File.new(source).read
       output.write(h + data)
@@ -47,7 +47,7 @@ class JSDM
     options.select { |k, v| v }.each do |k, v|
       tmp.puts "options('#{k.to_s}');"
     end
-    sort.each do |source| 
+    sorted_sources.each do |source| 
       tmp.puts "print('Processing #{source}...');"
       tmp.puts "load('#{source}');"
     end
