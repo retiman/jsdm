@@ -23,14 +23,19 @@ class JSDM
     return sources if sorted
     self.sorted  = true
     self.sources = preprocessor.process
+    sources
+  end
+
+  def exclusions
+    exclusions = []
     options[:exclusions].each do |exclusion|
       if File.file? exclusion
-        self.sources -= [exclusion]
+        exclusions << exclusion
       else
-        self.sources -= Dir["#{exclusion}/**/*.#{options[:extension]}"]
-      end 
+        exclusions += Dir["#{exclusion}/**/*.#{options[:extension]}"]
+      end
     end
-    sources
+    exclusions
   end
 
   # todo: let jsdm reference the dependency manager and make it do this
@@ -47,7 +52,7 @@ class JSDM
 
   def concatenate(output, header = "")
     File.open(output, "w") do |file|
-      sorted_sources.each do |source|
+      (sorted_sources - exclusions).each do |source|
         file.puts header.sub(/__FILE__/, source)
         file.puts File.new(source).read
         puts "Appended file: #{source}" if options[:verbose]
