@@ -60,8 +60,8 @@ class JSDM
     end
   end
 
-  def js_check(options = {})
-    Spidermonkey.new(sorted_sources, options).check
+  def js_check(files = sorted_sources, options = {})
+    Spidermonkey.new(files, options).check
   end
 
   attr_accessor :load_path, :options, :sorted, :sources, :preprocessor
