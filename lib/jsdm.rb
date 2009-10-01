@@ -27,6 +27,7 @@ class JSDM
 
   # todo: change this to a real "matching" via fnmatch
   def sorted_sources_matching(entries)
+    entries = [entries] if !entries.is_a? Array
     entries.map! { |entry| File.file? entry ? entry : Dir["#{entry}/**/*"] }
     sorted_sources & entries.flatten
   end
