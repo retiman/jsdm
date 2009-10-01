@@ -25,6 +25,11 @@ class JSDM
     sources
   end
 
+  def sorted_sources_from(entries)
+    entries.map! { |entry| File.file? entry ? entry : Dir["#{entry}/**/*"] }
+    sorted_sources & entries.flatten
+  end
+
   def reset
     self.sorted = false
   end
