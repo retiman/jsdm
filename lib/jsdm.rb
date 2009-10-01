@@ -9,7 +9,6 @@ class JSDM
     defaults = {
       :verbose    => false,
       :extension  => "js",
-      :exclusions => [],
       :randomize  => false
     }
     self.options      = defaults.merge! options
@@ -24,18 +23,6 @@ class JSDM
     self.sorted  = true
     self.sources = preprocessor.process
     sources
-  end
-
-  def exclusions
-    exclusions = []
-    options[:exclusions].each do |exclusion|
-      if File.file? exclusion
-        exclusions << exclusion
-      else
-        exclusions += Dir["#{exclusion}/**/*.#{options[:extension]}"]
-      end
-    end
-    exclusions
   end
 
   # todo: let jsdm reference the dependency manager and make it do this
