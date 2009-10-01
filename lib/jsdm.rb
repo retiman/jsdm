@@ -25,7 +25,8 @@ class JSDM
     sources
   end
 
-  def sorted_sources_from(entries)
+  # todo: change this to a real "matching" via fnmatch
+  def sorted_sources_matching(entries)
     entries.map! { |entry| File.file? entry ? entry : Dir["#{entry}/**/*"] }
     sorted_sources & entries.flatten
   end
