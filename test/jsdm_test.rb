@@ -136,7 +136,7 @@ class JSDMTest < Test::Unit::TestCase
   def test_concatenation
     @root += "test_concatenation"
     jsdm = JSDM.new [@root]
-    jsdm.concatenate "tmp/test_concatenation", "// __FILE__:"
+    jsdm.concatenate "tmp/test_concatenation"
     expected = "// test/res/jsdm/test_concatenation/b.js:\n\n" +
                "// test/res/jsdm/test_concatenation/a.js:\n" +
                "// #require b.js\n"

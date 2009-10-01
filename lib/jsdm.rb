@@ -50,12 +50,12 @@ class JSDM
     output
   end
 
-  def concatenate(output, header = "")
-    File.open(output, "w") do |file|
-      (sorted_sources - exclusions).each do |source|
-        file.puts header.sub(/__FILE__/, source)
-        file.puts File.new(source).read
-        puts "Appended file: #{source}" if options[:verbose]
+  def concatenate(output_name, files = sorted_sources)
+    File.open(output_name, "w") do |output|
+      files.each do |file|
+        output.puts "// #{file}:"
+        output.puts File.new(file).read
+        puts "Appended file: #{file}" if options[:verbose]
       end
     end
   end
