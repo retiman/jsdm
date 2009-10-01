@@ -27,8 +27,11 @@ task :clean do
   FileUtils.rm_rf "tmp", :verbose => true
 end
 
+desc "Run all tests (unit and integration)"
+task :test => [:unit_test, :integration_test]
+
 desc "Run unit tests (no arg), or single test (with arg)"
-task :test, :name do |t, args|
+task :unit_test, :name do |t, args|
   FileUtils.mkdir "tmp", :verbose => true if !File.directory? "tmp"
   opts = args.name.nil? ? "" : "-n test_#{args.name}"
   cmd = "ruby test/run_unit_tests.rb #{opts}"
