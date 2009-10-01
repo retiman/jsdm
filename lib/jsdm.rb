@@ -15,13 +15,13 @@ class JSDM
     self.load_path    = load_path
     self.sorted       = false
     self.sources      = []
-    self.preprocessor = JSDM::Preprocessor.new load_path, options
   end
 
   def sorted_sources
     return sources if sorted
-    self.sorted  = true
-    self.sources = preprocessor.process
+    self.preprocessor = JSDM::Preprocessor.new load_path, options
+    self.sorted       = true
+    self.sources      = preprocessor.process
     sources
   end
 
