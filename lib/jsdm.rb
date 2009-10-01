@@ -25,6 +25,10 @@ class JSDM
     sources
   end
 
+  def reset
+    self.sorted = false
+  end
+
   # todo: let jsdm reference the dependency manager and make it do this
   def dependencies
     output = []
