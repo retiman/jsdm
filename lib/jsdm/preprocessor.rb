@@ -38,7 +38,12 @@ class JSDM
     
     def process
       files = get_all_sources
-      files.sort { rand } if options[:randomize]
+      if options[:randomize]
+        files.sort! { rand }
+      else
+        files.sort!
+      end
+      
       files.each do |source|
         includes = get_includes_from(source)
         manager.add_dependencies(source, includes)
