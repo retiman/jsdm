@@ -1,3 +1,4 @@
+require 'jsdm'
 require 'jsdm/depth_first_search'
 require 'jsdm/directed_graph'
 require 'jsdm/natural_loops'
@@ -23,8 +24,8 @@ class JSDM
       self.sources = sources.uniq.delete_if { |e| e.empty? }      
       self.dependencies = dependencies.uniq.delete_if { |e| e.empty? }
       self.graph = DirectedGraph.new sources, dependencies
-      result = DepthFirstSearch.dfs(graph)
-      loops = NaturalLoops.find(graph, result[:back_edges])
+      result = DepthFirstSearch.dfs graph
+      loops = NaturalLoops.find graph, result[:back_edges]
       raise CircularDependencyError.new(loops) unless loops.empty?
       result[:sorted] 
     end
