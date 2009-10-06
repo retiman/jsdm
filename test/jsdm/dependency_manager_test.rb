@@ -1,5 +1,5 @@
-require 'jsdm/dependency_manager'
-require 'test/unit'
+require "jsdm/dependency_manager"
+require "test/unit"
 
 class DependencyManagerTest < Test::Unit::TestCase
   # TODO: put into dependency resolver test
