@@ -10,7 +10,7 @@ class DependencyManagerTest < Test::Unit::TestCase
 
   def test_resolver_process
     @root += __method__.to_s
-    resolver = JSDM::DependencyResolver.new @root
+    resolver = JSDM::DependencyResolver.new [@root]
     expected = ["a/b.js",
                 "c.js",
                 "b/c.js",

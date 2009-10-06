@@ -5,11 +5,7 @@ class JSDM
     attr_accessor :load_path
     
     def initialize(load_path)
-      if load_path.is_a? Array
-        self.load_path = load_path
-      else
-        self.load_path = [load_path]
-      end
+      self.load_path = load_path
     end
     
     def process(entries)
