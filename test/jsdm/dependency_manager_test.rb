@@ -1,5 +1,4 @@
 require 'jsdm/dependency_manager'
-require 'set'
 require 'test/unit'
 
 class DependencyManagerTest < Test::Unit::TestCase
