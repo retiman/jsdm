@@ -38,8 +38,10 @@ class JSDM
     sources
   end
   
-  def sources_in(dir)
-    sources & Dir["#{dir}/**/*.#{ext}"]
+  def sources_in(dirs)
+    dirs = dirs.is_a?(Array) ? dirs : [dirs]
+    requested = dirs.map { |dir| Dir["#{dir}/**/*.#{ext}"] }.flatten
+    sources & requested
   end
 
   def dependencies
