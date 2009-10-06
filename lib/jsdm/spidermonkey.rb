@@ -2,33 +2,24 @@ require 'tempfile'
 
 class JSDM
   class Spidermonkey
-    def initialize(sources, options = {})
-      defaults = {
+    def self.check(files, options = {})
+      options = {
         :strict  => false,
         :werror  => false,
         :atline  => false,
         :xml     => false,
-        :verbose => false,
         :output  => true
-      }
-      self.options = defaults.merge! options
-      self.sources = sources
-    end
-
-    def check
-      puts "Checking Javascript with Spidermonkey" if options[:verbose]
+      }.merge! options
       tmp = Tempfile.new("jsdm")
       options.select { |k, v| v }.
               each   { |k, v| tmp.puts "options('#{k.to_s}');" }
-      sources.each do |source|
-        tmp.puts "print('Checking #{source}');"
-        tmp.puts "load('#{source}');"
+      files.each do |source|
+        tmp.puts "print('Running #{file}');"
+        tmp.puts "load('#{file}');"
       end
       tmp.puts "print('Done');"
       tmp.flush
       system "js -f #{tmp.path} #{options[:output] ? '' : '&>/dev/null'}"
     end
-
-    attr_accessor :options, :sources
   end
 end

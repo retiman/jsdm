@@ -1,5 +1,6 @@
 require 'jsdm/dependency_manager'
 require 'jsdm/dependency_resolver'
+require 'jsdm/errors'
 require 'jsdm/preprocessor'
 require 'jsdm/spidermonkey'
 
@@ -23,10 +24,14 @@ class JSDM
     self.manager      = JSDM::DependencyManager.new  sources
     self.resolver     = JSDM::DependencyResolver.new load_path
     preprocessor.process.each do |element|
-      source       = element.first
-      dependencies = resolver.process(element.last)
-      dependencies.each do |dependency|
-        manager.add_dependency source, dependency
+      begin
+        source       = element.first
+        dependencies = resolver.process(element.last)
+        dependencies.each do |dependency|
+          manager.add_dependency source, dependency
+        end
+      rescue JSDM::FileNotFoundError => e
+        raise JSDM::UnsatisfiableDependencyError.new(source, e.file)
       end
     end
     self.sources = manager.process
@@ -37,18 +42,17 @@ class JSDM
     manager.dependencies
   end
 
-  def concatenate(output_name, files = sorted_sources)
-    File.open(output_name, "w") do |output|
-      files.each do |file|
-        output.puts "// #{file}:"
-        output.puts File.new(file).read
-        puts "Appended file: #{file}" if options[:verbose]
-      end
-    end
+  def self.js_check(files)
+    Spidermonkey.check(files)
   end
 
-  def js_check(files = sorted_sources, options = {})
-    Spidermonkey.new(files, options).check
+  def self.concatenate(output_file, data_files)
+    File.open(output_file, "w") do |file|
+      data_files.each do |f|
+        file.puts "// #{f}:"
+        file.puts File.new(f).read
+      end
+    end
   end
    
   def self.same_file?(a, b)
