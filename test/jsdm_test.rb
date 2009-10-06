@@ -99,7 +99,7 @@ class JSDMTest < Test::Unit::TestCase
   
   def test_glob_matches_self
     jsdm = make(__method__.to_s)
-    assert_equal ["#{@root}/a.js"], jsdm.sorted_sources
+    assert_equal ["#{@root}/a.js"], jsdm.sources
   end
   
   def test_circular_with_glob_2
