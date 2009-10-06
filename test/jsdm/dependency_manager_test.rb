@@ -2,20 +2,7 @@ require "jsdm/dependency_manager"
 require "test/unit"
 
 class DependencyManagerTest < Test::Unit::TestCase
-  # TODO: put into dependency resolver test
-  #def test_resolve_entries
-  #  @root += "test_resolve_entries"
-  #  manager = JSDM::DependencyManager.new(root)
-  #  expected = ["a/b.js",
-  #              "c.js",
-  #              "b/c.js",
-  #              "b/c/d.js",
-  #              "b/c/d/e.js"].map { |f| "#{root}/#{f}" }
-  #  result = manager.resolve_entries("**/*.js")
-  #  assert_equal expected.to_set, result.to_set
-  #end
-
-  def test_process
+  def test_manager_process
     sources = %w(c.js a/b.js b/c/d/e.js b/c/d.js b/c.js)
     dependencies = [["b/c.js",     "a/b.js"],
                     ["c.js",       "a/b.js"],
