@@ -120,7 +120,7 @@ class JSDMTest < Test::Unit::TestCase
   def test_concatenation
     @root += __method__.to_s
     sources = %w(b.js a.js).map { |f| "#{@root}/#{f}" }
-    JSDM.concatenate "tmp/test_concatenation", 
+    JSDM.concatenate "tmp/test_concatenation", sources
     expected = "// test/res/jsdm/test_concatenation/b.js:\n\n" +
                "// test/res/jsdm/test_concatenation/a.js:\n" +
                "// #require b.js\n"
