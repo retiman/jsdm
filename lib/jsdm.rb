@@ -4,10 +4,11 @@ require 'jsdm/preprocessor'
 require 'jsdm/spidermonkey'
 
 class JSDM
-  attr_accessor :load_path, :preprocessor, :manager, :resolver, :ext
+  attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext
 
   def initialize(load_path = [])
-    self.load_path    = load_path
+    self.load_path    = load_path.is_a?(Array) ? load_path : [load_path]
+    self.sources      = []
     self.preprocessor = nil
     self.manager      = nil
     self.resolver     = nil
