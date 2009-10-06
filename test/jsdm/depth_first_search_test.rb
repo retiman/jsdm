@@ -1,4 +1,5 @@
-require "jsdm"
+require "jsdm/depth_first_search"
+require "jsdm/directed_graph"
 require "set"
 require "test/unit"
 

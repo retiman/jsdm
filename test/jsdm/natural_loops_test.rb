@@ -1,4 +1,5 @@
-require "jsdm"
+require "jsdm/directed_graph"
+require "jsdm/natural_loops"
 require "set"
 require "test/unit"
 
