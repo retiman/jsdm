@@ -1,4 +1,4 @@
-require 'jsdm'
+require 'jsdm/preprocessor'
 require 'test/unit'
 
 class PreprocessorTest < Test::Unit::TestCase
@@ -8,12 +8,11 @@ class PreprocessorTest < Test::Unit::TestCase
     @root = "test/res/preprocessor/"
   end
   
-  # todo: more thoroughly test parsing by adding more lines to a.js
-  def test_get_includes_from
-    @root += "test_get_includes_from"
-    preprocessor = JSDM::Preprocessor.new [@root]
-    expected = %w(a/* b ./c*.js d)
-    result = preprocessor.get_includes_from("#{@root}/a.js")
+  def test_process_1
+    @root += __method__.to_s
+    preprocessor = JSDM::Preprocessor.new Dir["#{@root}/**/*.js"]
+    expected = [["#{@root}/a.js", %w(a/* b ./c*.js d)]]
+    result = preprocessor.process
     assert_equal expected, result
   end
   
