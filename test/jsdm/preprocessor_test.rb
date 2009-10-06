@@ -1,11 +1,6 @@
 require 'jsdm'
 require 'test/unit'
 
-# pattern testing
-# these tests define the behavior of fundamental dependency patterns;
-# there is no emergent behavior for greater numbers of files.
-# the tests are ordered by complexity.
-# todo: add tests with additional load paths
 class PreprocessorTest < Test::Unit::TestCase
   attr_accessor :root
 
@@ -13,22 +8,6 @@ class PreprocessorTest < Test::Unit::TestCase
     @root = "test/res/preprocessor/"
   end
   
-  def test_check_load_path_exists
-    @root += "test_check_load_path"
-    load_path = %w(path_1 path_2 path_3).map { |path| "#{@root}/#{path}" }
-    assert_nothing_raised do
-      JSDM::Preprocessor.new load_path
-    end
-  end
-  
-  def test_check_load_path_doesnt_exist
-    @root += "test_check_load_path"
-    load_path = %w(path_1 path_2 path_3 path_4).map { |path| "#{@root}/#{path}" }
-    assert_raise JSDM::FileNotFoundError do
-      JSDM::Preprocessor.new load_path
-    end
-  end  
-
   # todo: more thoroughly test parsing by adding more lines to a.js
   def test_get_includes_from
     @root += "test_get_includes_from"
