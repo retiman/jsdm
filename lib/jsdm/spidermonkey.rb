@@ -13,7 +13,7 @@ class JSDM
       tmp = Tempfile.new("jsdm")
       options.select { |k, v| v }.
               each   { |k, v| tmp.puts "options('#{k.to_s}');" }
-      files.each do |source|
+      files.each do |file|
         tmp.puts "print('Running #{file}');"
         tmp.puts "load('#{file}');"
       end
