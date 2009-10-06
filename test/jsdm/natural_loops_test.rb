@@ -1,6 +1,6 @@
-require 'jsdm'
-require 'set'
-require 'test/unit'
+require "jsdm"
+require "set"
+require "test/unit"
 
 class NaturalLoopsTest < Test::Unit::TestCase
   attr_accessor :nodes, :arcs

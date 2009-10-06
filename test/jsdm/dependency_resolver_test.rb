@@ -1,5 +1,5 @@
-require 'jsdm/dependency_resolver'
-require 'test/unit'
+require "jsdm/dependency_resolver"
+require "test/unit"
 
 class DependencyManagerTest < Test::Unit::TestCase
   attr_accessor :root

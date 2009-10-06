@@ -1,6 +1,6 @@
-require 'jsdm'
-require 'set'
-require 'test/unit'
+require "jsdm"
+require "set"
+require "test/unit"
 
 # todo: forward/back/cross edges are not unique across searches
 # it depends on node order, so change these tests to only test

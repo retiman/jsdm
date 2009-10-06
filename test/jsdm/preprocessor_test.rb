@@ -1,5 +1,5 @@
-require 'jsdm/preprocessor'
-require 'test/unit'
+require "jsdm/preprocessor"
+require "test/unit"
 
 class PreprocessorTest < Test::Unit::TestCase
   attr_accessor :root
