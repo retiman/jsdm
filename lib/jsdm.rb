@@ -5,11 +5,13 @@ require 'jsdm/preprocessor'
 require 'jsdm/spidermonkey'
 
 class JSDM
-  attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext
+  attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext,
+                :injected
 
   def initialize(load_path = [])
     self.load_path    = load_path.is_a?(Array) ? load_path : [load_path]
     self.sources      = []
+    self.injected     = []
     self.preprocessor = nil
     self.manager      = nil
     self.resolver     = nil
@@ -23,17 +25,25 @@ class JSDM
     self.preprocessor = JSDM::Preprocessor.new       sources
     self.manager      = JSDM::DependencyManager.new  sources
     self.resolver     = JSDM::DependencyResolver.new load_path
-    preprocessor.process.each do |element|
-      begin
-        source       = element.first
-        dependencies = resolver.process(element.last)
+    begin
+      source = nil
+      preprocessor.process.each do |element|
+        source = element.first
+        dependencies = resolver.process element.last
         dependencies.each do |dependency|
           manager.add_dependency source, dependency
         end
-      rescue JSDM::FileNotFoundError => e
-        raise JSDM::UnsatisfiableDependencyError.new(source, e.file)
       end
-    end
+      injected.each do |element|
+        source = element.first
+        dependencies = resolver.process element.last
+        dependencies.each do |dependency|
+          manager.add_dependency source, dependency
+        end
+      end
+    rescue JSDM::FileNotFoundError => e
+      raise JSDM::UnsatisfiableDependencyError.new(source, e.file)
+    end    
     self.sources = manager.process
     sources
   end
