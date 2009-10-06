@@ -1,51 +1,39 @@
+require 'jsdm/dependency_manager'
+require 'jsdm/dependency_resolver'
 require 'jsdm/preprocessor'
 require 'jsdm/spidermonkey'
 
-# todo: jsdm should coordinate the preprocessor and dependency manager
-# the preprocessor should only give a list of source => deps and
-# let the dependency manager figure it out
 class JSDM
-  def initialize(load_path = [], options = {})
-    defaults = {
-      :verbose    => false,
-      :extension  => "js",
-      :randomize  => false
-    }
-    self.options      = defaults.merge! options
-    self.load_path    = load_path
-    self.sorted       = false
-    self.sources      = []
-  end
+  attr_accessor :load_path, :preprocessor, :manager, :resolver, :ext
 
-  def sorted_sources
-    return sources if sorted
-    self.preprocessor = JSDM::Preprocessor.new load_path, options
-    self.sorted       = true
-    self.sources      = preprocessor.process
+  def initialize(load_path = [])
+    self.load_path    = load_path
+    self.preprocessor = nil
+    self.manager      = nil
+    self.resolver     = nil
+    self.ext          = "js"
+  end  
+  
+  def process
+    self.sources      = load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.
+                                  flatten.
+                                  sort
+    self.preprocessor = JSDM::Preprocessor.new       sources
+    self.manager      = JSDM::DependencyManager.new  sources
+    self.resolver     = JSDM::DependencyResolver.new load_path
+    preprocessor.process.each do |element|
+      source       = element.first
+      dependencies = resolver.process(element.last)
+      dependencies.each do |dependency|
+        manager.add_dependency source, dependency
+      end
+    end
+    self.sources = manager.process
     sources
   end
 
-  # todo: change this to a real "matching" via fnmatch
-  def sorted_sources_matching(entries)
-    entries = [entries] if !entries.is_a? Array
-    entries.map! { |entry| File.file?(entry) ? entry : Dir["#{entry}/**/*"] }
-    sorted_sources & entries.flatten
-  end
-
-  def reset
-    self.sorted = false
-  end
-
-  # todo: let jsdm reference the dependency manager and make it do this
   def dependencies
-    output = []
-    sorted_sources.each do |source|
-      deps = preprocessor.manager.
-                          dependencies.
-                          select { |entry| entry.last == source }
-      output << [source, deps]
-    end
-    output
+    manager.dependencies
   end
 
   def concatenate(output_name, files = sorted_sources)
@@ -61,6 +49,8 @@ class JSDM
   def js_check(files = sorted_sources, options = {})
     Spidermonkey.new(files, options).check
   end
-
-  attr_accessor :load_path, :options, :sorted, :sources, :preprocessor
+   
+  def self.same_file?(a, b)
+    File.expand_path(a) == File.expand_path(b)
+  end
 end
