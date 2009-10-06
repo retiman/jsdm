@@ -16,7 +16,7 @@ class JSDM
     self.ext          = "js"
   end  
   
-  def process
+  def process!
     self.sources      = load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.
                                   flatten.
                                   sort
@@ -36,6 +36,10 @@ class JSDM
     end
     self.sources = manager.process
     sources
+  end
+  
+  def sources_in(dir)
+    sources & Dir["#{dir}/**/*.#{ext}"]
   end
 
   def dependencies
