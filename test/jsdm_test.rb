@@ -44,7 +44,7 @@ class JSDMTest < Test::Unit::TestCase
   
   def test_one_depends_on_other
     jsdm = make(__method__.to_s)
-    assert_equal ["#{@root}/a.js", "#{@root}/b.js"].to_set, jsdm.sources
+    assert_equal ["#{@root}/a.js", "#{@root}/b.js"], jsdm.sources
   end
   
   def test_circular_with_2
