@@ -1,5 +1,5 @@
 require 'jsdm/dependency_manager'
-require 'jsdm/file_not_found_error'
+require 'jsdm/errors'
 
 class JSDM
   class Preprocessor

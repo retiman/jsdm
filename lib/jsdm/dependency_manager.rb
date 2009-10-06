@@ -1,9 +1,7 @@
-require 'jsdm/circular_dependency_error'
 require 'jsdm/depth_first_search'
 require 'jsdm/directed_graph'
-require 'jsdm/file_not_found_error'
 require 'jsdm/natural_loops'
-require 'jsdm/unsatisfiable_dependency_error'
+require 'jsdm/errors'
 
 class JSDM
   class DependencyManager
