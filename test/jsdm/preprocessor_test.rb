@@ -10,16 +10,19 @@ class PreprocessorTest < Test::Unit::TestCase
   
   def test_process_1
     @root += __method__.to_s
-    preprocessor = JSDM::Preprocessor.new Dir["#{@root}/**/*.js"]
+    sources = Dir["#{@root}/**/*.js"]
+    preprocessor = JSDM::Preprocessor.new sources
     expected = [["#{@root}/a.js", %w(a/* b ./c*.js d)]]
     result = preprocessor.process
     assert_equal expected, result
   end
   
-  def test_get_includes_from_complicated
-    @root += "test_get_includes_from_complicated"
-    preprocessor = JSDM::Preprocessor.new [@root]
-    expected = %w(a/* b ./c*.js d)
-    assert_equal expected, preprocessor.get_includes_from("#{@root}/a.js")
+  def test_process_2
+    @root += __method__.to_s
+    sources = Dir["#{@root}/**/*.js"]
+    preprocessor = JSDM::Preprocessor.new sources
+    expected = [["#{@root}/a.js", %w(a/* b ./c*.js d)]]
+    result = preprocessor.process
+    assert_equal expected, result
   end
 end
