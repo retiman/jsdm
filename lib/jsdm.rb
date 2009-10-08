@@ -18,12 +18,13 @@ class JSDM
     self.resolver     = nil
     self.ext          = "js"
     self.processed    = false # deprecated
-    self.options      = options
+    self.options      = { :randomize => false }.merge(options) # deprecated
   end  
   
   def process!
     self.sources      = load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.
-                                  flatten
+                                  flatten.
+                                  sort
     self.sources      = sources.sort { rand } if options[:randomize]
     self.preprocessor = JSDM::Preprocessor.new       sources
     self.manager      = JSDM::DependencyManager.new  sources
