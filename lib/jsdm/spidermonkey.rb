@@ -17,7 +17,6 @@ class JSDM
         tmp.puts "print('Running #{file}');"
         tmp.puts "load('#{file}');"
       end
-      tmp.puts "print('Done');"
       tmp.flush
       system "js -f #{tmp.path} #{options[:output] ? '' : '&>/dev/null'}"
     end
