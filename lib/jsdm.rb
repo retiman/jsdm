@@ -6,7 +6,7 @@ require 'jsdm/spidermonkey'
 
 class JSDM
   attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext,
-                :injected
+                :injected, :processed
 
   def initialize(load_path = [])
     self.load_path    = load_path.is_a?(Array) ? load_path : [load_path]
@@ -16,6 +16,7 @@ class JSDM
     self.manager      = nil
     self.resolver     = nil
     self.ext          = "js"
+    self.processed    = false # deprecated
   end  
   
   def process!
@@ -47,7 +48,29 @@ class JSDM
     self.sources = manager.process
     sources
   end
-  
+
+  # deprecated
+  def sorted_sources
+    process! if !processed
+    self.processed = true
+    sources
+  end
+
+  # deprecated
+  def sorted_sources_matching(dirs)
+    sources_in(dirs)
+  end
+   
+  # deprecated
+  def js_check(files)
+    JSDM.js_check(files)
+  end
+
+  # deprecated
+  def concatenate(output_file, data_files)
+    JSDM.concatenate(output_file, data_files)
+  end
+
   def sources_in(dirs)
     dirs = dirs.is_a?(Array) ? dirs : [dirs]
     requested = dirs.map { |dir| Dir["#{dir}/**/*.#{ext}"] }.flatten
