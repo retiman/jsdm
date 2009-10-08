@@ -51,7 +51,7 @@ class JSDM
 
   # deprecated
   def sorted_sources
-    process! if !processed
+    process!() if !processed
     self.processed = true
     sources
   end
