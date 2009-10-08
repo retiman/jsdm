@@ -6,9 +6,10 @@ require 'jsdm/spidermonkey'
 
 class JSDM
   attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext,
-                :injected, :processed
+                :injected, :processed, :options
 
-  def initialize(load_path = [])
+  # options is deprecated
+  def initialize(load_path = [], options = {})
     self.load_path    = load_path.is_a?(Array) ? load_path : [load_path]
     self.sources      = []
     self.injected     = []
@@ -17,12 +18,13 @@ class JSDM
     self.resolver     = nil
     self.ext          = "js"
     self.processed    = false # deprecated
+    self.options      = options
   end  
   
   def process!
     self.sources      = load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.
-                                  flatten.
-                                  sort
+                                  flatten
+    self.sources      = sources.sort { rand } if options[:randomize]
     self.preprocessor = JSDM::Preprocessor.new       sources
     self.manager      = JSDM::DependencyManager.new  sources
     self.resolver     = JSDM::DependencyResolver.new load_path
@@ -51,13 +53,15 @@ class JSDM
 
   # deprecated
   def sorted_sources
-    process!() if !processed
+    process! if !processed
     self.processed = true
     sources
   end
 
   # deprecated
   def sorted_sources_matching(dirs)
+    process! if !processed
+    self.processed = true
     sources_in(dirs)
   end
    
