@@ -26,9 +26,9 @@ class JSDM
                                   flatten.
                                   sort
     self.sources      = sources.sort { rand } if options[:randomize]
-    self.preprocessor = JSDM::Preprocessor.new       sources
-    self.manager      = JSDM::DependencyManager.new  sources
-    self.resolver     = JSDM::DependencyResolver.new load_path
+    self.preprocessor = Preprocessor.new       sources
+    self.manager      = DependencyManager.new  sources
+    self.resolver     = DependencyResolver.new load_path
     begin
       source = nil
       preprocessor.process.each do |element|
@@ -45,8 +45,8 @@ class JSDM
           manager.add_dependency source, dependency
         end
       end
-    rescue JSDM::FileNotFoundError => e
-      raise JSDM::UnsatisfiableDependencyError.new(source, e.file)
+    rescue FileNotFoundError => e
+      raise UnsatisfiableDependencyError.new(source, e.file)
     end    
     self.sources = manager.process
     sources
