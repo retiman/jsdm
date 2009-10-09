@@ -90,10 +90,10 @@ class JSDM
     Spidermonkey.check(files)
   end
 
-  def self.concatenate(output_file, data_files)
+  def self.concatenate(output_file, data_files, heading = "")
     File.open(output_file, "w") do |file|
       data_files.each do |f|
-        file.puts "// #{f}:"
+        file.puts heading.gsub(/\$FILE\$/, f)
         file.puts File.new(f).read
       end
     end
