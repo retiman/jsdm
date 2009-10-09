@@ -47,5 +47,10 @@ task :integration_test, :name do |t, args|
   puts cmd
   system cmd
 end
- 
+
+task :install => :package do
+  g = "pkg/#{spec.name}-#{spec.version}.gem"
+  system "sudo gem install -l #{g}"
+end
+
 task :default => :package
