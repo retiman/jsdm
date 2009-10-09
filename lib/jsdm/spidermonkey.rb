@@ -8,14 +8,15 @@ class JSDM
         :werror  => false,
         :atline  => false,
         :xml     => false,
-        :output  => true
+        :output  => true,
+        :heading => ""
       }.merge! options
       tmp = Tempfile.new("jsdm")
       options.select { |k, v| v }.
               each   { |k, v| tmp.puts "options('#{k.to_s}');" }
-      files.each do |file|
-        tmp.puts "print('Running #{file}');"
-        tmp.puts "load('#{file}');"
+      files.each do |f|
+        h = options[:heading].gsub(/\$FILE\$/, f)
+        tmp.puts "load('#{f}');"
       end
       tmp.flush
       system "js -f #{tmp.path} #{options[:output] ? '' : '&>/dev/null'}"

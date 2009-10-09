@@ -86,8 +86,8 @@ class JSDM
     manager.dependencies
   end
 
-  def self.js_check(files)
-    Spidermonkey.check(files)
+  def self.js_check(files, options = {})
+    Spidermonkey.check files, options
   end
 
   def self.concatenate(output_file, data_files, heading = "")
