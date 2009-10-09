@@ -72,8 +72,8 @@ class JSDM
   end
 
   # deprecated
-  def concatenate(output_file, data_files)
-    JSDM.concatenate(output_file, data_files)
+  def concatenate(output_file, data_files, options = {})
+    JSDM.concatenate(output_file, data_files, options)
   end
 
   def sources_in(dirs)
