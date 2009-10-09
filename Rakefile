@@ -12,7 +12,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = "lib"
   s.has_rdoc     = true
   s.homepage     = "http://www.borderstylo.com/#{s.name}"
-  s.version      = "0.2.9"
+  s.version      = "0.2.10"
   s.summary      = "Javascript dependency manager"
   s.description  = "Use #require statements to declare dependencies"
 end
@@ -48,9 +48,9 @@ task :integration_test, :name do |t, args|
   system cmd
 end
 
-task :install => :package do
+task :install => [:test, :package] do
   g = "pkg/#{spec.name}-#{spec.version}.gem"
   system "sudo gem install -l #{g}"
 end
 
-task :default => :package
+task :default => :test
