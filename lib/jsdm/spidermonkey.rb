@@ -16,6 +16,7 @@ class JSDM
               each   { |k, v| tmp.puts "options('#{k.to_s}');" }
       files.each do |f|
         h = options[:heading].gsub(/\$FILE\$/, f)
+        tmp.puts h
         tmp.puts "load('#{f}');"
       end
       tmp.flush
