@@ -12,7 +12,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = "lib"
   s.has_rdoc     = true
   s.homepage     = "http://www.borderstylo.com/#{s.name}"
-  s.version      = "0.2.11"
+  s.version      = "0.2.13"
   s.summary      = "Javascript dependency manager"
   s.description  = "Use #require statements to declare dependencies"
 end
@@ -36,7 +36,7 @@ task :unit_test, :name do |t, args|
   opts = args.name.nil? ? "" : "-n test_#{args.name}"
   cmd = "ruby test/run_unit_tests.rb #{opts}"
   puts cmd
-  system cmd
+  system(cmd) || raise("Build error")
 end
 
 desc "Run integration tests (no arg), or single test (with arg)"
@@ -45,7 +45,7 @@ task :integration_test, :name do |t, args|
   opts = args.name.nil? ? "" : "-n test_#{args.name}"
   cmd = "ruby test/run_integration_tests.rb #{opts}"
   puts cmd
-  system cmd
+  system(cmd) || raise("Build error")
 end
 
 task :install => [:test, :package] do

@@ -67,8 +67,8 @@ class JSDM
   end
    
   # deprecated
-  def js_check(files)
-    JSDM.js_check(files)
+  def js_check(files, options = {})
+    JSDM.js_check(files, options)
   end
 
   # deprecated
