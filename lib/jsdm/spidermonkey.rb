@@ -9,7 +9,7 @@ class JSDM
         :atline  => false,
         :xml     => false,
         :output  => true,
-        :heading => ""
+        :heading => "print('Checking $FILE$');"
       }.merge! options
       tmp = Tempfile.new("jsdm")
       options.select { |k, v| v }.
