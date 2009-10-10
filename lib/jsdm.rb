@@ -91,9 +91,7 @@ class JSDM
   end
 
   def self.concatenate(output_file, data_files, options = {})
-    options = {
-      :heading => ""
-    }.merge! options
+    options = { :heading => "// $FILE$:" }.merge! options
     File.open(output_file, "w") do |file|
       data_files.each do |f|
         file.puts options[:heading].gsub(/\$FILE\$/, f)
