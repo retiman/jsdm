@@ -5,7 +5,7 @@ class JSDM
     def initialize(sources)
       self.sources = sources
       self.comment_pattern = /^\s*\/\/\s*/
-      self.require_pattern = /#{comment_pattern}#require\s*/
+      self.require_pattern = /#{comment_pattern}#\s*require\s*/
     end
     
     def process_single(source)         
