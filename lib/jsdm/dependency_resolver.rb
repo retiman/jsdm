@@ -9,13 +9,15 @@ class JSDM
     end
     
     def process(entries)
-      entries.map { |entry| process_single entry }.flatten
+      entries = entries.map { |entry| process_single entry }
+      entries = entries.flatten
+      entries
     end
 
     def process_single(entry)
-      resolved = load_path.map { |path| Dir["#{path}/#{entry.strip}"] }.
-                           drop_while { |sources| sources.empty? }.
-                           first
+      resolved = load_path.map { |path| Dir["#{path}/#{entry.strip}"] }
+      resolved = resolved.drop_while { |sources| sources.empty? }
+      resolved = resolved.first
       raise FileNotFoundError.new(entry) if resolved.nil? || resolved.empty?
       resolved
     end
