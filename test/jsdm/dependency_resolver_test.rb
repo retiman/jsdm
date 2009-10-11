@@ -15,7 +15,7 @@ class DependencyManagerTest < Test::Unit::TestCase
                 "c.js",
                 "b/c.js",
                 "b/c/d.js",
-                "b/c/d/e.js"].map { |f| "#{root}/#{f}" }
+                "b/c/d/e.js"].map { |f| "#{@root}/#{f}" }
     result = resolver.process "**/*.js"
     assert_equal expected.to_set, result.to_set
   end
