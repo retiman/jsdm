@@ -19,8 +19,8 @@ class JSDM
     self.ext          = "js"
     self.processed    = false # deprecated
     self.options      = { :randomize => false }.merge(options) # deprecated
-  end  
-  
+  end
+
   def process!
     self.sources      = load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.
                                   flatten.
@@ -47,7 +47,7 @@ class JSDM
       end
     rescue FileNotFoundError => e
       raise UnsatisfiableDependencyError.new(source, e.file)
-    end    
+    end
     self.sources = manager.process
     sources
   end
@@ -65,7 +65,7 @@ class JSDM
     self.processed = true
     sources_in(dirs)
   end
-   
+
   # deprecated
   def js_check(files, options = {})
     JSDM.js_check(files, options)
@@ -99,7 +99,7 @@ class JSDM
       end
     end
   end
-   
+
   def self.same_file?(a, b)
     File.expand_path(a) == File.expand_path(b)
   end
