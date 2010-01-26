@@ -13,6 +13,7 @@ class JSDM
     self.manager      = nil
     self.resolver     = nil
     self.ext          = 'js'
+    process!
   end
 
   def process!
@@ -39,15 +40,10 @@ class JSDM
     sources
   end
 
-  def sources_in(dirs)
-    requested = dirs.map { |dir| Dir["#{dir}/**/*.#{ext}"] }.flatten
-    sources & requested
-  end
-
-  def dependencies_of(sources)
-    result = sources
-    sources.each { |source| result = result | manager.dependencies_of(source) }
-    self.sources & result
+  def sources_for(source)
+    ds = manager.dependencies_of(source)
+    ds.push(source)
+    ds
   end
 
   def dependencies
