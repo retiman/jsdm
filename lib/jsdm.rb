@@ -5,7 +5,7 @@ require 'jsdm/preprocessor'
 
 class JSDM
   attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext,
-                :injected, :processed
+                :injected
 
   def initialize(load_path = [], options = {})
     self.load_path    = load_path.is_a?(Array) ? load_path : [load_path]
