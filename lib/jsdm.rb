@@ -5,9 +5,8 @@ require 'jsdm/preprocessor'
 
 class JSDM
   attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext,
-                :injected, :processed, :options
+                :injected, :processed
 
-  # options is deprecated
   def initialize(load_path = [], options = {})
     self.load_path    = load_path.is_a?(Array) ? load_path : [load_path]
     self.sources      = []
@@ -17,14 +16,13 @@ class JSDM
     self.resolver     = nil
     self.ext          = "js"
     self.processed    = false # deprecated
-    self.options      = { :randomize => false }.merge(options) # deprecated
   end
 
   def process!
     self.sources      = load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.
                                   flatten.
                                   sort
-    self.sources      = sources.sort { rand } if options[:randomize]
+    self.sources      = sources.sort { rand }
     self.preprocessor = Preprocessor.new       sources
     self.manager      = DependencyManager.new  sources
     self.resolver     = DependencyResolver.new load_path
