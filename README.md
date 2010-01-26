@@ -18,6 +18,14 @@ This will install JSDM as a gem.
 
 Usage
 -----
+In your Javascript files, put #require directives in comments at the top of your file (note that they must be the non-whitespace characters in your file for JSDM to process them correctly):
+
+    // #require jquery.js
+    // #require MyLibrary1.js
+    // #require MyLibrary2.js
+
+Next you will need to tell JSDM which directories contain your Javascript files (this is your load path).
+
 Here is an example of using JSDM with Rake.  This will get you all the dependencies of foo.js and concatenate them into one big Javascript file.
 
     require 'jsdm'
