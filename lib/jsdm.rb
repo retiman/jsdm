@@ -63,10 +63,6 @@ class JSDM
     manager.dependencies
   end
 
-  def self.js_check(files, options = {})
-    Spidermonkey.check files, options
-  end
-
   def self.concatenate(output_file, data_files, options = {})
     options = { :heading => "// $FILE$:" }.merge! options
     File.open(output_file, "w") do |file|
