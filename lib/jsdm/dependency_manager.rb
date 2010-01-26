@@ -3,6 +3,7 @@ require 'jsdm/depth_first_search'
 require 'jsdm/directed_graph'
 require 'jsdm/natural_loops'
 require 'jsdm/errors'
+require 'pp'
 
 class JSDM
   class DependencyManager
@@ -18,6 +19,15 @@ class JSDM
       unless JSDM.same_file? dependency, source
         dependencies << [dependency, source]
       end
+    end
+
+    def dependencies_of(source, acc = [])
+       ds = dependencies.select { |d| d.last == source }.
+                         map { |d| d.first }
+       return acc if ds.empty?
+       acc = acc | ds
+       ds.each { |d| acc = acc | dependencies_of(d, acc) }
+       acc
     end
 
     def process
