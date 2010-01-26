@@ -48,11 +48,6 @@ class JSDM
     sources
   end
 
-  # deprecated
-  def concatenate(output_file, data_files, options = {})
-    JSDM.concatenate(output_file, data_files, options)
-  end
-
   def sources_in(dirs)
     dirs = dirs.is_a?(Array) ? dirs : [dirs]
     requested = dirs.map { |dir| Dir["#{dir}/**/*.#{ext}"] }.flatten
@@ -61,16 +56,6 @@ class JSDM
 
   def dependencies
     manager.dependencies
-  end
-
-  def self.concatenate(output_file, data_files, options = {})
-    options = { :heading => "// $FILE$:" }.merge! options
-    File.open(output_file, "w") do |file|
-      data_files.each do |f|
-        file.puts options[:heading].gsub(/\$FILE\$/, f)
-        file.puts File.new(f).read
-      end
-    end
   end
 
   def self.same_file?(a, b)

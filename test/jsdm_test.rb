@@ -116,17 +116,4 @@ class JSDMTest < Test::Unit::TestCase
     assert_equal ["#{@root}/I/b.js", "#{@root}/a.js"].to_set,
                  jsdm.sources.to_set
   end
-
-  def test_concatenation
-    @root += __method__.to_s
-    sources = %w(b.js a.js).map { |f| "#{@root}/#{f}" }
-    JSDM.concatenate "tmp/test_concatenation",
-                     sources,
-                     :heading => "// $FILE$:"
-    expected = "// test/res/jsdm/test_concatenation/b.js:\n\n" +
-               "// test/res/jsdm/test_concatenation/a.js:\n" +
-               "// #require b.js\n"
-    result = File.new("tmp/test_concatenation").read
-    assert_equal expected, result
-  end
 end
