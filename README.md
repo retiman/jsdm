@@ -34,7 +34,7 @@ Here is an example of using JSDM with Rake.  This will get you all the dependenc
     task :concat
       load_path = %w(path_1 path_2 path_3 path_4)
       jsdm = JSDM.new load_path
-      File.open('result.js', 'w') do |result|
+      File.open('result.js', 'w') do |out|
         jsdm.sources_for('foo.js').each do |source|
           out.puts "// Filename: #{File.expand_path source}"
           out.puts File.read(source)
