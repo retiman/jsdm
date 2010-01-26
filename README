@@ -1,1 +1,0 @@
-Why don't other javascript dependency management solutions do topological sort, detect circular dependencies, or allow you to specify globs as dependencies (eg, #require lib/*.js)?  Who knows.  Let's write one that does.
