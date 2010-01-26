@@ -1,12 +1,12 @@
-require "jsdm"
-require "jsdm/errors"
-require "test/unit"
+require 'jsdm'
+require 'jsdm/errors'
+require 'test/unit'
 
 class JSDMTest < Test::Unit::TestCase
   attr_accessor :root
 
   def setup
-    @root = "test/res/jsdm/"
+    @root = 'test/res/jsdm/'
   end
 
   def make(dir)
