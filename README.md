@@ -1,7 +1,7 @@
 JSDM
 ====
 
-JSDM is a javascript dependency management library written in Ruby.  Unlike other dependency management libraries, JSDM will perform a topological sort to determine any circular dependencies for you.  It also lets you specify globs as dependencies (eg #require lib/*.js).
+JSDM is a javascript dependency management library written in Ruby.  Unlike other dependency management libraries, JSDM will perform a topological sort to determine any circular dependencies for you.  It also lets you specify dependencies as globs (eg #require lib/*.js).
 
 Building
 --------
