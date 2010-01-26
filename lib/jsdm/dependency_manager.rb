@@ -21,13 +21,13 @@ class JSDM
     end
 
     def process
-      self.sources = sources.uniq.delete_if { |e| e.empty? }      
+      self.sources = sources.uniq.delete_if { |e| e.empty? }
       self.dependencies = dependencies.uniq.delete_if { |e| e.empty? }
       self.graph = DirectedGraph.new sources, dependencies
       result = DepthFirstSearch.dfs graph
       loops = NaturalLoops.find graph, result[:back_edges]
       raise CircularDependencyError.new(loops) unless loops.empty?
-      result[:sorted] 
+      result[:sorted]
     end
   end
 end
