@@ -23,6 +23,7 @@ In your Javascript files, put #require directives in comments at the top of your
     // #require jquery.js
     // #require MyLibrary1.js
     // #require MyLibrary2.js
+    // #require other/*.js
 
 Next you will need to tell JSDM which directories contain your Javascript files (this is your load path).
 
