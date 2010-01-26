@@ -15,7 +15,6 @@ class JSDM
     self.manager      = nil
     self.resolver     = nil
     self.ext          = "js"
-    self.processed    = false # deprecated
   end
 
   def process!
@@ -47,20 +46,6 @@ class JSDM
     end
     self.sources = manager.process
     sources
-  end
-
-  # deprecated
-  def sorted_sources
-    process! if !processed
-    self.processed = true
-    sources
-  end
-
-  # deprecated
-  def sorted_sources_matching(dirs)
-    process! if !processed
-    self.processed = true
-    sources_in(dirs)
   end
 
   # deprecated
