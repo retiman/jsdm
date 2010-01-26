@@ -24,12 +24,10 @@ end
 desc "Clean the build"
 task :clean do
   FileUtils.rm_rf "pkg", :verbose => true
-  FileUtils.rm_rf "tmp", :verbose => true
 end
 
 desc "Run tests (no arg), or single test (with arg)"
 task :test, :name do |t, args|
-  FileUtils.mkdir "tmp", :verbose => true if !File.directory? "tmp"
   opts = args.name.nil? ? "" : "-n test_#{args.name}"
   cmd = "ruby test/run_tests.rb #{opts}"
   puts cmd
