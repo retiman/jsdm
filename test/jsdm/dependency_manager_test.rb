@@ -11,7 +11,7 @@ class DependencyManagerTest < Test::Unit::TestCase
                     ['b/c/d/e.js', 'a/b.js'],
                     ['b/c/d/e.js', 'b/c/d.js'],
                     ['b/c/d/e.js', 'b/c.js'],
-                    ['b/c/d/e.js', 'c.js']]  
+                    ['b/c/d/e.js', 'c.js']]
     manager = JSDM::DependencyManager.new sources
     dependencies.each do |arc|
       manager.add_dependency arc.first, arc.last
@@ -30,7 +30,7 @@ class DependencyManagerTest < Test::Unit::TestCase
                     ['b/c/d/e.js', 'a/b.js'],
                     ['b/c/d/e.js', 'b/c/d.js'],
                     ['b/c/d/e.js', 'b/c.js'],
-                    ['b/c/d/e.js', 'c.js']]  
+                    ['b/c/d/e.js', 'c.js']]
     manager = JSDM::DependencyManager.new sources
     dependencies.each do |arc|
       manager.add_dependency arc.first, arc.last
