@@ -1,7 +1,7 @@
-require "jsdm/directed_graph"
-require "jsdm/natural_loops"
-require "set"
-require "test/unit"
+require 'jsdm/directed_graph'
+require 'jsdm/natural_loops'
+require 'set'
+require 'test/unit'
 
 class NaturalLoopsTest < Test::Unit::TestCase
   attr_accessor :nodes, :arcs
@@ -39,7 +39,7 @@ class NaturalLoopsTest < Test::Unit::TestCase
     @arcs += [[4, 1], [12, 1]]
     graph = JSDM::DirectedGraph.new(@nodes, @arcs)
     back_edges = JSDM::DepthFirstSearch.dfs(graph)[:back_edges]
-    assert_equal [[1, 2, 3, 4].to_set, 
+    assert_equal [[1, 2, 3, 4].to_set,
                   [1, 8, 12].to_set,
                  ].to_set,
                  JSDM::NaturalLoops.find(graph, back_edges)

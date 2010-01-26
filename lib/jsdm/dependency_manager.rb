@@ -3,7 +3,6 @@ require 'jsdm/depth_first_search'
 require 'jsdm/directed_graph'
 require 'jsdm/natural_loops'
 require 'jsdm/errors'
-require 'pp'
 
 class JSDM
   class DependencyManager

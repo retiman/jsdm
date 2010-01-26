@@ -1,7 +1,7 @@
-require "jsdm/depth_first_search"
-require "jsdm/directed_graph"
-require "set"
-require "test/unit"
+require 'jsdm/depth_first_search'
+require 'jsdm/directed_graph'
+require 'set'
+require 'test/unit'
 
 # todo: forward/back/cross edges are not unique across searches
 # it depends on node order, so change these tests to only test

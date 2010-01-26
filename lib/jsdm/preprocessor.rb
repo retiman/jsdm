@@ -7,8 +7,8 @@ class JSDM
       self.comment_pattern = /^\s*\/\/\s*/
       self.require_pattern = /#{comment_pattern}#\s*require\s*/
     end
-    
-    def process_single(source)         
+
+    def process_single(source)
       File.open(source).
            each_line.
            take_while { |line| line =~ comment_pattern }.
@@ -17,7 +17,7 @@ class JSDM
            flatten.
            map { |entry| entry.strip }
     end
-    
+
     def process
       sources.map { |source| [source, process_single(source)] }
     end

@@ -7,7 +7,7 @@ class JSDM
       self.nodes = nodes
       self.arcs  = arcs
     end
-    
+
     def successors(node)
       arcs.select { |a| a.first == node }.map { |a| a.last }
     end

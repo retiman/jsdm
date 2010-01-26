@@ -12,7 +12,7 @@ class JSDM
       self.sorted           = []
       self.time             = 0
     end
-    
+
     def process
       graph.nodes.each { |u| visit(u) if node_colors[u] == :white }
       return {
@@ -65,13 +65,13 @@ class JSDM
     end
 
     protected
-    attr_accessor :graph, 
-                  :discovered_times, 
-                  :finished_times, 
-                  :node_colors, 
-                  :edge_colors, 
-                  :predecessors, 
-                  :sorted, 
+    attr_accessor :graph,
+                  :discovered_times,
+                  :finished_times,
+                  :node_colors,
+                  :edge_colors,
+                  :predecessors,
+                  :sorted,
                   :time
   end
 end

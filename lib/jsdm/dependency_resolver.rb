@@ -3,11 +3,11 @@ require 'jsdm/errors'
 class JSDM
   class DependencyResolver
     attr_accessor :load_path
-    
+
     def initialize(load_path)
       self.load_path = load_path
     end
-    
+
     def process(entries)
       entries = entries.map { |entry| process_single entry }
       entries = entries.flatten
@@ -23,4 +23,4 @@ class JSDM
     end
   end
 end
-  
+
