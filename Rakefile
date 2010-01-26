@@ -27,23 +27,11 @@ task :clean do
   FileUtils.rm_rf "tmp", :verbose => true
 end
 
-desc "Run all tests (unit and integration)"
-task :test => [:unit_test, :integration_test]
-
-desc "Run unit tests (no arg), or single test (with arg)"
-task :unit_test, :name do |t, args|
+desc "Run tests (no arg), or single test (with arg)"
+task :test, :name do |t, args|
   FileUtils.mkdir "tmp", :verbose => true if !File.directory? "tmp"
   opts = args.name.nil? ? "" : "-n test_#{args.name}"
-  cmd = "ruby test/run_unit_tests.rb #{opts}"
-  puts cmd
-  system(cmd) || raise("Build error")
-end
-
-desc "Run integration tests (no arg), or single test (with arg)"
-task :integration_test, :name do |t, args|
-  FileUtils.mkdir "tmp", :verbose => true if !File.directory? "tmp"
-  opts = args.name.nil? ? "" : "-n test_#{args.name}"
-  cmd = "ruby test/run_integration_tests.rb #{opts}"
+  cmd = "ruby test/run_tests.rb #{opts}"
   puts cmd
   system(cmd) || raise("Build error")
 end

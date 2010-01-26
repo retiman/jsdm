@@ -2,7 +2,6 @@ require 'jsdm/dependency_manager'
 require 'jsdm/dependency_resolver'
 require 'jsdm/errors'
 require 'jsdm/preprocessor'
-require 'jsdm/spidermonkey'
 
 class JSDM
   attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext,
@@ -64,11 +63,6 @@ class JSDM
     process! if !processed
     self.processed = true
     sources_in(dirs)
-  end
-
-  # deprecated
-  def js_check(files, options = {})
-    JSDM.js_check(files, options)
   end
 
   # deprecated
