@@ -6,7 +6,7 @@ require 'jsdm/preprocessor'
 class JSDM
   attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext
 
-  def initialize(load_path = [], options = {})
+  def initialize(load_path = [])
     self.load_path    = load_path
     self.sources      = []
     self.preprocessor = nil
