@@ -8,7 +8,7 @@ class JSDM
                 :injected
 
   def initialize(load_path = [], options = {})
-    self.load_path    = load_path.is_a?(Array) ? load_path : [load_path]
+    self.load_path    = load_path
     self.sources      = []
     self.injected     = []
     self.preprocessor = nil
