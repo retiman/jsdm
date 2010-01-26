@@ -10,7 +10,6 @@ class JSDM
   def initialize(load_path = [], options = {})
     self.load_path    = load_path
     self.sources      = []
-    self.injected     = []
     self.preprocessor = nil
     self.manager      = nil
     self.resolver     = nil
@@ -28,13 +27,6 @@ class JSDM
     begin
       source = nil
       preprocessor.process.each do |element|
-        source = element.first
-        dependencies = resolver.process element.last
-        dependencies.each do |dependency|
-          manager.add_dependency source, dependency
-        end
-      end
-      injected.each do |element|
         source = element.first
         dependencies = resolver.process element.last
         dependencies.each do |dependency|
