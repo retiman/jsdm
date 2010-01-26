@@ -14,7 +14,7 @@ class JSDM
     self.preprocessor = nil
     self.manager      = nil
     self.resolver     = nil
-    self.ext          = "js"
+    self.ext          = 'js'
   end
 
   def process!
