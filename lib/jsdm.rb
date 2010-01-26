@@ -44,6 +44,12 @@ class JSDM
     sources & requested
   end
 
+  def dependencies_of(sources)
+    result = sources
+    sources.each { |source| result = result | manager.dependencies_of(source) }
+    self.sources & result
+  end
+
   def dependencies
     manager.dependencies
   end
