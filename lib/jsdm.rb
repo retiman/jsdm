@@ -4,8 +4,7 @@ require 'jsdm/errors'
 require 'jsdm/preprocessor'
 
 class JSDM
-  attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext,
-                :injected
+  attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext
 
   def initialize(load_path = [], options = {})
     self.load_path    = load_path
