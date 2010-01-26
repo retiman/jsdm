@@ -3,7 +3,7 @@ require 'jsdm/dependency_manager'
 require 'test/unit'
 
 class DependencyManagerTest < Test::Unit::TestCase
-  def test_manager_process
+  def test_process
     sources = %w(c.js a/b.js b/c/d/e.js b/c/d.js b/c.js)
     dependencies = [['b/c.js',     'a/b.js'],
                     ['c.js',       'a/b.js'],
