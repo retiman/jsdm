@@ -1,3 +1,5 @@
+require 'pp'
+
 class JSDM
   class CircularDependencyError < StandardError
     attr_accessor :deps
@@ -5,8 +7,9 @@ class JSDM
 
     def initialize(deps)
       msg = 'The following sets of files are involved in circular ' +
-            'dependencies: ' +
-            deps.inspect
+            'dependencies: '
+      s = ''
+      deps.each { |d| msg += PP.pp(d, s) }
       self.deps = deps
       super(msg)
     end
