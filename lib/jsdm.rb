@@ -4,7 +4,13 @@ require 'jsdm/errors'
 require 'jsdm/preprocessor'
 
 class JSDM
-  attr_accessor :load_path, :sources, :preprocessor, :manager, :resolver, :ext
+  attr_accessor :load_path,
+                :sources,
+                :requires,
+                :preprocessor,
+                :manager,
+                :resolver,
+                :ext
 
   def initialize(load_path = [], options = {})
     self.load_path    = load_path
@@ -24,9 +30,10 @@ class JSDM
     self.preprocessor = Preprocessor.new       sources
     self.manager      = DependencyManager.new  sources
     self.resolver     = DependencyResolver.new load_path
+    self.requires     = preprocessor.process
     begin
       source = nil
-      preprocessor.process.each do |element|
+      requires.each do |element|
         source = element.first
         dependencies = resolver.process element.last
         dependencies.each do |dependency|
@@ -44,6 +51,10 @@ class JSDM
     ds = manager.dependencies_of(source)
     ds.push(source)
     ds
+  end
+
+  def requires_for(source)
+    requires.select { |r| r.first == source }.last
   end
 
   def dependencies
