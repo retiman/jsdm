@@ -54,9 +54,7 @@ class JSDM
   end
 
   def requires_for(source)
-    xs = requires.select { |r| r.first == source }.first.last
-    pp xs
-    xs
+    requires.select { |r| r.first == source }.first.last
   end
 
   def dependencies

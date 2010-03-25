@@ -12,7 +12,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = "lib"
   s.has_rdoc     = true
   s.homepage     = "http://www.borderstylo.com/#{s.name}"
-  s.version      = "0.3.1"
+  s.version      = "0.3.2"
   s.summary      = "Javascript dependency manager"
   s.description  = "Use #require statements to declare dependencies"
 end
