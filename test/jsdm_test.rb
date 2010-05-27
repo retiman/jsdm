@@ -45,26 +45,6 @@ class JSDMTest < Test::Unit::TestCase
     assert_equal ["#{@root}/a.js", "#{@root}/b.js"], jsdm.sources
   end
 
-  def test_circular_with_2
-    begin
-      jsdm = create_jsdm(__method__.to_s)
-    rescue JSDM::CircularDependencyError => e
-      expected = [["#{@root}/a.js", "#{@root}/b.js"].to_set].to_set
-      assert_equal expected, e.deps
-    end
-  end
-
-  def test_circular_with_3
-    begin
-      jsdm = create_jsdm(__method__.to_s)
-    rescue JSDM::CircularDependencyError => e
-      expected = [
-        ["#{@root}/a.js", "#{@root}/b.js", "#{@root}/c.js"].to_set
-      ].to_set
-      assert_equal expected.to_set, e.deps
-    end
-  end
-
   def test_complex_dependency
     jsdm = create_jsdm(__method__.to_s)
     assert_equal ["#{@root}/a.js", "#{@root}/b.js", "#{@root}/c.js"],
@@ -100,11 +80,13 @@ class JSDMTest < Test::Unit::TestCase
     assert_equal ["#{@root}/a.js"], jsdm.sources
   end
 
-  def test_circular_with_glob_2
+  def test_circular_dependency
     begin
       jsdm = create_jsdm(__method__.to_s)
     rescue JSDM::CircularDependencyError => e
-      expected = [["#{@root}/a.js", "#{@root}/b.js"].to_set].to_set
+      expected = [
+        ["#{@root}/a.js", "#{@root}/b.js", "#{@root}/c.js"].to_set
+      ].to_set
       assert_equal expected, e.deps
     end
   end
