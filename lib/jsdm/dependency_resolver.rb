@@ -15,7 +15,7 @@ class JSDM
     end
 
     def process_single(entry)
-      resolved = load_path.map { |path| Dir["#{path}/#{entry.strip}"] }
+      resolved = load_path.map { |path| Dir[File.join(path, entry.strip)] }
       resolved = resolved.drop_while { |sources| sources.empty? }
       resolved = resolved.first
       raise FileNotFoundError.new(entry) if resolved.nil? || resolved.empty?

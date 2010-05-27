@@ -10,25 +10,31 @@ class DependencyResolverTest < Test::Unit::TestCase
 
   def test_process_1
     @root = File.join(@root, __method__.to_s)
-    resolver = JSDM::DependencyResolver.new [@root]
-    expected = ['a/b.js',
-                'c.js',
-                'b/c.js',
-                'b/c/d.js',
-                'b/c/d/e.js'].map { |f| "#{@root}/#{f}" }.
-                              to_set
+    load_path = [@root]
+    resolver = JSDM::DependencyResolver.new load_path
+    expected = [
+      File.join(@root, 'a', 'b.js'),
+      File.join(@root, 'c.js'),
+      File.join(@root, 'b', 'c.js'),
+      File.join(@root, 'b', 'c', 'd.js'),
+      File.join(@root, 'b', 'c', 'd', 'e.js')
+    ].to_set
     result = resolver.process('**/*.js').to_set
     assert_equal expected, result
   end
 
   def test_process_2
     @root = File.join(@root, __method__.to_s)
-    load_path = ["#{@root}/path_1", "#{@root}/path_2"]
+    load_path = [
+      File.join(@root, 'path_1'),
+      File.join(@root, 'path_2')
+    ]
     resolver = JSDM::DependencyResolver.new load_path
-    expected = ['foo/bar/a.js',
-                'foo/bar/b.js',
-                'foo/bar/c.js'].map { |f| "#{@root}/path_2/#{f}" }.
-                                to_set
+    expected = [
+      File.join(@root, 'path_2', 'foo', 'bar', 'a.js'),
+      File.join(@root, 'path_2', 'foo', 'bar', 'b.js'),
+      File.join(@root, 'path_2', 'foo', 'bar', 'c.js')
+    ].to_set
     result = resolver.process('foo/bar/*.js').to_set
     assert_equal expected, result
   end

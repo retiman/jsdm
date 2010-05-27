@@ -23,7 +23,7 @@ class JSDM
   end
 
   def process!
-    self.sources      = load_path.map { |path| Dir["#{path}/**/*.#{ext}"] }.
+    self.sources      = load_path.map { |path| Dir[File.join(path, '**', "*.#{ext}")] }.
                                   flatten.
                                   sort
     self.sources      = sources.sort { rand }
