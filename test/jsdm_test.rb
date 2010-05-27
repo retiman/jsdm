@@ -11,9 +11,7 @@ class JSDMTest < Test::Unit::TestCase
 
   def make(dir)
     @root += dir
-    jsdm = JSDM.new @root
-    jsdm.process!
-    jsdm
+    JSDM.new @root
   end
 
   def test_no_sources
