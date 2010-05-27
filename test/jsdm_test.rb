@@ -19,7 +19,7 @@ class JSDMTest < Test::Unit::TestCase
     assert_equal [], jsdm.sources
   end
 
-  def test_single_source_file
+  def test_no_requires
     jsdm = create_jsdm(__method__.to_s)
     assert_equal ["#{@root}/a.js"], jsdm.sources
   end
@@ -35,44 +35,10 @@ class JSDMTest < Test::Unit::TestCase
     end
   end
 
-  def test_two_source_files
-    jsdm = create_jsdm(__method__.to_s)
-    assert_equal ["#{@root}/a.js", "#{@root}/b.js"].to_set, jsdm.sources.to_set
-  end
-
-  def test_one_depends_on_other
-    jsdm = create_jsdm(__method__.to_s)
-    assert_equal ["#{@root}/a.js", "#{@root}/b.js"], jsdm.sources
-  end
-
-  def test_complex_dependency
+  def test_dependencies
     jsdm = create_jsdm(__method__.to_s)
     assert_equal ["#{@root}/a.js", "#{@root}/b.js", "#{@root}/c.js"],
                  jsdm.sources
-  end
-
-  def test_down_one_dir
-    jsdm = create_jsdm(__method__.to_s)
-    assert_equal ["#{@root}/a.js", "#{@root}/I/b.js"].to_set,
-                 jsdm.sources.to_set
-  end
-
-  def test_down_two_dir
-    jsdm = create_jsdm(__method__.to_s)
-    assert_equal ["#{@root}/a.js", "#{@root}/I/b.js"].to_set,
-                 jsdm.sources.to_set
-  end
-
-  def test_up_one_dir
-    jsdm = create_jsdm(__method__.to_s)
-    assert_equal ["#{@root}/a.js", "#{@root}/I/b.js"].to_set,
-                 jsdm.sources.to_set
-  end
-
-  def test_up_two_dir
-    jsdm = create_jsdm(__method__.to_s)
-    assert_equal ["#{@root}/a.js", "#{@root}/I/i/b.js"].to_set,
-                 jsdm.sources.to_set
   end
 
   def test_glob_matches_self
@@ -84,16 +50,10 @@ class JSDMTest < Test::Unit::TestCase
     begin
       jsdm = create_jsdm(__method__.to_s)
     rescue JSDM::CircularDependencyError => e
-      expected = [
-        ["#{@root}/a.js", "#{@root}/b.js", "#{@root}/c.js"].to_set
-      ].to_set
+      expected = Set.new([
+        Set.new ["#{@root}/a.js", "#{@root}/b.js", "#{@root}/c.js"]
+      ])
       assert_equal expected, e.deps
     end
-  end
-
-  def test_double_star_with_2
-    jsdm = create_jsdm(__method__.to_s)
-    assert_equal ["#{@root}/I/b.js", "#{@root}/a.js"].to_set,
-                 jsdm.sources.to_set
   end
 end
