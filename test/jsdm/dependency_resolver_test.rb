@@ -5,11 +5,11 @@ class DependencyResolverTest < Test::Unit::TestCase
   attr_accessor :root
 
   def setup
-    @root = 'test/res/dependency_resolver/'
+    @root = File.join('test', 'jsdm', 'dependency_resolver')
   end
 
   def test_process_1
-    @root += __method__.to_s
+    @root = File.join(@root, __method__.to_s)
     resolver = JSDM::DependencyResolver.new [@root]
     expected = ['a/b.js',
                 'c.js',
@@ -22,7 +22,7 @@ class DependencyResolverTest < Test::Unit::TestCase
   end
 
   def test_process_2
-    @root += __method__.to_s
+    @root = File.join(@root, __method__.to_s)
     load_path = ["#{@root}/path_1", "#{@root}/path_2"]
     resolver = JSDM::DependencyResolver.new load_path
     expected = ['foo/bar/a.js',
