@@ -10,7 +10,7 @@ class PreprocessorTest < Test::Unit::TestCase
 
   def test_process_1
     @root = File.join(@root, __method__.to_s)
-    sources = Dir["#{@root}/**/*.js"]
+    sources = Dir[File.join(@root, '**', '*.js')]
     preprocessor = JSDM::Preprocessor.new sources
     expected = [["#{@root}/a.js", %w(a/* b ./c*.js d)]]
     result = preprocessor.process
@@ -19,7 +19,7 @@ class PreprocessorTest < Test::Unit::TestCase
 
   def test_process_2
     @root = File.join(@root, __method__.to_s)
-    sources = Dir["#{@root}/**/*.js"]
+    sources = Dir[File.join(@root, '**', '*.js')]
     preprocessor = JSDM::Preprocessor.new sources
     expected = [["#{@root}/a.js", %w(a/* b ./c*.js d)]]
     result = preprocessor.process
