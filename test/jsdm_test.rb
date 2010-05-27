@@ -21,12 +21,12 @@ class JSDMTest < Test::Unit::TestCase
 
   def test_no_requires
     jsdm = create_jsdm(__method__.to_s)
-    assert_equal ["#{@root}/a.js"], jsdm.sources
+    assert_equal [File.join(@root, 'a.js')], jsdm.sources
   end
 
   def test_require_self
     jsdm = create_jsdm(__method__.to_s)
-    assert_equal ["#{@root}/a.js"], jsdm.sources
+    assert_equal [File.join(@root, 'a.js')], jsdm.sources
   end
 
   def test_require_missing
