@@ -37,13 +37,17 @@ class JSDMTest < Test::Unit::TestCase
 
   def test_dependencies
     jsdm = create_jsdm(__method__.to_s)
-    assert_equal ["#{@root}/a.js", "#{@root}/b.js", "#{@root}/c.js"],
-                 jsdm.sources
+    expected = [
+      File.join(@root, 'a.js'),
+      File.join(@root, 'b.js'),
+      File.join(@root, 'c.js')
+    ]
+    assert_equal expected, jsdm.sources
   end
 
   def test_glob_matches_self
     jsdm = create_jsdm(__method__.to_s)
-    assert_equal ["#{@root}/a.js"], jsdm.sources
+    assert_equal [File.join(@root, 'a.js')], jsdm.sources
   end
 
   def test_circular_dependency
@@ -51,7 +55,11 @@ class JSDMTest < Test::Unit::TestCase
       jsdm = create_jsdm(__method__.to_s)
     rescue JSDM::CircularDependencyError => e
       expected = Set.new([
-        Set.new ["#{@root}/a.js", "#{@root}/b.js", "#{@root}/c.js"]
+        Set.new([
+          File.join(@root, 'a.js'),
+          File.join(@root, 'b.js'),
+          File.join(@root, 'c.js')
+        ])
       ])
       assert_equal expected, e.deps
     end
