@@ -6,7 +6,7 @@ class JSDMTest < Test::Unit::TestCase
   attr_accessor :root
 
   def setup
-    @root = File.join('test', 'res', 'jsdm')
+    @root = File.join('test', 'jsdm')
   end
 
   def create_jsdm(dir)
