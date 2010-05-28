@@ -19,7 +19,7 @@ class DependencyResolverTest < Test::Unit::TestCase
       File.join(@root, 'b', 'c', 'd.js'),
       File.join(@root, 'b', 'c', 'd', 'e.js')
     ].to_set
-    result = resolver.process('**/*.js').to_set
+    result = resolver.process([File.join('**', '*.js')]).to_set
     assert_equal expected, result
   end
 
@@ -35,7 +35,7 @@ class DependencyResolverTest < Test::Unit::TestCase
       File.join(@root, 'path_2', 'foo', 'bar', 'b.js'),
       File.join(@root, 'path_2', 'foo', 'bar', 'c.js')
     ].to_set
-    result = resolver.process('foo/bar/*.js').to_set
+    result = resolver.process([File.join('foo', 'bar', '*.js')]).to_set
     assert_equal expected, result
   end
 end
