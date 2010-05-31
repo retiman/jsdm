@@ -24,15 +24,15 @@ class JSDM
     self.preprocessor = nil
     self.manager      = nil
     self.resolver     = nil
-    process!
+    process
   end
 
-  def process!
+  def process
     self.sources      = options[:load_path].map { |path|
                           Dir[File.join(path, '**', "*.#{options[:extension]}")]
                         }.flatten
     self.sources      = sources.sort { rand } if options[:randomize]
-    self.preprocessor = Preprocessor.new       sources
+    self.preprocessor = Preprocessor.new       sources, options
     self.manager      = DependencyManager.new  sources
     self.resolver     = DependencyResolver.new options[:load_path]
     self.requires     = preprocessor.process
