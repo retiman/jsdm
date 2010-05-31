@@ -5,17 +5,18 @@ require 'rake/gempackagetask'
 require 'rake/rdoctask'
 
 spec = Gem::Specification.new do |s|
-  s.platform     = Gem::Platform::RUBY
-  s.name         = "jsdm"
-  s.author       = "Min Huang"
-  s.email        = "min.huang@alumni.usc.edu"
-  s.files        = Dir["lib/**/*"] + %w(Rakefile)
-  s.require_path = "lib"
-  s.has_rdoc     = true
-  s.homepage     = "http://www.borderstylo.com/#{s.name}"
-  s.version      = "0.4.0"
-  s.summary      = "Javascript dependency manager"
-  s.description  = "Use #require statements to declare dependencies"
+  s.platform          = Gem::Platform::RUBY
+  s.name              = "jsdm"
+  s.author            = "Min Huang"
+  s.email             = "min.huang@alumni.usc.edu"
+  s.files             = Dir["lib/**/*"] + %w(Rakefile)
+  s.require_path      = "lib"
+  s.has_rdoc          = true
+  s.homepage          = "http://www.borderstylo.com/#{s.name}"
+  s.version           = "0.4.0"
+  s.summary           = "Javascript dependency manager"
+  s.description       = "Use #require statements to declare dependencies"
+  s.rubyforge_project = 'jsdm'
 end
 
 Rake::GemPackageTask.new(spec) do |pkg|
