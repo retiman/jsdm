@@ -31,8 +31,8 @@ task :test, :name do |t, args|
   system(cmd) || raise('Build error')
 end
 
-task :install => [:test, :package] do
-  g = 'pkg/#{spec.name}-#{spec.version}.gem'
+task :install => :package do
+  g = "pkg/#{spec.name}-#{spec.version}.gem"
   system "sudo gem install -l #{g}"
 end
 
