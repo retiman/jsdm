@@ -16,7 +16,7 @@ class JSDM
            each_line.
            take_while { |line| line =~ options[:comment_pattern] }.
            select { |line| line =~ options[:require_pattern] }.
-           map { |line| line.sub!(options[:require_pattern], "").split(",") }.
+           map { |line| line.sub!(options[:require_pattern], '').split(',') }.
            flatten.
            map { |entry| entry.strip }
     end
