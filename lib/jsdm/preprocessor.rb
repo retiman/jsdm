@@ -1,12 +1,11 @@
 class JSDM
   class Preprocessor
-    attr_accessor :sources, :comment_pattern, :require_pattern, :options
-
+    attr_accessor :sources, :options
 
     def initialize(sources, options = {})
       defaults = {
-        :comment_pattern => Preprocessor.cp,
-        :require_pattern => Preprocessor.rp
+        :comment_pattern => Preprocessor.comment_pattern,
+        :require_pattern => Preprocessor.require_pattern
       }
       self.sources = sources
       self.options = defaults.merge options
@@ -27,11 +26,11 @@ class JSDM
     end
 
     class << self
-      attr_accessor :cp, :rp
-      private :cp=, :rp=
+      attr_accessor :comment_pattern, :require_pattern
+      private :comment_pattern=, :require_pattern=
     end
 
-    self.cp = /^\s*\/\/\s*/
-    self.rp = /#{self.cp}#\s*require\s*/
+    self.comment_pattern = /^\s*\/\/\s*/
+    self.require_pattern = /#{self.comment_pattern}#\s*require\s*/
   end
 end
