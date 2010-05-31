@@ -14,11 +14,13 @@ spec = Gem::Specification.new do |s|
                         } + %w(Rakefile LICENSE README.md)
   s.require_path      = 'lib'
   s.has_rdoc          = true
+  s.rubyforge_project = 'jsdm'
   s.homepage          = "http://www.borderstylo.com/#{s.name}"
   s.version           = '0.4.0'
   s.summary           = 'Javascript dependency manager'
-  s.description       = 'Use #require statements to declare dependencies'
-  s.rubyforge_project = 'jsdm'
+  s.description       = <<-EOF
+    Use #require statements to declare dependencies in JavaScript
+  EOF
 end
 
 Rake::GemPackageTask.new(spec) do |pkg|
