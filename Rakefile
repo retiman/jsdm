@@ -9,7 +9,9 @@ spec = Gem::Specification.new do |s|
   s.name              = 'jsdm'
   s.author            = 'Min Huang'
   s.email             = 'min.huang@alumni.usc.edu'
-  s.files             = Dir['lib/**/*'] + %w(Rakefile)
+  s.files             = Dir["{lib,doc,bin,ext}/**/*"].delete_if { |f|
+                          /\/rdoc(\/|$)/i.match f
+                        } + %w(Rakefile LICENSE README.md)
   s.require_path      = 'lib'
   s.has_rdoc          = true
   s.homepage          = "http://www.borderstylo.com/#{s.name}"
