@@ -64,4 +64,11 @@ class JSDMTest < Test::Unit::TestCase
       assert_equal expected, e.deps
     end
   end
+
+  def test_sources_for
+    jsdm = create_jsdm(__method__.to_s)
+    expected = %w(a.js b.js c.js d.js).map { |f| File.join(@root, f) }.to_set
+    result = jsdm.sources_for(File.join(@root, 'a.js')).to_set
+    assert_equal expected, result
+  end
 end

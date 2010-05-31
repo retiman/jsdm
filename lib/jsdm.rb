@@ -52,17 +52,19 @@ class JSDM
     sources
   end
 
+  def dependencies
+    manager.dependencies
+  end
+
+  def dependencies_for(source)
+    manager.dependencies_for(source)
+  end
+
   def sources_for(source)
-    ds = manager.dependencies_for(source)
-    ds.push(source)
-    ds
+    dependencies_for(source) << source
   end
 
   def requires_for(source)
     requires.select { |r| r.first == source }.first.last
-  end
-
-  def dependencies
-    manager.dependencies
   end
 end
