@@ -5,6 +5,7 @@ require 'jsdm/preprocessor'
 
 class JSDM
   attr_accessor :load_path,
+                :options,
                 :sources,
                 :requires,
                 :preprocessor,
@@ -12,7 +13,15 @@ class JSDM
                 :resolver,
                 :ext
 
-  def initialize(load_path = [], options = {})
+  def initialize(load_path = [], opts = {})
+    defaults = {
+      :load_path       => '.',
+      :extension       => 'js',
+      :comment_pattern =>  /^\s*\/\/\s*/
+    }
+    defaults[:require_pattern] = /#{defaults[:comment_pattern]}#\s*require\s*/
+
+    self.options      = defaults.merge opts
     self.load_path    = load_path
     self.sources      = []
     self.preprocessor = nil
