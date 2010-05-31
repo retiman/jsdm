@@ -20,12 +20,12 @@ class JSDM
       end
     end
 
-    def dependencies_of(source, acc = [])
+    def dependencies_for(source, acc = [])
        ds = dependencies.select { |d| d.last == source }.
                          map { |d| d.first }
        return acc if ds.empty?
        acc = acc | ds
-       ds.each { |d| acc = acc | dependencies_of(d, acc) }
+       ds.each { |d| acc = acc | dependencies_for(d, acc) }
        acc
     end
 

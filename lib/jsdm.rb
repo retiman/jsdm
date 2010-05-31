@@ -53,7 +53,7 @@ class JSDM
   end
 
   def sources_for(source)
-    ds = manager.dependencies_of(source)
+    ds = manager.dependencies_for(source)
     ds.push(source)
     ds
   end
