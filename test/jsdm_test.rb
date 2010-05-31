@@ -11,7 +11,7 @@ class JSDMTest < Test::Unit::TestCase
 
   def create_jsdm(dir)
     @root = File.join(@root, dir)
-    JSDM.new @root
+    JSDM.new :load_path => @root
   end
 
   def test_no_sources

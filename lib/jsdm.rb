@@ -13,7 +13,7 @@ class JSDM
                 :resolver,
                 :ext
 
-  def initialize(load_path = [], opts = {})
+  def initialize(opts = {})
     defaults = {
       :load_path       => '.',
       :extension       => 'js',
@@ -22,7 +22,7 @@ class JSDM
     defaults[:require_pattern] = /#{defaults[:comment_pattern]}#\s*require\s*/
 
     self.options      = defaults.merge opts
-    self.load_path    = load_path
+    self.load_path    = options[:load_path]
     self.sources      = []
     self.preprocessor = nil
     self.manager      = nil

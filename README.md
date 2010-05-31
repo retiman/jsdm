@@ -32,8 +32,7 @@ Here is an example of using JSDM with Rake.  This will get you all the dependenc
     require 'jsdm'
 
     task :concat
-      load_path = %w(path_1 path_2 path_3 path_4)
-      jsdm = JSDM.new load_path
+      jsdm = JSDM.new :load_path => %w(path_1 path_2 path_3 path_4)
       File.open('result.js', 'w') do |out|
         jsdm.sources_for('foo.js').each do |source|
           out.puts "// Filename: #{File.expand_path source}"
@@ -48,8 +47,7 @@ Here is an example that runs all the Javascript sources through Spidermonkey to 
     require 'tempfile'
 
     task :concat
-      load_path = %w(path_1 path_2 path_3 path_4)
-      jsdm = JSDM.new load_path
+      jsdm = JSDM.new :load_path => %w(path_1 path_2 path_3 path_4)
       tmp = Tempfile.new('jsdm')
       jsdm.sources.each do |source|
         tmp.puts "print('Checking #{source}\n');"
