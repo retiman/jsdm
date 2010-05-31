@@ -9,9 +9,8 @@ class JSDM
     end
 
     def process(entries)
-      entries = entries.map { |entry| process_single entry }
-      entries = entries.flatten
-      entries
+      entries.map { |entry| process_single entry }.
+              flatten
     end
 
     def process_single(entry)
