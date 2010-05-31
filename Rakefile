@@ -36,4 +36,4 @@ task :install => :package do
   system "sudo gem install -l #{g}"
 end
 
-task :default => :test
+task :default => :package
