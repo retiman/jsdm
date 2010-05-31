@@ -16,10 +16,9 @@ class JSDM
       :randomize       => true,
       :load_path       => '.',
       :extension       => 'js',
-      :comment_pattern =>  /^\s*\/\/\s*/
+      :comment_pattern => Preprocessor.comment_pattern,
+      :require_pattern => Preprocessor.require_pattern
     }
-    defaults[:require_pattern] = /#{defaults[:comment_pattern]}#\s*require\s*/
-
     self.options      = defaults.merge opts
     self.sources      = []
     self.preprocessor = nil
