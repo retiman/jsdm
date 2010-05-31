@@ -4,17 +4,16 @@ require 'jsdm/errors'
 require 'jsdm/preprocessor'
 
 class JSDM
-  attr_accessor :load_path,
-                :options,
+  attr_accessor :options,
                 :sources,
                 :requires,
                 :preprocessor,
                 :manager,
-                :resolver,
-                :ext
+                :resolver
 
   def initialize(opts = {})
     defaults = {
+      :randomize       => true,
       :load_path       => '.',
       :extension       => 'js',
       :comment_pattern =>  /^\s*\/\/\s*/
@@ -22,23 +21,21 @@ class JSDM
     defaults[:require_pattern] = /#{defaults[:comment_pattern]}#\s*require\s*/
 
     self.options      = defaults.merge opts
-    self.load_path    = options[:load_path]
     self.sources      = []
     self.preprocessor = nil
     self.manager      = nil
     self.resolver     = nil
-    self.ext          = options[:ext].nil? ? 'js' : options[:ext]
     process!
   end
 
   def process!
-    self.sources      = load_path.map { |path| Dir[File.join(path, '**', "*.#{ext}")] }.
-                                  flatten.
-                                  sort
-    self.sources      = sources.sort { rand }
+    self.sources      = options[:load_path].map { |path|
+                          Dir[File.join(path, '**', "*.#{options[:extension]}")]
+                        }.flatten
+    self.sources      = sources.sort { rand } if options[:randomize]
     self.preprocessor = Preprocessor.new       sources
     self.manager      = DependencyManager.new  sources
-    self.resolver     = DependencyResolver.new load_path
+    self.resolver     = DependencyResolver.new options[:load_path]
     self.requires     = preprocessor.process
     begin
       source = nil
