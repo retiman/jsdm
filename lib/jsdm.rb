@@ -24,6 +24,9 @@ class JSDM
     self.preprocessor = nil
     self.manager      = nil
     self.resolver     = nil
+    unless options[:load_path].is_a?(Array)
+      options[:load_path] = [options[:load_path]]
+    end
     process
   end
 
