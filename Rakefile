@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'rake'
+require 'rake/clean'
 require 'rake/gempackagetask'
 require 'rake/rdoctask'
 
@@ -19,11 +20,6 @@ end
 
 Rake::GemPackageTask.new(spec) do |pkg|
   pkg.need_tar_bz2 = true
-end
-
-desc "Clean the build"
-task :clean do
-  FileUtils.rm_rf "pkg", :verbose => true
 end
 
 desc "Run tests (no arg), or single test (with arg)"
