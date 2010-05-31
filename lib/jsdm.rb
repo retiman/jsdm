@@ -65,8 +65,4 @@ class JSDM
   def dependencies
     manager.dependencies
   end
-
-  def self.same_file?(a, b)
-    File.expand_path(a) == File.expand_path(b)
-  end
 end

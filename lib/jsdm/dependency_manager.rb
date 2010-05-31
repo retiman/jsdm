@@ -15,7 +15,7 @@ class JSDM
     end
 
     def add_dependency(source, dependency)
-      unless JSDM.same_file? dependency, source
+      unless same_file? dependency, source
         dependencies << [dependency, source]
       end
     end
@@ -37,6 +37,12 @@ class JSDM
       loops = NaturalLoops.find graph, result[:back_edges]
       raise CircularDependencyError.new(loops) unless loops.empty?
       result[:sorted]
+    end
+
+    private
+
+    def same_file?(a, b)
+      File.expand_path(a) == File.expand_path(b)
     end
   end
 end
