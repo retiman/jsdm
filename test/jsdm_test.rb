@@ -37,11 +37,7 @@ class JSDMTest < Test::Unit::TestCase
 
   def test_dependencies
     jsdm = create_jsdm(__method__.to_s)
-    expected = [
-      File.join(@root, 'a.js'),
-      File.join(@root, 'b.js'),
-      File.join(@root, 'c.js')
-    ]
+    expected = %w(a.js b.js c.js).map { |f| File.join(@root, f) }
     assert_equal expected, jsdm.sources
   end
 
@@ -55,11 +51,7 @@ class JSDMTest < Test::Unit::TestCase
       jsdm = create_jsdm(__method__.to_s)
     rescue JSDM::CircularDependencyError => e
       expected = Set.new([
-        Set.new([
-          File.join(@root, 'a.js'),
-          File.join(@root, 'b.js'),
-          File.join(@root, 'c.js')
-        ])
+        Set.new(%w(a.js b.js c.js).map { |f| File.join(@root, f) })
       ])
       assert_equal expected, e.deps
     end
