@@ -59,7 +59,7 @@ can generate the script tags for that file:
 
     Dir.chdir '/path/to/local/js/files' do
       jsdm = JSDM.new :load_path => '.'
-      jsdm.dependencies_for('foo.js') do |f|
+      jsdm.dependencies_for('foo.js').each do |f|
         puts "<script src='/path/to/server/js/files/#{f}' />"
       end
     end
