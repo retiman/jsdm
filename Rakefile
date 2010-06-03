@@ -11,7 +11,7 @@ spec = Gem::Specification.new do |s|
   s.email             = 'min.huang@alumni.usc.edu'
   s.files             = Dir["{lib,doc,bin,ext}/**/*"].delete_if { |f|
                           /\/rdoc(\/|$)/i.match f
-                        } + %w(Rakefile)
+                        } + %w(Rakefile README.md)
   s.require_path      = 'lib'
   s.has_rdoc          = true
   s.rubyforge_project = 'jsdm'
