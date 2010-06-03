@@ -27,6 +27,13 @@ Rake::GemPackageTask.new(spec) do |pkg|
   pkg.need_tar_bz2 = true
 end
 
+Rake::RDocTask.new(:doc) do |t|
+  t.main = 'README.md'
+  t.rdoc_files.include 'lib/**/*.rb'
+  t.options << '-S' << '-N'
+  t.rdoc_dir = 'doc/rdoc'
+end
+
 desc 'Run tests (no arg), or single test (with arg)'
 task :test, :name do |t, args|
   opts = args.name.nil? ? '' : "-n test_#{args.name}"
