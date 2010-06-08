@@ -30,7 +30,7 @@ end
 Rake::RDocTask.new(:doc) do |t|
   t.title = 'JSDM'
   t.main = 'README.md'
-  t.rdoc_files.include 'lib/**/*.rb'
+  t.rdoc_files.include 'lib/**/*.rb', 'doc/*', 'README.md'
   t.options << '-S' << '-N'
   t.rdoc_dir = 'doc/rdoc'
 end
