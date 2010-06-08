@@ -1,5 +1,4 @@
-Description
-===========
+= Description
 
 JSDM is a JavaScript dependency management library written in Ruby - that is
 all.  It does not do anything special; in fact, it could be used to manage
@@ -10,8 +9,7 @@ comment or a require statement.  JSDM will also...
 * Allow you to have globs in your require statements.
 * Allow you to specify load paths.
 
-Installation
-============
+= Installation
 To install from source:
 
     rake clobber
@@ -22,8 +20,7 @@ To install from rubygems.org:
 
     gem install jsdm
 
-Usage
-=====
+= Usage
 In your Javascript files, put #require directives in comments at the top of
 your file (note that they must be the non-whitespace characters in your file
 for JSDM to process them correctly):
@@ -64,8 +61,7 @@ can generate the script tags for that file:
       end
     end
 
-License
-=======
+= License
 The following is retained from BorderStylo's licensing terms:
 
 JSDM version 0.2.20 and above is licensed under the MIT license.
