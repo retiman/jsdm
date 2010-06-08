@@ -1,5 +1,4 @@
 = Description
-
 JSDM is a JavaScript dependency management library written in Ruby - that is
 all.  It does not do anything special; in fact, it could be used to manage
 dependencies for any language as you can change what JSDM considers a
@@ -40,7 +39,6 @@ Here is an example for using JSDM to concatenate all your sources into one
 big JavaScript file:
 
     require 'jsdm'
-
     jsdm = JSDM.new :load_path => %w(path_1 path_2 path_3 path_4)
     File.open('result.js', 'w') do |out|
       jsdm.sources.each do |f|
@@ -53,7 +51,6 @@ Here is an example that finds all the dependencies for file foo.js so it
 can generate the script tags for that file:
 
     require 'jsdm'
-
     Dir.chdir '/path/to/local/js/files' do
       jsdm = JSDM.new :load_path => '.'
       jsdm.dependencies_for('foo.js').each do |f|
