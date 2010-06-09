@@ -8,7 +8,7 @@ spec = Gem::Specification.new do |s|
   s.name              = 'jsdm'
   s.author            = 'Min Huang'
   s.email             = 'min.huang@alumni.usc.edu'
-  s.files             = Dir["{lib,doc,bin,ext}/**/*"].delete_if { |f|
+  s.files             = Dir['{lib,doc,bin,ext}/**/*'].delete_if { |f|
                           /\/rdoc(\/|$)/i.match f
                         } + %w(Rakefile README.rdoc)
   s.require_path      = 'lib'
@@ -18,7 +18,8 @@ spec = Gem::Specification.new do |s|
   s.version           = '0.4.2'
   s.summary           = 'Javascript dependency manager'
   s.description       = <<-EOF
-    Use #require statements to declare dependencies in JavaScript
+    Use #require statements to declare dependencies in JavaScript and let JSDM
+    resolve the dependencies for you.
   EOF
 end
 
