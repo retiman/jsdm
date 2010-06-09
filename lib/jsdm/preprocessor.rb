@@ -1,4 +1,5 @@
 class JSDM
+  # Preprocesses the JavaScript for the DependencyResolver
   class Preprocessor
     attr_accessor :sources, :options
 
@@ -11,6 +12,15 @@ class JSDM
       self.options = defaults.merge options
     end
 
+    # Processes a single source file for its dependencies so that they may be
+    # resolved.  Here's how this function does it:
+    #
+    # * Open the source file and read it, taking all the lines that match the
+    #   comment_pattern
+    # * Select the lines that match the require_pattern from those lines
+    # * Split each require statement with a comma in it
+    # * Flatten the array of dependencies
+    # * Strip out the trailing whitespace
     def process_single(source)
       File.open(source).
            each_line.
@@ -21,6 +31,7 @@ class JSDM
            map { |entry| entry.strip }
     end
 
+    # Returns an associative list that maps source to (unresolved) dependencies
     def process
       sources.map { |source| [source, process_single(source)] }
     end
