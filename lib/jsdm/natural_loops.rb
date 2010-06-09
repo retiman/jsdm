@@ -1,8 +1,10 @@
 require 'set'
 
 class JSDM
-  class NaturalLoops
-    def self.find(graph, back_edges)
+  module NaturalLoops
+    extend self
+
+    def find(graph, back_edges)
       loops = Set.new
       back_edges.each do |arc|
         l = [arc.first, arc.last]
