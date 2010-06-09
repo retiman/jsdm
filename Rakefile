@@ -1,6 +1,5 @@
 require 'fileutils'
 require 'rake'
-require 'rake/clean'
 require 'rake/gempackagetask'
 require 'rake/rdoctask'
 
