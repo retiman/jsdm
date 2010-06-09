@@ -14,10 +14,9 @@ class JSDM
                             select { |a| a.last == u }.
                             map { |a| a.first }
           neighbors.each do |v|
-            if !l.include?(v)
-              l << v
-              stack.push v
-            end
+            next if l.include? v
+            l << v
+            stack.push v
           end
         end
         loops << l.to_set
