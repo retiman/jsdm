@@ -1,6 +1,12 @@
 require 'set'
 
 class JSDM
+  # Performs a depth-first search on a DirectedGraph.  This class implements
+  # the algorithm described on page 541 of Introduction to Algorithms,
+  # 2nd Edition by Cormen, Leiserson, Rivest, and Stein.
+  #
+  # See http://en.wikipedia.org/wiki/Depth-first_search for a more accessible
+  # explanation of what a depth-first search is.
   class DepthFirstSearch
     def initialize(graph)
       self.graph            = graph
@@ -59,6 +65,7 @@ class JSDM
       self.time += 1
     end
 
+    # Returns the results of a depth-first search on a DirectedGraph.
     def self.dfs(graph)
       search = DepthFirstSearch.new(graph)
       search.process

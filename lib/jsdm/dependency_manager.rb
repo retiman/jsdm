@@ -35,7 +35,17 @@ class JSDM
     end
 
     # Does a topological sort to find the order of dependencies, and checks
-    # for any circular dependencies.
+    # for any circular dependencies.  The reverse order of visitation in a
+    # depth-first search constitutes a topological sort.
+    #
+    # An algorithm for finding natural loops is used to determine whether or
+    # not any circular dependencies exist.  It is slower than simply adding
+    # a check to the DepthFirstSearch to see if any nodes have been visited
+    # twice, but it allows JSDM to more easily report all circular dependencies
+    # rather than just barfing on the first one found.
+    #
+    # See http://en.wikipedia.org/wiki/Topological_sorting for a more in
+    # depth explanation of topological sort.
     def process
       self.sources = sources.uniq.delete_if { |e| e.empty? }
       self.dependencies = dependencies.uniq.delete_if { |e| e.empty? }
