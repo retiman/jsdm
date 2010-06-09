@@ -3,8 +3,21 @@ require 'jsdm/dependency_resolver'
 require 'jsdm/errors'
 require 'jsdm/preprocessor'
 
-# A facade for interacting with the Preprocessor, DependencyResolver, and
-# DependencyManager.
+# JSDM allows you to add #require statements to JavaScript and then manages
+# the dependencies for you.  You may place the JavaScript files in many
+# different directories, and then add those directories to your load path.
+#
+# JSDM will scan those directories, resolve your dependencies, and return to
+# you a list of sources sorted topologically (that is, dependent sources
+# come first).  You may then use that list to generate script tags, load them
+# in Spidermonkey for syntax checking, or whatever else you like.
+#
+# Here's a quick example of how to use JSDM:
+#
+#   jsdm = JSDM.new :load_path => %w(/path1 /path2 /path3)
+#   jsdm.sources.each do |source|
+#     puts source
+#   end
 class JSDM
   attr_accessor :options,
                 :sources,
