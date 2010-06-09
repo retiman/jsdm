@@ -23,16 +23,16 @@ class JSDM
         :predecessors     => predecessors,
         :sorted           => sorted,
         :tree_edges       => edge_colors[:white],
-        :forward_edges    => edge_colors[:black].select do |e|
+        :forward_edges    => edge_colors[:black].select { |e|
                                t = discovered_times[e.first]
                                u = discovered_times[e.last]
                                t < u
-                             end,
-        :cross_edges      => edge_colors[:black].select do |e|
+                             },
+        :cross_edges      => edge_colors[:black].select { |e|
                                t = discovered_times[e.first]
                                u = discovered_times[e.last]
                                t > u
-                             end,
+                             },
         :back_edges       => edge_colors[:gray]
       }
     end
