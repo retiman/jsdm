@@ -12,7 +12,7 @@ class JSDM
           u = stack.pop
           neighbors = graph.arcs.
                             select { |a| a.last == u }.
-                            map { |a| a.first }.each 
+                            map { |a| a.first }
           neighbors.each do |v|
             if !l.include?(v)
               l << v
