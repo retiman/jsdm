@@ -28,7 +28,8 @@ class JSDM
 
   def initialize(opts = {})
     defaults = {
-      :randomize       => true,
+      :randomize       => false,
+      :sort            => true,
       :load_path       => '.',
       :extension       => 'js',
       :comment_pattern => Preprocessor.comment_pattern,
@@ -57,6 +58,7 @@ class JSDM
     self.sources      = options[:load_path].map { |path|
                           Dir[File.join(path, '**', "*.#{options[:extension]}")]
                         }.flatten
+    self.sources      = sources.sort if options[:sort]
     self.sources      = sources.sort { rand } if options[:randomize]
     self.preprocessor = Preprocessor.new       sources, options
     self.manager      = DependencyManager.new  sources
