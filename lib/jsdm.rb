@@ -59,7 +59,7 @@ class JSDM
                           Dir[File.join(path, '**', "*.#{options[:extension]}")]
                         }.flatten
     self.sources      = sources.sort if options[:sort]
-    self.sources      = sources.sort { rand } if options[:randomize]
+    self.sources      = sources.sort_by { rand } if options[:randomize]
     self.preprocessor = Preprocessor.new       sources, options
     self.manager      = DependencyManager.new  sources
     self.resolver     = DependencyResolver.new options[:load_path]
