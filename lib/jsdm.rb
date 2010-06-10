@@ -26,6 +26,24 @@ class JSDM
                 :manager,
                 :resolver
 
+  # Options: randomize sort load_path extension comment_pattern require_pattern
+  #
+  # Examples:
+  #
+  #   # Looks for both .js and .jsm extensions in the current directory
+  #   JSDM.new :extension => '{js,jsm}'
+  #
+  #   # Looks for JavaScript files in two different directories
+  #   JSDM.new :load_path => %w(some/path some/other/path)
+  #
+  #   # Sorts the JavaScript files beforehand; ensures a unique ordering of
+  #   # dependencies, even if you've made a mistake in specifying the require
+  #   # statements
+  #   JSDM.new :sort => true
+  #
+  #   # Randomizes the JavaScript files beforehand; hopefully ensures that you
+  #   # will get an error from improperly specifying dependencies
+  #   JSDM.new :randomize => true
   def initialize(opts = {})
     defaults = {
       :randomize       => false,
