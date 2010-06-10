@@ -55,6 +55,7 @@ optparse = OptionParser.new do |opts|
     'Randomize files beforehand'
   ) do
     options[:randomize] = true
+    options[:sort] = false
   end
 
   opts.on(
@@ -62,6 +63,7 @@ optparse = OptionParser.new do |opts|
     '--sort',
     'Sort files beforehand'
   ) do
+    options[:randomize] = false
     options[:sort] = true
   end
 
