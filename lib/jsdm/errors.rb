@@ -39,7 +39,7 @@ class JSDM
     private :source=, :dep=
 
     def initialize(source, dep)
-      msg = "File #{source} has unsatisfiable dependency:\n" +
+      msg = "File #{source} has one or more unsatisfiable dependencies:\n" +
             "  #{dep}"
       self.source = source
       self.dep = dep
