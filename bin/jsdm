@@ -50,11 +50,19 @@ optparse = OptionParser.new do |opts|
   end
 
   opts.on(
-    '-N',
-    '--no-randomize',
-    'Do not randomize files beforehand'
+    '-R',
+    '--randomize',
+    'Randomize files beforehand'
   ) do
-    options[:randomize] = false
+    options[:randomize] = true
+  end
+
+  opts.on(
+    '-S',
+    '--sort',
+    'Sort files beforehand'
+  ) do
+    options[:sort] = true
   end
 
   opts.on('-h', '--help', 'Display this screen') do
