@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+
+$: << 'lib'
+
+require 'jsdm'
+require 'optparse'
+require 'pp'
+
+options = {
+  :load_path => ['.']
+}
+
+optparse = OptionParser.new do |opts|
+  opts.banner = 'Usage: jsdm [options] path1 path2 path3'
+
+  opts.on(
+    '-e',
+    '--extension EXTENSION',
+    'Process files ending in .EXTENSION'
+  ) do |extension|
+    if extension.nil?
+      puts opts
+      exit
+    end
+    options[:extension] = extension
+  end
+
+  opts.on(
+    '-c',
+    '--comment-pattern PATTERN',
+    'Process comments matching regex PATTERN'
+  ) do |pattern|
+    if pattern.nil?
+      puts opts
+      exit
+    end
+    options[:comment_pattern] = Regexp.new(pattern)
+  end
+
+  opts.on(
+    '-r',
+    '--require-pattern',
+    'Process require directives matching regex PATTERN'
+  ) do |pattern|
+    if pattern.nil?
+      puts opts
+      exit
+    end
+    options[:require_pattern] = Regexp.new(pattern)
+  end
+
+  opts.on(
+    '-N',
+    '--no-randomize',
+    'Do not randomize files beforehand'
+  ) do
+    options[:randomize] = false
+  end
+
+  opts.on('-h', '--help', 'Display this screen') do
+    puts opts
+    exit
+  end
+end
+
+optparse.parse!
+options[:load_path] = ARGV unless ARGV.empty?
+
+begin
+  sources = JSDM.new(options).sources
+  exit if sources.empty?
+  sources.each { |s| puts s }
+rescue JSDM::CircularDependencyError => e
+  puts e.message
+rescue JSDM::UnsatisfiableDependencyError => e
+  puts e.message
+end

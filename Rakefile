@@ -11,6 +11,7 @@ spec = Gem::Specification.new do |s|
   s.files             = Dir['{lib,doc,bin,ext}/**/*'].delete_if { |f|
                           /\/rdoc(\/|$)/i.match f
                         } + %w(Rakefile README.rdoc)
+  s.executables       = Dir['bin/*'].map(&File.method(:basename))
   s.require_path      = 'lib'
   s.has_rdoc          = true
   s.rubyforge_project = 'jsdm'
