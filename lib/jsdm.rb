@@ -3,7 +3,7 @@ require 'jsdm/dependency_resolver'
 require 'jsdm/errors'
 require 'jsdm/preprocessor'
 
-# JSDM allows you to add #require statements to JavaScript and then manages
+# JSDM allows you to add \#require statements to JavaScript and then manages
 # the dependencies for you.  You may place the JavaScript files in many
 # different directories, and then add those directories to your load path.
 #
@@ -28,22 +28,82 @@ class JSDM
 
   # Options: randomize sort load_path extension comment_pattern require_pattern
   #
-  # Examples:
+  # Creates an instance of a JSDM class which will let you retrieve dependency
+  # information about your source files.  Use the specific instance methods to
+  # retrieve this information.
   #
-  #   # Looks for both .js and .jsm extensions in the current directory
-  #   JSDM.new :extension => '{js,jsm}'
+  # You may give JSDM a set of <tt>load_path</tt>s to search; in which case,
+  # the first file in the load path that matches a require directive will be
+  # the file JSDM considers to be the dependency.
   #
-  #   # Looks for JavaScript files in two different directories
-  #   JSDM.new :load_path => %w(some/path some/other/path)
+  # For example, suppose your load path consists of /foo and /bar.  Both
+  # directories contain baz.js.  If bif.js declares baz.js as a dependency,
+  # then during the dependency resolution step, /foo/baz.js will be considered
+  # a dependency, and /bar/baz.js will not be.
+  #
+  # However, if you ask for <tt>jsdm.sources</tt>, all sources, including
+  # /bar/baz.js will be returned.
+  #
+  # JavaScript source files should place \#require directives inside comments
+  # at the top of the source file, so that JSDM can parse and process them.
+  # You may use globs in your \#require directives.
+  #
+  # Here is an example of what one of your JavaScript files might look like:
+  #
+  #   // #require a.js
+  #   // #require b.js
+  #   // #require c/d.js
+  #   // #require e/*.js
+  #   // #require f/**/*.js
+  #
+  # It is advised to not use globs in your \#require directives if you
+  # use multiple load paths, as \#require *.js will automatically
+  # always resolve to all .js files in the first directory of your load path.
+  #
+  # For example:
+  #
+  # * Suppose directory /foo contains a.js, b.js, c.js
+  # * Suppose directory /bar contains d.js
+  # * Suppose a.js has a // \#require *.js comment
+  #
+  # Note that in the following example, /bar/d.js is not a dependency of a.js
+  #
+  #   jsdm = JSDM.new :load_path => %w(/foo /bar)
+  #   pp jsdm.sources_for '/foo/a.js' # ['/foo/a.js', '/foo/b.js', '/foo/c.js']
+  #   pp jsdm.sources # ['/foo/a.js', '/foo/b.js', '/foo/c.js', '/bar/d.js']
+  #
+  # Here are some more examples:
+  #
+  #   # Implicitly finds JavaScript files in the current directory, and prints
+  #   # them:
+  #   jsdm = JSDM.new
+  #   jsdm.sources.each { |source| puts source }
+  #
+  #   # Finds both .js and .jsm files in the current directory, and prints
+  #   # them:
+  #   jsdm = JSDM.new :extension => '{js,jsm}'
+  #   jsdm.sources.each { |source| puts source }
+  #
+  #   # Finds JavaScript files in two different directories, and prints file
+  #   # from both directories:
+  #
+  #   jsdm = JSDM.new :load_path => %w(some/path some/other/path)
+  #   jsdm.sources.each { |source| puts source }
   #
   #   # Sorts the JavaScript files beforehand; ensures a unique ordering of
   #   # dependencies, even if you've made a mistake in specifying the require
-  #   # statements
-  #   JSDM.new :sort => true
+  #   # statements:
+  #   jsdm = JSDM.new :sort => true
+  #   jsdm.sources.each { |source| puts source }
   #
   #   # Randomizes the JavaScript files beforehand; hopefully ensures that you
-  #   # will get an error from improperly specifying dependencies
-  #   JSDM.new :randomize => true
+  #   # will get an error from improperly specifying dependencies:
+  #   jsdm = JSDM.new :randomize => true
+  #   jsdm.sources.each { |source| puts source }
+  #
+  #   # Make the directive for requiring files @import instead of #require:
+  #   JSDM.new :require_pattern => /^\s*\/\/\s*@import\s*/
+  #   jsdm.sources.each { |source| puts source }
   def initialize(opts = {})
     defaults = {
       :randomize       => false,
@@ -64,14 +124,20 @@ class JSDM
     process
   end
 
-  # Preprocesses, resolves, and sorts the source files.  Here's how it does it:
+  # Returns an array of all JavaScript files in your <tt>load_path</tt>, sorted
+  # so that dependent files are ordered first.  This method is called by the
+  # initializer and the sorted array of JavaScript files will be stored in the
+  # <tt>sources</tt> variable for the user.
   #
-  # * Gather all the sources in the load path
-  # * Optionally sort them to ensure that dependencies have been set correctly
-  # * Create the Preprocessor, DependencyResolver, and DependencyManager
-  # * Preprocess the source files and resolve the dependencies
-  # * Add each individual dependency to the DependencyManager
-  # * Have the DependencyManager perform a topological sort
+  # If you are only interested in sources from a particular load path, or for
+  # a particular source file, see <tt>sources_for</tt> or
+  # <tt>dependencies</tt>.
+  #
+  # Examples:
+  #
+  #   # Prints out sources from all load paths, in the correct order
+  #   jsdm = JSDM.new :load_path => %w(path1 path2 path3)
+  #   jsdm.sources.each { |source| puts source }
   def process
     self.sources      = options[:load_path].map { |path|
                           Dir[File.join(path, '**', "*.#{options[:extension]}")]
@@ -98,23 +164,40 @@ class JSDM
     sources
   end
 
-  # Returns an associative list of sources mapped to source dependencies
+  # Returns an associative list of sources mapped to source dependencies.  The
+  # order of source dependencies is not guaranteed to be anything meaningful.
+  # See <tt>dependencies_for</tt> if you want a list of dependencies in sorted
+  # order.
   def dependencies
     manager.dependencies
   end
 
-  # Returns the dependencies of a source file, as an array of strings
+  # Returns the dependencies, and transitive dependencies, of a source file as
+  # an array of strings, with the load path prepended to the file name.  The
+  # dependencies are guaranteed to be in sorted order, so that dependent files
+  # come first.
+  #
+  # Example(s):
+  #
+  #   # Print a list of dependencies for each source file.
+  #   jsdm = JSDM.new
+  #   jsdm.sources.each |source| { pp jsdm.dependencies_for source }
   def dependencies_for(source)
     manager.dependencies_for(source)
   end
 
-  # Returns the dependencies of a source file (and the source file itself) as
-  # an array of strings
+  # Returns the dependencies, and transitive dependencies, of a source file,
+  # as well as the source file itself, as an array of strings, with the load path
+  # prepended to the file name.
+  #
+  # The dependencies are guaranteed to be in sorted order, so that dependent
+  # files come first.
   def sources_for(source)
     dependencies_for(source) << source
   end
 
-  # Returns the require statements for a source file
+  # Returns the require statements for a source file, as a list of strings.
+  # These are the actual \#require directives for the source file.
   def requires_for(source)
     requires.select { |r| r.first == source }.first.last
   end
