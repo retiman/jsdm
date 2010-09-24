@@ -16,7 +16,7 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc          = true
   s.rubyforge_project = 'jsdm'
   s.homepage          = 'http://www.github.com/retiman/jsdm'
-  s.version           = '0.4.4'
+  s.version           = '0.4.5'
   s.summary           = 'Javascript dependency manager'
   s.description       = <<-EOF
     Use #require statements to declare dependencies in JavaScript and let JSDM
