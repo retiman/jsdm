@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: JSDM::DepthFirstSearch</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/jsdm/depth_first_search_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/jsdm/depth_first_search.rb">lib/jsdm/depth_first_search.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Object</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-dfs">::dfs</a></li>
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-process">#process</a></li>
+					
+					<li><a href="#method-i-visit">#visit</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="../doc/LICENSE.html">LICENSE</a></li>
+				
+					<li class="file"><a href="../doc/REFERENCES.html">REFERENCES</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../JSDM.html">JSDM</a></li>
+				
+					<li><a href="../JSDM/CircularDependencyError.html">JSDM::CircularDependencyError</a></li>
+				
+					<li><a href="../JSDM/DependencyManager.html">JSDM::DependencyManager</a></li>
+				
+					<li><a href="../JSDM/DependencyResolver.html">JSDM::DependencyResolver</a></li>
+				
+					<li><a href="../JSDM/DepthFirstSearch.html">JSDM::DepthFirstSearch</a></li>
+				
+					<li><a href="../JSDM/DirectedGraph.html">JSDM::DirectedGraph</a></li>
+				
+					<li><a href="../JSDM/FileNotFoundError.html">JSDM::FileNotFoundError</a></li>
+				
+					<li><a href="../JSDM/NaturalLoops.html">JSDM::NaturalLoops</a></li>
+				
+					<li><a href="../JSDM/Preprocessor.html">JSDM::Preprocessor</a></li>
+				
+					<li><a href="../JSDM/UnsatisfiableDependencyError.html">JSDM::UnsatisfiableDependencyError</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">JSDM::DepthFirstSearch</h1>
+
+		<div id="description">
+			<p>
+Performs a depth-first search on a <a
+href="DirectedGraph.html">DirectedGraph</a>.  This class implements the
+algorithm described on page 541 of Introduction to Algorithms, 2nd Edition
+by Cormen, Leiserson, Rivest, and Stein.
+</p>
+<p>
+See <a
+href="http://en.wikipedia.org/wiki/Depth-first_search">en.wikipedia.org/wiki/Depth-first_search</a>
+for a more accessible explanation of what a depth-first search is.
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
+
+			
+			<div id="graph-attribute-method" class="method-detail">
+				<a name="graph"></a>
+				
+				<a name="graph="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">graph</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="discovered-times-attribute-method" class="method-detail">
+				<a name="discovered_times"></a>
+				
+				<a name="discovered_times="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">discovered_times</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="finished-times-attribute-method" class="method-detail">
+				<a name="finished_times"></a>
+				
+				<a name="finished_times="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">finished_times</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="node-colors-attribute-method" class="method-detail">
+				<a name="node_colors"></a>
+				
+				<a name="node_colors="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">node_colors</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="edge-colors-attribute-method" class="method-detail">
+				<a name="edge_colors"></a>
+				
+				<a name="edge_colors="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">edge_colors</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="predecessors-attribute-method" class="method-detail">
+				<a name="predecessors"></a>
+				
+				<a name="predecessors="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">predecessors</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="sorted-attribute-method" class="method-detail">
+				<a name="sorted"></a>
+				
+				<a name="sorted="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">sorted</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="time-attribute-method" class="method-detail">
+				<a name="time"></a>
+				
+				<a name="time="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">time</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="dfs-method" class="method-detail ">
+				<a name="method-c-dfs"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">dfs</span><span
+						class="method-args">(graph)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns the results of a depth-first search on a <a
+href="DirectedGraph.html">DirectedGraph</a>.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="dfs-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/jsdm/depth_first_search.rb, line 69</span>
+69:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">dfs</span>(<span class="ruby-identifier">graph</span>)
+70:       <span class="ruby-identifier">search</span> = <span class="ruby-constant">DepthFirstSearch</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">graph</span>)
+71:       <span class="ruby-identifier">search</span>.<span class="ruby-identifier">process</span>
+72:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(graph)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/jsdm/depth_first_search.rb, line 11</span>
+11:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">graph</span>)
+12:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">graph</span>            = <span class="ruby-identifier">graph</span>
+13:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">discovered_times</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-value">0</span> }
+14:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">finished_times</span>   = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-value">0</span> }
+15:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">node_colors</span>      = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-value">:white</span> }
+16:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">edge_colors</span>      = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = [] }
+17:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">predecessors</span>     = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+18:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sorted</span>           = []
+19:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">time</span>             = <span class="ruby-value">0</span>
+20:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="process-method" class="method-detail ">
+				<a name="method-i-process"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">process</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="process-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/jsdm/depth_first_search.rb, line 22</span>
+22:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process</span>
+23:       <span class="ruby-identifier">graph</span>.<span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span> <span class="ruby-identifier">visit</span>(<span class="ruby-identifier">u</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node_colors</span>[<span class="ruby-identifier">u</span>] <span class="ruby-operator">==</span> <span class="ruby-value">:white</span> }
+24:       <span class="ruby-keyword kw">return</span> {
+25:         <span class="ruby-value">:discovered_times</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">discovered_times</span>,
+26:         <span class="ruby-value">:finished_times</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">finished_times</span>,
+27:         <span class="ruby-value">:node_colors</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">node_colors</span>,
+28:         <span class="ruby-value">:edge_colors</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">edge_colors</span>,
+29:         <span class="ruby-value">:predecessors</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">predecessors</span>,
+30:         <span class="ruby-value">:sorted</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sorted</span>,
+31:         <span class="ruby-value">:tree_edges</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">edge_colors</span>[<span class="ruby-value">:white</span>],
+32:         <span class="ruby-value">:forward_edges</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">edge_colors</span>[<span class="ruby-value">:black</span>].<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+33:                                <span class="ruby-identifier">t</span> = <span class="ruby-identifier">discovered_times</span>[<span class="ruby-identifier">e</span>.<span class="ruby-identifier">first</span>]
+34:                                <span class="ruby-identifier">u</span> = <span class="ruby-identifier">discovered_times</span>[<span class="ruby-identifier">e</span>.<span class="ruby-identifier">last</span>]
+35:                                <span class="ruby-identifier">t</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">u</span>
+36:                              },
+37:         <span class="ruby-value">:cross_edges</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">edge_colors</span>[<span class="ruby-value">:black</span>].<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+38:                                <span class="ruby-identifier">t</span> = <span class="ruby-identifier">discovered_times</span>[<span class="ruby-identifier">e</span>.<span class="ruby-identifier">first</span>]
+39:                                <span class="ruby-identifier">u</span> = <span class="ruby-identifier">discovered_times</span>[<span class="ruby-identifier">e</span>.<span class="ruby-identifier">last</span>]
+40:                                <span class="ruby-identifier">t</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">u</span>
+41:                              },
+42:         <span class="ruby-value">:back_edges</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">edge_colors</span>[<span class="ruby-value">:gray</span>]
+43:       }
+44:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="visit-method" class="method-detail ">
+				<a name="method-i-visit"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">visit</span><span
+						class="method-args">(u)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="visit-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/jsdm/depth_first_search.rb, line 46</span>
+46:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">visit</span>(<span class="ruby-identifier">u</span>)
+47:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">time</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+48:       <span class="ruby-identifier">discovered_times</span>[<span class="ruby-identifier">u</span>] = <span class="ruby-identifier">time</span>
+49:       <span class="ruby-identifier">node_colors</span>[<span class="ruby-identifier">u</span>] = <span class="ruby-value">:gray</span>
+50:       <span class="ruby-identifier">graph</span>.<span class="ruby-identifier">successors</span>(<span class="ruby-identifier">u</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+51:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">node_colors</span>[<span class="ruby-identifier">v</span>]
+52:         <span class="ruby-keyword kw">when</span> <span class="ruby-value">:white</span>
+53:           <span class="ruby-identifier">edge_colors</span>[<span class="ruby-value">:white</span>] <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">u</span>, <span class="ruby-identifier">v</span>]
+54:           <span class="ruby-identifier">predecessors</span>[<span class="ruby-identifier">v</span>] = <span class="ruby-identifier">u</span>
+55:           <span class="ruby-identifier">visit</span>(<span class="ruby-identifier">v</span>)
+56:         <span class="ruby-keyword kw">when</span> <span class="ruby-value">:gray</span>
+57:           <span class="ruby-identifier">edge_colors</span>[<span class="ruby-value">:gray</span>]  <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">u</span>, <span class="ruby-identifier">v</span>]
+58:         <span class="ruby-keyword kw">else</span>
+59:           <span class="ruby-identifier">edge_colors</span>[<span class="ruby-value">:black</span>] <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">u</span>, <span class="ruby-identifier">v</span>]
+60:         <span class="ruby-keyword kw">end</span>
+61:       <span class="ruby-keyword kw">end</span>
+62:       <span class="ruby-identifier">node_colors</span>[<span class="ruby-identifier">u</span>] = <span class="ruby-value">:black</span>
+63:       <span class="ruby-identifier">finished_times</span>[<span class="ruby-identifier">u</span>] = <span class="ruby-identifier">time</span>
+64:       <span class="ruby-identifier">sorted</span>.<span class="ruby-identifier">unshift</span> <span class="ruby-identifier">u</span>
+65:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">time</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+66:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

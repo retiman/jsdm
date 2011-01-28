@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: JSDM</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./lib/jsdm_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/jsdm.rb">lib/jsdm.rb</a></li>
+					
+						<li><a href="./lib/jsdm/dependency_manager_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/jsdm/dependency_manager.rb">lib/jsdm/dependency_manager.rb</a></li>
+					
+						<li><a href="./lib/jsdm/errors_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/jsdm/errors.rb">lib/jsdm/errors.rb</a></li>
+					
+						<li><a href="./lib/jsdm/depth_first_search_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/jsdm/depth_first_search.rb">lib/jsdm/depth_first_search.rb</a></li>
+					
+						<li><a href="./lib/jsdm/preprocessor_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/jsdm/preprocessor.rb">lib/jsdm/preprocessor.rb</a></li>
+					
+						<li><a href="./lib/jsdm/directed_graph_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/jsdm/directed_graph.rb">lib/jsdm/directed_graph.rb</a></li>
+					
+						<li><a href="./lib/jsdm/natural_loops_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/jsdm/natural_loops.rb">lib/jsdm/natural_loops.rb</a></li>
+					
+						<li><a href="./lib/jsdm/dependency_resolver_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/jsdm/dependency_resolver.rb">lib/jsdm/dependency_resolver.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Object</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+			<div id="namespace-list-section" class="section">
+				<h3 class="section-header">Namespace</h3>
+				<ul class="link-list">
+					
+					<li><span class="type">MODULE</span> <a href="JSDM/NaturalLoops.html">JSDM::NaturalLoops</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="JSDM/CircularDependencyError.html">JSDM::CircularDependencyError</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="JSDM/DependencyManager.html">JSDM::DependencyManager</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="JSDM/DependencyResolver.html">JSDM::DependencyResolver</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="JSDM/DepthFirstSearch.html">JSDM::DepthFirstSearch</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="JSDM/DirectedGraph.html">JSDM::DirectedGraph</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="JSDM/FileNotFoundError.html">JSDM::FileNotFoundError</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="JSDM/Preprocessor.html">JSDM::Preprocessor</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="JSDM/UnsatisfiableDependencyError.html">JSDM::UnsatisfiableDependencyError</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-dependencies">#dependencies</a></li>
+					
+					<li><a href="#method-i-dependencies_for">#dependencies_for</a></li>
+					
+					<li><a href="#method-i-process">#process</a></li>
+					
+					<li><a href="#method-i-requires_for">#requires_for</a></li>
+					
+					<li><a href="#method-i-sources_for">#sources_for</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="./doc/LICENSE.html">LICENSE</a></li>
+				
+					<li class="file"><a href="./doc/REFERENCES.html">REFERENCES</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./JSDM.html">JSDM</a></li>
+				
+					<li><a href="./JSDM/CircularDependencyError.html">JSDM::CircularDependencyError</a></li>
+				
+					<li><a href="./JSDM/DependencyManager.html">JSDM::DependencyManager</a></li>
+				
+					<li><a href="./JSDM/DependencyResolver.html">JSDM::DependencyResolver</a></li>
+				
+					<li><a href="./JSDM/DepthFirstSearch.html">JSDM::DepthFirstSearch</a></li>
+				
+					<li><a href="./JSDM/DirectedGraph.html">JSDM::DirectedGraph</a></li>
+				
+					<li><a href="./JSDM/FileNotFoundError.html">JSDM::FileNotFoundError</a></li>
+				
+					<li><a href="./JSDM/NaturalLoops.html">JSDM::NaturalLoops</a></li>
+				
+					<li><a href="./JSDM/Preprocessor.html">JSDM::Preprocessor</a></li>
+				
+					<li><a href="./JSDM/UnsatisfiableDependencyError.html">JSDM::UnsatisfiableDependencyError</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">JSDM</h1>
+
+		<div id="description">
+			<p>
+<a href="JSDM.html">JSDM</a> allows you to add #require statements to
+JavaScript and then manages the dependencies for you.  You may place the
+JavaScript files in many different directories, and then add those
+directories to your load path.
+</p>
+<p>
+<a href="JSDM.html">JSDM</a> will scan those directories, resolve your
+dependencies, and return to you a list of sources sorted topologically
+(that is, dependent sources come first).  You may then use that list to
+generate script tags, load them in Spidermonkey for syntax checking, or
+whatever else you like.
+</p>
+<p>
+Here&#8217;s a quick example of how to use JSDM:
+</p>
+<pre>
+  jsdm = JSDM.new :load_path =&gt; %w(/path1 /path2 /path3)
+  jsdm.sources.each do |source|
+    puts source
+  end</pre>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
+
+			
+			<div id="options-attribute-method" class="method-detail">
+				<a name="options"></a>
+				
+				<a name="options="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">options</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="sources-attribute-method" class="method-detail">
+				<a name="sources"></a>
+				
+				<a name="sources="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">sources</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="requires-attribute-method" class="method-detail">
+				<a name="requires"></a>
+				
+				<a name="requires="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">requires</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="preprocessor-attribute-method" class="method-detail">
+				<a name="preprocessor"></a>
+				
+				<a name="preprocessor="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">preprocessor</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="manager-attribute-method" class="method-detail">
+				<a name="manager"></a>
+				
+				<a name="manager="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">manager</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="resolver-attribute-method" class="method-detail">
+				<a name="resolver"></a>
+				
+				<a name="resolver="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">resolver</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(opts = {})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Options: randomize sort load_path extension comment_pattern require_pattern
+</p>
+<p>
+Creates an instance of a <a href="JSDM.html">JSDM</a> class which will let
+you retrieve dependency information about your source files.  Use the
+specific instance methods to retrieve this information.
+</p>
+<p>
+You may give <a href="JSDM.html">JSDM</a> a set of <tt>load_path</tt>s to
+search; in which case, the first file in the load path that matches a
+require directive will be the file <a href="JSDM.html">JSDM</a> considers
+to be the dependency.
+</p>
+<p>
+For example, suppose your load path consists of /foo and /bar.  Both
+directories contain baz.js.  If bif.js declares baz.js as a dependency,
+then during the dependency resolution step, /foo/baz.js will be considered
+a dependency, and /bar/baz.js will not be.
+</p>
+<p>
+However, if you ask for <tt>jsdm.sources</tt>, all sources, including
+/bar/baz.js will be returned.
+</p>
+<p>
+JavaScript source files should place #require directives inside comments at
+the top of the source file, so that <a href="JSDM.html">JSDM</a> can parse
+and process them. You may use globs in your #require directives.
+</p>
+<p>
+Here is an example of what one of your JavaScript files might look like:
+</p>
+<pre>
+  // #require a.js
+  // #require b.js
+  // #require c/d.js
+  // #require e/*.js
+  // #require f/**/*.js
+</pre>
+<p>
+It is advised to not use globs in your #require directives if you use
+multiple load paths, as #require *.js will automatically always resolve to
+all .js files in the first directory of your load path.
+</p>
+<p>
+For example:
+</p>
+<ul>
+<li><p>
+Suppose directory /foo contains a.js, b.js, c.js
+</p>
+</li>
+<li><p>
+Suppose directory /bar contains d.js
+</p>
+</li>
+<li><p>
+Suppose a.js has a // #require *.js comment
+</p>
+</li>
+</ul>
+<p>
+Note that in the following example, /bar/d.js is not a dependency of a.js
+</p>
+<pre>
+  jsdm = JSDM.new :load_path =&gt; %w(/foo /bar)
+  pp jsdm.sources_for '/foo/a.js' # ['/foo/a.js', '/foo/b.js', '/foo/c.js']
+  pp jsdm.sources # ['/foo/a.js', '/foo/b.js', '/foo/c.js', '/bar/d.js']
+</pre>
+<p>
+Here are some more examples:
+</p>
+<pre>
+  # Implicitly finds JavaScript files in the current directory, and prints
+  # them:
+  jsdm = JSDM.new
+  jsdm.sources.each { |source| puts source }
+
+  # Finds both .js and .jsm files in the current directory, and prints
+  # them:
+  jsdm = JSDM.new :extension =&gt; '{js,jsm}'
+  jsdm.sources.each { |source| puts source }
+
+  # Finds JavaScript files in two different directories, and prints file
+  # from both directories:
+
+  jsdm = JSDM.new :load_path =&gt; %w(some/path some/other/path)
+  jsdm.sources.each { |source| puts source }
+
+  # Sorts the JavaScript files beforehand; ensures a unique ordering of
+  # dependencies, even if you've made a mistake in specifying the require
+  # statements:
+  jsdm = JSDM.new :sort =&gt; true
+  jsdm.sources.each { |source| puts source }
+
+  # Randomizes the JavaScript files beforehand; hopefully ensures that you
+  # will get an error from improperly specifying dependencies:
+  jsdm = JSDM.new :randomize =&gt; true
+  jsdm.sources.each { |source| puts source }
+
+  # Make the directive for requiring files @import instead of #require:
+  JSDM.new :require_pattern =&gt; /^\s*\/\/\s*@import\s*/
+  jsdm.sources.each { |source| puts source }</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/jsdm.rb, line 107</span>
+107:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">opts</span> = {})
+108:     <span class="ruby-identifier">defaults</span> = {
+109:       <span class="ruby-value">:randomize</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+110:       <span class="ruby-value">:sort</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+111:       <span class="ruby-value">:load_path</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'.'</span>,
+112:       <span class="ruby-value">:extension</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'js'</span>,
+113:       <span class="ruby-value">:comment_pattern</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Preprocessor</span>.<span class="ruby-identifier">comment_pattern</span>,
+114:       <span class="ruby-value">:require_pattern</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Preprocessor</span>.<span class="ruby-identifier">require_pattern</span>
+115:     }
+116:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">options</span>      = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">opts</span>
+117:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sources</span>      = []
+118:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">preprocessor</span> = <span class="ruby-keyword kw">nil</span>
+119:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">manager</span>      = <span class="ruby-keyword kw">nil</span>
+120:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">resolver</span>     = <span class="ruby-keyword kw">nil</span>
+121:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:load_path</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+122:       <span class="ruby-identifier">options</span>[<span class="ruby-value">:load_path</span>] = [<span class="ruby-identifier">options</span>[<span class="ruby-value">:load_path</span>]]
+123:     <span class="ruby-keyword kw">end</span>
+124:     <span class="ruby-identifier">process</span>
+125:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="dependencies-method" class="method-detail ">
+				<a name="method-i-dependencies"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">dependencies</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns an associative list of sources mapped to source dependencies.  The
+order of source dependencies is not guaranteed to be anything meaningful.
+See <tt><a
+href="JSDM.html#method-i-dependencies_for">dependencies_for</a></tt> if you
+want a list of dependencies in sorted order.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="dependencies-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/jsdm.rb, line 171</span>
+171:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dependencies</span>
+172:     <span class="ruby-identifier">manager</span>.<span class="ruby-identifier">dependencies</span>
+173:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="dependencies-for-method" class="method-detail ">
+				<a name="method-i-dependencies_for"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">dependencies_for</span><span
+						class="method-args">(source)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns the dependencies, and transitive dependencies, of a source file as
+an array of strings, with the load path prepended to the file name.  The
+dependencies are guaranteed to be in sorted order, so that dependent files
+come first.
+</p>
+<p>
+Example(s):
+</p>
+<pre>
+  # Print a list of dependencies for each source file.
+  jsdm = JSDM.new
+  jsdm.sources.each |source| { pp jsdm.dependencies_for source }</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="dependencies-for-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/jsdm.rb, line 185</span>
+185:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dependencies_for</span>(<span class="ruby-identifier">source</span>)
+186:     <span class="ruby-identifier">manager</span>.<span class="ruby-identifier">dependencies_for</span>(<span class="ruby-identifier">source</span>)
+187:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="process-method" class="method-detail ">
+				<a name="method-i-process"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">process</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns an array of all JavaScript files in your <tt>load_path</tt>, sorted
+so that dependent files are ordered first.  This method is called by the
+initializer and the sorted array of JavaScript files will be stored in the
+<tt>sources</tt> variable for the user.
+</p>
+<p>
+If you are only interested in sources from a particular load path, or for a
+particular source file, see <tt><a
+href="JSDM.html#method-i-sources_for">sources_for</a></tt> or
+<tt>dependencies</tt>.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  # Prints out sources from all load paths, in the correct order
+  jsdm = JSDM.new :load_path =&gt; %w(path1 path2 path3)
+  jsdm.sources.each { |source| puts source }</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="process-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/jsdm.rb, line 141</span>
+141:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process</span>
+142:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sources</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-value">:load_path</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+143:                           <span class="ruby-constant">Dir</span>[<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>, <span class="ruby-value str">'**'</span>, <span class="ruby-node">&quot;*.#{options[:extension]}&quot;</span>)]
+144:                         }.<span class="ruby-identifier">flatten</span>
+145:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sources</span>      = <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">sort</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:sort</span>]
+146:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sources</span>      = <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-identifier">rand</span> } <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:randomize</span>]
+147:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">preprocessor</span> = <span class="ruby-constant">Preprocessor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">sources</span>, <span class="ruby-identifier">options</span>
+148:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">manager</span>      = <span class="ruby-constant">DependencyManager</span>.<span class="ruby-identifier">new</span>  <span class="ruby-identifier">sources</span>
+149:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">resolver</span>     = <span class="ruby-constant">DependencyResolver</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:load_path</span>]
+150:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">requires</span>     = <span class="ruby-identifier">preprocessor</span>.<span class="ruby-identifier">process</span>
+151:     <span class="ruby-keyword kw">begin</span>
+152:       <span class="ruby-identifier">source</span> = <span class="ruby-keyword kw">nil</span>
+153:       <span class="ruby-identifier">requires</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span>
+154:         <span class="ruby-identifier">source</span> = <span class="ruby-identifier">element</span>.<span class="ruby-identifier">first</span>
+155:         <span class="ruby-identifier">dependencies</span> = <span class="ruby-identifier">resolver</span>.<span class="ruby-identifier">process</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">last</span>
+156:         <span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dependency</span><span class="ruby-operator">|</span>
+157:           <span class="ruby-identifier">manager</span>.<span class="ruby-identifier">add_dependency</span> <span class="ruby-identifier">source</span>, <span class="ruby-identifier">dependency</span>
+158:         <span class="ruby-keyword kw">end</span>
+159:       <span class="ruby-keyword kw">end</span>
+160:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">FileNotFoundError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+161:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">UnsatisfiableDependencyError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">file</span>)
+162:     <span class="ruby-keyword kw">end</span>
+163:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sources</span> = <span class="ruby-identifier">manager</span>.<span class="ruby-identifier">process</span>
+164:     <span class="ruby-identifier">sources</span>
+165:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="requires-for-method" class="method-detail ">
+				<a name="method-i-requires_for"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">requires_for</span><span
+						class="method-args">(source)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns the require statements for a source file, as a list of strings.
+These are the actual #require directives for the source file.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="requires-for-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/jsdm.rb, line 201</span>
+201:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">requires_for</span>(<span class="ruby-identifier">source</span>)
+202:     <span class="ruby-identifier">requires</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">source</span> }.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">last</span>
+203:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="sources-for-method" class="method-detail ">
+				<a name="method-i-sources_for"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">sources_for</span><span
+						class="method-args">(source)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns the dependencies, and transitive dependencies, of a source file, as
+well as the source file itself, as an array of strings, with the load path
+prepended to the file name.
+</p>
+<p>
+The dependencies are guaranteed to be in sorted order, so that dependent
+files come first.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="sources-for-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/jsdm.rb, line 195</span>
+195:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sources_for</span>(<span class="ruby-identifier">source</span>)
+196:     <span class="ruby-identifier">dependencies_for</span>(<span class="ruby-identifier">source</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">source</span>
+197:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

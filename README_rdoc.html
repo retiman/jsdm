@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: README.rdoc [JSDM]</title>
+
+	<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+</head>
+
+<body class="file">
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="./doc/LICENSE.html">LICENSE</a></li>
+				
+					<li class="file"><a href="./doc/REFERENCES.html">REFERENCES</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./JSDM.html">JSDM</a></li>
+				
+					<li><a href="./JSDM/CircularDependencyError.html">JSDM::CircularDependencyError</a></li>
+				
+					<li><a href="./JSDM/DependencyManager.html">JSDM::DependencyManager</a></li>
+				
+					<li><a href="./JSDM/DependencyResolver.html">JSDM::DependencyResolver</a></li>
+				
+					<li><a href="./JSDM/DepthFirstSearch.html">JSDM::DepthFirstSearch</a></li>
+				
+					<li><a href="./JSDM/DirectedGraph.html">JSDM::DirectedGraph</a></li>
+				
+					<li><a href="./JSDM/FileNotFoundError.html">JSDM::FileNotFoundError</a></li>
+				
+					<li><a href="./JSDM/NaturalLoops.html">JSDM::NaturalLoops</a></li>
+				
+					<li><a href="./JSDM/Preprocessor.html">JSDM::Preprocessor</a></li>
+				
+					<li><a href="./JSDM/UnsatisfiableDependencyError.html">JSDM::UnsatisfiableDependencyError</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1><a href="JSDM.html">JSDM</a></h1>
+<h2>Description</h2>
+<p>
+<a href="JSDM.html">JSDM</a> is a JavaScript dependency management library
+written in Ruby - that is all.  It does not do anything special; in fact,
+it could be used to manage dependencies for any language as you can change
+what <a href="JSDM.html">JSDM</a> considers a comment or a require
+statement.  <a href="JSDM.html">JSDM</a> will also...
+</p>
+<ul>
+<li><p>
+Perform topological sort to report circular dependencies to you.
+</p>
+</li>
+<li><p>
+Allow you to have globs in your require statements.
+</p>
+</li>
+<li><p>
+Allow you to specify load paths.
+</p>
+</li>
+</ul>
+<h2>Installation</h2>
+<p>
+To install from source:
+</p>
+<pre>
+    rake clobber
+    rake package
+    gem install pkg/jsdm-*.gem
+</pre>
+<p>
+To install from rubygems.org:
+</p>
+<pre>
+    gem install jsdm
+</pre>
+<h2>Usage</h2>
+<p>
+In your Javascript files, put # directives in comments at the top of your
+file (note that they must be the non-whitespace characters in your file for
+<a href="JSDM.html">JSDM</a> to process them correctly):
+</p>
+<pre>
+    // #require jquery.js
+    // #require MyLibrary1.js
+    // #require MyLibrary2.js
+    // #require other/*.js
+    // #require thing/**/*.js
+</pre>
+<p>
+Next you will need to tell <a href="JSDM.html">JSDM</a> which directories
+contain your Javascript files (this is your load path).
+</p>
+<pre>
+    jsdm = JSDM.new :load_path =&gt; %w(path_1 path_2 path_3)
+</pre>
+<p>
+Here is an example for using <a href="JSDM.html">JSDM</a> to concatenate
+all your sources into one big JavaScript file:
+</p>
+<pre>
+    require 'jsdm'
+    jsdm = JSDM.new :load_path =&gt; %w(path_1 path_2 path_3 path_4)
+    File.open('result.js', 'w') do |out|
+      jsdm.sources.each do |f|
+        out.puts &quot;// Filename: #{f}&quot;
+        out.puts File.read(f)
+      end
+    end
+</pre>
+<p>
+Here is an example that finds all the dependencies for file foo.js so it
+can generate the script tags for that file:
+</p>
+<pre>
+    require 'jsdm'
+    Dir.chdir '/path/to/local/js/files' do
+      jsdm = JSDM.new :load_path =&gt; '.'
+      jsdm.dependencies_for('foo.js').each do |f|
+        puts &quot;&lt;script src='/path/to/server/js/files/#{f}' /&gt;&quot;
+      end
+    end
+</pre>
+<h2>Author</h2>
+<p>
+Min Huang <min.huang@alumni.usc.edu>
+</p>
+<h2>Contributors</h2>
+<p>
+Pete Elmore <pete@debu.gs>, Ryan Wolf <ryan@borderstylo.com>
+</p>
+<h2>License</h2>
+<p>
+The following is retained from BorderStylo&#8217;s licensing terms:
+</p>
+<p>
+<a href="JSDM.html">JSDM</a> version 0.2.20 and above is licensed under the
+MIT license.
+</p>
+<p>
+No license is granted for versions previous to 0.2.20.
+</p>
+
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: JSDM::DirectedGraph</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/jsdm/directed_graph_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/jsdm/directed_graph.rb">lib/jsdm/directed_graph.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Object</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-successors">#successors</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="../doc/LICENSE.html">LICENSE</a></li>
+				
+					<li class="file"><a href="../doc/REFERENCES.html">REFERENCES</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../JSDM.html">JSDM</a></li>
+				
+					<li><a href="../JSDM/CircularDependencyError.html">JSDM::CircularDependencyError</a></li>
+				
+					<li><a href="../JSDM/DependencyManager.html">JSDM::DependencyManager</a></li>
+				
+					<li><a href="../JSDM/DependencyResolver.html">JSDM::DependencyResolver</a></li>
+				
+					<li><a href="../JSDM/DepthFirstSearch.html">JSDM::DepthFirstSearch</a></li>
+				
+					<li><a href="../JSDM/DirectedGraph.html">JSDM::DirectedGraph</a></li>
+				
+					<li><a href="../JSDM/FileNotFoundError.html">JSDM::FileNotFoundError</a></li>
+				
+					<li><a href="../JSDM/NaturalLoops.html">JSDM::NaturalLoops</a></li>
+				
+					<li><a href="../JSDM/Preprocessor.html">JSDM::Preprocessor</a></li>
+				
+					<li><a href="../JSDM/UnsatisfiableDependencyError.html">JSDM::UnsatisfiableDependencyError</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">JSDM::DirectedGraph</h1>
+
+		<div id="description">
+			<p>
+Very simple class to represent a directed graph using adjacency lists. See
+<a
+href="http://en.wikipedia.org/wiki/Digraph_(mathematics">en.wikipedia.org/wiki/Digraph_(mathematics</a>)
+See <a
+href="http://en.wikipedia.org/wiki/Adjacency_list">en.wikipedia.org/wiki/Adjacency_list</a>
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
+
+			
+			<div id="nodes-attribute-method" class="method-detail">
+				<a name="nodes"></a>
+				
+				<a name="nodes="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">nodes</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="arcs-attribute-method" class="method-detail">
+				<a name="arcs"></a>
+				
+				<a name="arcs="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">arcs</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(nodes, arcs)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/jsdm/directed_graph.rb, line 9</span>
+ 9:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">nodes</span>, <span class="ruby-identifier">arcs</span>)
+10:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">nodes</span> = <span class="ruby-identifier">nodes</span>
+11:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">arcs</span>  = <span class="ruby-identifier">arcs</span>
+12:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="successors-method" class="method-detail ">
+				<a name="method-i-successors"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">successors</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns a list of nodes that are in the tail of an arc whose head is the
+given node.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="successors-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/jsdm/directed_graph.rb, line 16</span>
+16:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">successors</span>(<span class="ruby-identifier">node</span>)
+17:       <span class="ruby-identifier">arcs</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">node</span> }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">last</span> }
+18:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

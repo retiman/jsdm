@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: JSDM::Preprocessor</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/jsdm/preprocessor_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/jsdm/preprocessor.rb">lib/jsdm/preprocessor.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Object</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-process">#process</a></li>
+					
+					<li><a href="#method-i-process_single">#process_single</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="../doc/LICENSE.html">LICENSE</a></li>
+				
+					<li class="file"><a href="../doc/REFERENCES.html">REFERENCES</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../JSDM.html">JSDM</a></li>
+				
+					<li><a href="../JSDM/CircularDependencyError.html">JSDM::CircularDependencyError</a></li>
+				
+					<li><a href="../JSDM/DependencyManager.html">JSDM::DependencyManager</a></li>
+				
+					<li><a href="../JSDM/DependencyResolver.html">JSDM::DependencyResolver</a></li>
+				
+					<li><a href="../JSDM/DepthFirstSearch.html">JSDM::DepthFirstSearch</a></li>
+				
+					<li><a href="../JSDM/DirectedGraph.html">JSDM::DirectedGraph</a></li>
+				
+					<li><a href="../JSDM/FileNotFoundError.html">JSDM::FileNotFoundError</a></li>
+				
+					<li><a href="../JSDM/NaturalLoops.html">JSDM::NaturalLoops</a></li>
+				
+					<li><a href="../JSDM/Preprocessor.html">JSDM::Preprocessor</a></li>
+				
+					<li><a href="../JSDM/UnsatisfiableDependencyError.html">JSDM::UnsatisfiableDependencyError</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">JSDM::Preprocessor</h1>
+
+		<div id="description">
+			<p>
+Preprocesses the JavaScript for the <a
+href="DependencyResolver.html">DependencyResolver</a>
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
+
+			
+			<div id="sources-attribute-method" class="method-detail">
+				<a name="sources"></a>
+				
+				<a name="sources="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">sources</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="options-attribute-method" class="method-detail">
+				<a name="options"></a>
+				
+				<a name="options="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">options</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="comment-pattern-attribute-method" class="method-detail">
+				<a name="comment_pattern"></a>
+				
+				<a name="comment_pattern="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">comment_pattern</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="require-pattern-attribute-method" class="method-detail">
+				<a name="require_pattern"></a>
+				
+				<a name="require_pattern="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">require_pattern</span><span
+						class="attribute-access-type">[RW]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(sources, options = {})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/jsdm/preprocessor.rb, line 6</span>
+ 6:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">options</span> = {})
+ 7:       <span class="ruby-identifier">defaults</span> = {
+ 8:         <span class="ruby-value">:comment_pattern</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Preprocessor</span>.<span class="ruby-identifier">comment_pattern</span>,
+ 9:         <span class="ruby-value">:require_pattern</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Preprocessor</span>.<span class="ruby-identifier">require_pattern</span>
+10:       }
+11:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sources</span> = <span class="ruby-identifier">sources</span>
+12:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">options</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">options</span>
+13:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="process-method" class="method-detail ">
+				<a name="method-i-process"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">process</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns an associative list that maps source to (unresolved) dependencies
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="process-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/jsdm/preprocessor.rb, line 35</span>
+35:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process</span>
+36:       <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">source</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">source</span>, <span class="ruby-identifier">process_single</span>(<span class="ruby-identifier">source</span>)] }
+37:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="process-single-method" class="method-detail ">
+				<a name="method-i-process_single"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">process_single</span><span
+						class="method-args">(source)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Processes a single source file for its dependencies so that they may be
+resolved.  Here&#8217;s how this function does it:
+</p>
+<ul>
+<li><p>
+Open the source file and read it, taking all the lines that match the <a
+href="Preprocessor.html#comment_pattern">comment_pattern</a>
+</p>
+</li>
+<li><p>
+Select the lines that match the <a
+href="Preprocessor.html#require_pattern">require_pattern</a> from those
+lines
+</p>
+</li>
+<li><p>
+Split each require statement with a comma in it
+</p>
+</li>
+<li><p>
+Flatten the array of dependencies
+</p>
+</li>
+<li><p>
+Strip out the trailing whitespace
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="process-single-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/jsdm/preprocessor.rb, line 24</span>
+24:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process_single</span>(<span class="ruby-identifier">source</span>)
+25:       <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">source</span>).
+26:            <span class="ruby-identifier">each_line</span>.
+27:            <span class="ruby-identifier">take_while</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:comment_pattern</span>] }.
+28:            <span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:require_pattern</span>] }.
+29:            <span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:require_pattern</span>], <span class="ruby-value str">''</span>).<span class="ruby-identifier">split</span>(<span class="ruby-value str">','</span>) }.
+30:            <span class="ruby-identifier">flatten</span>.
+31:            <span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span> <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">strip</span> }
+32:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

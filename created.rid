@@ -1,0 +1,12 @@
+Sat, 12 Jun 2010 01:31:58 -0700
+lib/jsdm/directed_graph.rb	Wed, 09 Jun 2010 02:25:15 -0700
+lib/jsdm/errors.rb	Wed, 09 Jun 2010 18:28:11 -0700
+doc/LICENSE	Wed, 09 Jun 2010 02:18:12 -0700
+lib/jsdm/dependency_resolver.rb	Wed, 09 Jun 2010 02:25:15 -0700
+README.rdoc	Wed, 09 Jun 2010 02:18:12 -0700
+lib/jsdm/natural_loops.rb	Wed, 09 Jun 2010 02:25:15 -0700
+lib/jsdm/depth_first_search.rb	Wed, 09 Jun 2010 02:25:15 -0700
+lib/jsdm.rb	Sat, 12 Jun 2010 01:20:57 -0700
+lib/jsdm/preprocessor.rb	Wed, 09 Jun 2010 02:25:15 -0700
+doc/REFERENCES	Wed, 09 Jun 2010 02:25:15 -0700
+lib/jsdm/dependency_manager.rb	Wed, 09 Jun 2010 02:25:15 -0700
